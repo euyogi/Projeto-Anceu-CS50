@@ -11,6 +11,7 @@ from os import remove
 from requests import get
 from PyPDF2 import PdfReader
 from operator import itemgetter
+from data class import dataclasses
 
 # Links dos pdf's que contém dados dos candidatos, incluindo notas; E um com as inscrições dos aprovados.
 URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ED_6_ACESSOENEM_22_RES_FINAL_BIOP_SCEP_E_NO_PROCESSO.PDF'
@@ -18,6 +19,9 @@ URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/
 
 # O modelo do cabeçalho e o tamanho da inscrição devem estar disponíveis no pdf acessível pelo url das notas.
 CABECALHO = 'inscricao,nota,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10\n'  # Nome removido do cabeçalho, pois não pareceu necessário.
+
+SIMBOLO_COTAS = CABECALHO[CABECALHO.find('s1'):].removesuffix('\n').split(',')
+
 TAMANHO_DA_INSCRICAO = 9  # Inclui a "," após o número.
 
 # Modelos de inscrições devem estar disponíveis no pdf acessível pelo url dos aprovados.
@@ -28,13 +32,16 @@ NOME_PDF = 'dados.pdf'
 NOME_CSV = NOME_PDF.replace('.pdf', '.csv')
 NOME_TXT = NOME_PDF.replace('.pdf', '.txt')
 
+@dataclasse
 class Cota:
-    def __init__(self, quantidade = 0, soma = 0, media = 0, max = 0, min = 1000):
-        self.quantidade = quantidade
-        self.soma = soma
-        self.media = media
-        self.max = max
-        self.min = min
+    quantidade = int
+    soma = int
+
+    max = int
+    min = int
+
+    def __postinit__:
+        media = soma / quantidade
 
 
 resumo = {
@@ -52,7 +59,7 @@ resumo = {
 
 chaves = list(resumo.keys())
 
-nomes_das_cotas = [
+NOMES_DAS_COTAS = [
     'Sistema Universal',
     'Cotas para Negros',
     'PPI < 1,5',
@@ -117,7 +124,7 @@ def main():
         if s == 2:
             print(f'\n\033[1;36mEscola Pública:\033[m\n')
         resumo[chaves[s]].media = resumo[chaves[s]].soma / resumo[chaves[s]].quantidade if resumo[chaves[s]].quantidade > 0 else 0
-        print(f'\033[1;35m{nomes_das_cotas[s]}:\033[m Max = {resumo[chaves[s]].max}; Min = {resumo[chaves[s]].min}; Média = {resumo[chaves[s]].media:.2f}.') if resumo[chaves[s]].max > 0 else print(end = '')
+        print(f'\033[1;35m{NOMES_DAS_COTAS[s]}:\033[m Max = {resumo[chaves[s]].max}; Min = {resumo[chaves[s]].min}; Média = {resumo[chaves[s]].media:.2f}.') if resumo[chaves[s]].max > 0 else print(end = '')
         
     print('')
 
