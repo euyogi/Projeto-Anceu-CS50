@@ -6,8 +6,11 @@
 
 ''' Bibliotecas e módulos necessários para o programa. '''
 
-import customtkinter
+import customtkinter, threading, queue
 
+import multiprocessing as mp
+
+from time import sleep
 from requests import get
 
 from PyPDF2 import PdfReader
@@ -21,7 +24,6 @@ from dataclasses import dataclass
 from numpy import arange
 
 from operator import itemgetter
-
 
 ''' Variáveis para armazenar dados necessários para as funções. '''
 
@@ -56,7 +58,9 @@ TAMANHO_DA_INSCRICAO = 9  # Inclui a "," após o número.
 # Nomes dos arquivos; Pode ser qualquer nome pois só existem enquanto o programa está rodando.
 NOME_PDF = 'dados.pdf'
 NOME_CSV = NOME_PDF.replace('.pdf', '.csv')
-NOME_TXT = NOME_PDF.replace('.pdf', '.txt')
+
+NOME_PDF2 = 'dados_2.pdf'
+NOME_TXT = NOME_PDF2.replace('.pdf', '.txt')
 
 # Para ter os nomes dos cursos na combobox a partir do início do programa foi necessário declará-los.
 NOMES_DOS_CURSOS = sorted(['ADMINISTRAÇÃO', 'AGRONOMIA', 'ARQUITETURA E URBANISMO', 'ARTES CÊNICAS - INTERPRETAÇÃO TEATRAL', 'ARTES VISUAIS', 'ARTES VISUAIS (LICENCIATURA)',
@@ -84,15 +88,15 @@ NOMES_DOS_CURSOS = sorted(['ADMINISTRAÇÃO', 'AGRONOMIA', 'ARQUITETURA E URBANI
 # Cores para output's e botões.
 AZUL = '#4169E1'
 AMARELO = '#ffbf3c'
-CINZA = '#333333'
-CINZA_ESCURO = '212121'
+CINZA_VERMELHADO = '#393333'
+CINZA_ESCURO_VERMELHADO = '#2C2121'
 VERDE = '#83F28F'
 VERMELHO_CLARO = '#D9381E'
 VERMELHO = '#A5361F'
 VERMELHO_ESCURO = '#521B0F'
 ROXO = '#502B29'
 ROXO_ESCURO = '#2C1B1A'
-ROXO_MAIS_ESCURO = '#130C0B'
+ROXO_MAIS_ESCURO = '#271717'
 
 # Essa classe nos disponibiliza a maior e a menor nota dos candidatos aprovados na cota x, além da média.
 @dataclass
@@ -110,6 +114,7 @@ class Cota:
 # Como existem 10 cotas, nessa varíavel é armazenado as maiores e as menores notas de cada uma, além de suas médias.
 resumo = {s: Cota() for s in SIMBOLO_COTAS}
 
+
 ''' Funções: '''
 
 # Essa função é ativada ao por o nome do curso e apertar o botão de pesquisar;
@@ -120,36 +125,32 @@ def criar_arquivos():
         mudar_status('Status: Curso inexistente', VERMELHO_CLARO)
         return
     
-    if baixar_pdf(URL_DAS_NOTAS) != 0:
-        return
+    curso = combobox.get().replace(' ', '').strip().upper()
     
-    if extrair_dados_do_pdf_em_csv(NOME_PDF, combobox.get().replace(' ', '').strip().upper()) != 0:
-        try:
-            remove(NOME_PDF)
-        except:
-            pass
-        return
+    threading.Thread(target = progressbar.start).start()
     
-    remove(NOME_PDF)
+    mudar_status('Status: Pesquisando.....', VERDE)
+    worker_1 = threading.Thread(target = lambda: baixar_pdf(URL_DAS_NOTAS, NOME_PDF))
+    worker_2 = threading.Thread(target = lambda: baixar_pdf(URL_DOS_APROVADOS, NOME_PDF2))
+    worker_1.start()
+    worker_2.start()
+    worker_1.join()
+    worker_2.join()
     
-    if corrigir_dados_do_csv(NOME_CSV) != 0:
-        return
-
-    if baixar_pdf(URL_DOS_APROVADOS) != 0:
-        return
-    
-    if extrair_dados_do_pdf_em_txt(NOME_PDF) != 0:
-        try:
-            remove(NOME_PDF)
-        except:
-            pass
-        return
-
-    remove(NOME_PDF)
+    progressbar.stop()
+    progressbar.configure(mode = 'indeterminate')
+    progressbar.set(1)
+    mudar_status('Status: Aguarde.....', AZUL)
+    worker_1 = threading.Thread(target = lambda: extrair_dados_do_pdf_em_csv(curso))
+    worker_2 = threading.Thread(target = extrair_dados_do_pdf_em_txt)
+    worker_1.start()
+    worker_2.start()
+    worker_1.join()
+    worker_2.join()
     
     checar_aprovados()
 
-
+    
 ''' Função para alterar as opções da combobox: '''
 
 def mudar_valores_combobox(opcao):
@@ -227,24 +228,22 @@ def ver_candidatos_aprovados_arquivo():
 
 ''' Funções que lidam com os arquivos: ''' 
 
-def baixar_pdf(url):
-    mudar_status('Status: Baixando PDF.....', VERDE)
-    
+def baixar_pdf(url, nome_do_arquivo):
     try:
         pdf = get(url)
     except:
         return 1
 
-    open(NOME_PDF, "wb").write(pdf.content)
+    open(nome_do_arquivo, "wb").write(pdf.content)
     return 0
 
+
 # Possui 'curso' como argumento para extrair apenas os dados dos candidatos desse curso e não precisar copiar tudo.
-def extrair_dados_do_pdf_em_csv(nome_pdf, curso):  # Os dados extraídos são os presentes no cabeçalho.
-    mudar_status('Status: Extraindo dados do PDF.....', AZUL)
+def extrair_dados_do_pdf_em_csv(curso):  # Os dados extraídos são os presentes no cabeçalho.
 
     # Como há cursos noturnos com o mesmo nome dos diurnos, vamos checar se é noturno.
     noturno = False
-    pos_noturno = 0
+    pag_noturno = 0
     if '(NOTURNO)' in curso:
         curso = curso.replace('(NOTURNO)', '').strip()
         noturno = True
@@ -268,9 +267,9 @@ def extrair_dados_do_pdf_em_csv(nome_pdf, curso):  # Os dados extraídos são os
         planaltina = True
     
     try:
-        reader = PdfReader(nome_pdf)
+        reader = PdfReader(NOME_PDF)
     except:
-        mudar_status('Status: Erro ao extrair dados do arquivo ' + nome_pdf, VERMELHO_CLARO)
+        mudar_status('Status: Erro ao extrair dados do arquivo ' + NOME_PDF, VERMELHO_CLARO)
         return 2
 
     n_paginas = len(reader.pages)
@@ -279,9 +278,8 @@ def extrair_dados_do_pdf_em_csv(nome_pdf, curso):  # Os dados extraídos são os
     
     for c in arange(n_paginas):
         c = int(c)
-
         pagina = reader.pages[c]
-        
+    
         # Se retirar espaços e '\n' aumenta a chance de encontrar o curso, mesmo que a leitura do PDF não seja perfeita.
         texto = pagina.extract_text().replace(' ', '').replace('\n', '')
         
@@ -317,23 +315,24 @@ def extrair_dados_do_pdf_em_csv(nome_pdf, curso):  # Os dados extraídos são os
             texto = texto[:texto.find('-.') + 1]  # Apaga qualquer texto após os dados do último candidato.
             arquivo.writelines(texto)
             arquivo.close()
-            return 0
+            remove(NOME_PDF)
+            return
 
         if achou_curso:
             arquivo.writelines(texto)
             
     if not achou_curso:
-        mudar_status('Status: Erro ao extrair dados do arquivo, curso não encontrado', VERMELHO_CLARO)
-        return 3
+        print('oh no')
+          
 
 # Como ao extrair texto do PDF ele vem com uma formatação esquisita é necessário corrigí-lo.
-def corrigir_dados_do_csv(nome_csv):
+def corrigir_dados_do_csv():
     mudar_status('Status: Corrigindo dados do CSV.....', AMARELO)
 
     try:
-        arquivo = open(nome_csv, 'r')
+        arquivo = open(NOME_CSV, 'r')
     except FileNotFoundError:
-        mudar_status('Erro ao corrigir os dados do csv pois o arquivo '+ nome_csv + 'não existe.', VERMELHO_CLARO)
+        mudar_status('Erro ao corrigir os dados do csv pois o arquivo '+ NOME_CSV + 'não existe.', VERMELHO_CLARO)
         return 4
 
     copia = arquivo.read()  # Copia o arquivo em uma string.
@@ -342,7 +341,7 @@ def corrigir_dados_do_csv(nome_csv):
 
     for c in arange(len(copia)):
         c = int(c)
-
+        
         if copia[c].isdigit():  # Apaga linhas que tenham apenas o número da página.
             copia[c] = ''
 
@@ -353,45 +352,41 @@ def corrigir_dados_do_csv(nome_csv):
 
             copia[c] = copia[c][:pos1] + copia[c][pos2:] + '\n'  # String com os dados, sem o nome, e com '\n' para separar por linhas.
 
-    arquivo = open(nome_csv, 'w')
+    arquivo = open(NOME_CSV, 'w')
     arquivo.write(CABECALHO + ''.join(copia))
     arquivo.close()
     return 0
 
 
-def extrair_dados_do_pdf_em_txt(nome_pdf):  # Os dados extraídos são apenas os números das inscrições dos aprovados.
-    mudar_status('Status: Extraindo dados do PDF.....', AZUL)
-    
+def extrair_dados_do_pdf_em_txt():  # Os dados extraídos são apenas os números das inscrições dos aprovados.
     try:
-        reader = PdfReader(nome_pdf)
+        reader = PdfReader(NOME_PDF2)
     except:
-        mudar_status('Status: Erro ao extrair dados do arquivo ' + nome_pdf, VERMELHO_CLARO)
+        mudar_status('Status: Erro ao extrair dados do arquivo ' + NOME_PDF2, VERMELHO_CLARO)
         return 5
 
     n_paginas = len(reader.pages)
 
-    arquivo = open(NOME_TXT, 'a')
+    with open(NOME_TXT, 'a') as arquivo:
+        for c in arange(n_paginas):
+            c = int(c)
 
-    for c in arange(n_paginas):
-        c = int(c)
+            pagina = reader.pages[c]
+            texto = pagina.extract_text()
 
-        pagina = reader.pages[c]
-        texto = pagina.extract_text()
+            texto = texto.split()  # Separa as linhas em uma lista de linhas.
 
-        texto = texto.split()  # Separa as linhas em uma lista de linhas.
+            for d in arange(len(texto)):
+                d = int(d)
 
-        for d in arange(len(texto)):
-            d = int(d)
+                if INICIO_INSCRICAO in texto[d]:
+                    texto[d] = texto[d][texto[d].find(INICIO_INSCRICAO):texto[d].find(INICIO_INSCRICAO) + TAMANHO_DA_INSCRICAO - 1] + '\n'  # Copia apenas a inscrição.
+                else:
+                    texto[d] = ''
 
-            if INICIO_INSCRICAO in texto[d]:
-                texto[d] = texto[d][texto[d].find(INICIO_INSCRICAO):texto[d].find(INICIO_INSCRICAO) + TAMANHO_DA_INSCRICAO - 1] + '\n'  # Copia apenas a inscrição.
-            else:
-                texto[d] = ''
+            arquivo.writelines(''.join(texto))
 
-        arquivo.writelines(''.join(texto))
-
-    arquivo.close()
-    return 0
+    remove(NOME_PDF2)
 
 
 ''' Funções que lidam com os dados já formatados pelas funções que lidam com os arquivos '''
@@ -409,6 +404,8 @@ def checar_aprovados():
         # Lista para guardar cada dicionário com os dados dos candidatos aprovados.
         candidatos_aprovados = list()
 
+        resumo = {s: Cota() for s in SIMBOLO_COTAS}  # Reseta a variável (caso o usuário esteja checando de novo).and
+         
         for candidato in dados:
             if candidato['inscricao'] in aprovados:
                 candidatos_aprovados.append(candidato)
@@ -445,6 +442,7 @@ def checar_aprovados():
 
 # Essa função atualiza a lista os valores máximos, mínimos e a média de cada cota na lista 'resumo'.
 def registrar_cotas(candidato, pos_cota):
+    
     # Para checar a maior e a menor nota, além de calcular a média é necessário converte-la para float.
     nota = float(candidato['nota'])
     
@@ -469,14 +467,14 @@ customtkinter.set_widget_scaling(0.8)  # Para deixar em um tamanho que achei mel
 
 window = customtkinter.CTk(fg_color = ROXO_ESCURO)
 window.title('Checador de notas')
-window.geometry('770x560')
+window.geometry('770x580')
 window.resizable(False, False)
 
 FONTE = customtkinter.CTkFont(family = 'Cascadia Code', size = 20)
 FONTE_MENOR = customtkinter.CTkFont(family = 'Cascadia Code', size = 15)
 BUTTON_HEIGHT = 50
             
-frame = customtkinter.CTkFrame(master = window, corner_radius = 12)
+frame = customtkinter.CTkFrame(master = window, fg_color = CINZA_ESCURO_VERMELHADO, corner_radius = 12)
 frame.pack(pady = (0, 30), padx = 30)
 
 optionmenu = customtkinter.CTkOptionMenu(master = frame,
@@ -515,26 +513,29 @@ botao_pesquisar = customtkinter.CTkButton(master = frame,
                                           fg_color = ROXO,
                                           hover_color = ROXO_ESCURO,
                                           text = 'Pesquisar',
-                                          command = criar_arquivos)
+                                          command = lambda: threading.Thread(target = criar_arquivos).start())
 botao_pesquisar.grid(row = 0, column = 2, pady = (30, 0), padx = (0, 100), sticky = 'nsew')
 
-status = customtkinter.CTkTextbox(master = frame, font = FONTE, height = BUTTON_HEIGHT, state = 'disabled')
+status = customtkinter.CTkTextbox(master = frame, fg_color = CINZA_VERMELHADO, font = FONTE, height = BUTTON_HEIGHT, state = 'disabled')
 status.grid(row = 1, column = 0, columnspan = 3, pady = (25, 0), padx = 50, sticky = 'nsew')
 mudar_status('Status: Insira o curso para começar')
 
-resultado = customtkinter.CTkTextbox(master = frame, font = FONTE, text_color = AMARELO, height = 400, state = 'disabled')
-resultado.grid(row = 2, column = 0, columnspan = 3, pady = (15, 25), padx = 50, sticky='nsew')
+progressbar = customtkinter.CTkProgressBar(master = frame, fg_color = CINZA_VERMELHADO, progress_color = ROXO, height = 10, mode = 'indeterminate')
+progressbar.grid(row = 2, column = 0, columnspan = 3, pady = (15, 0), padx = 200, sticky = 'nsew')
+
+resultado = customtkinter.CTkTextbox(master = frame, fg_color = CINZA_VERMELHADO, font = FONTE, text_color = AMARELO, height = 400, state = 'disabled')
+resultado.grid(row = 3, column = 0, columnspan = 3, pady = (15, 25), padx = 50, sticky='nsew')
 
 botao_detalhes = customtkinter.CTkButton(master = frame,
                                          font = FONTE,
                                          height = BUTTON_HEIGHT,
                                          width = 200,
-                                         fg_color = CINZA,
+                                         fg_color = CINZA_VERMELHADO,
                                          hover_color = ROXO_ESCURO,
                                          text = 'Ver Detalhes',
                                          command = ver_candidatos_aprovados_arquivo,
                                          state = 'disabled')
-botao_detalhes.grid(row = 3, column = 1, pady = (0, 30), padx = (0, 220))
+botao_detalhes.grid(row = 4, column = 1, pady = (0, 30), padx = (0, 220))
 
 botao_sair = customtkinter.CTkButton(master = frame,
                                      font = FONTE,
@@ -544,6 +545,6 @@ botao_sair = customtkinter.CTkButton(master = frame,
                                      hover_color = VERMELHO_ESCURO,
                                      text = 'Sair',
                                      command = exit)
-botao_sair.grid(row = 3, column = 1, pady = (0, 30), padx = (220, 0))
+botao_sair.grid(row = 4, column = 1, pady = (0, 30), padx = (220, 0))
 
 window.mainloop()
