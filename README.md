@@ -12,5 +12,4 @@ sistema de pesos para as notas de cada área.
 Necessário instalar customtkinter, numpy, Pmw, pygame e requests com pip install
 caso ainda não tenha-os instalados.
 
-Além do click_sound.wav e do pdftotext.exe disponíveis no meu github, junto com o
-arquivo desse código.
+Além do click_sound.wav e do pdftotext.exe junto com o arquivo desse código.
