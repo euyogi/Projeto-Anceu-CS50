@@ -1,5 +1,7 @@
 ''' 
-< BUG Resolução estranha na tela do notebook? >
+< BUG Quando a escala do Windows está diferente de 100%, o texto do rotulo_resultado pode não ficar >
+< perfeito, pois quebra linha onde não devia. Parece que a fonte não muda o tamanho na mesma escala >
+< dos widgets. >
 
 Esse é o meu projeto final para o curso CS50 - é um aplicativo feito em python,
 que checa as notas dos candidatos que participaram do Enem e se inscreveram na
@@ -25,28 +27,28 @@ arquivo desse código.
 # Para a UI
 import customtkinter as ctk  
 
- # Similar ao range(), mas mais rápido.
+# Similar ao range(), mas mais rápido.
 from numpy import arange 
 
- # Para ordenar uma lista de sublistas com base em um valor em uma dessas sublistas.
+# Para ordenar uma lista de sublistas com base em um valor em uma dessas sublistas.
 from operator import itemgetter 
 
- # Para remover os PDFs.
+# Para remover os PDFs.
 from os import remove 
 
-  # Para mostrar os balões quando o cursor está emcima dos "?".
+# Para mostrar os balões quando o cursor está emcima dos "?".
 from Pmw import Balloon
 
- # Para reproduzir sons de clique.
+# Para reproduzir sons de clique.
 from pygame import mixer 
 
- # Similar a .find() ou .replace(), mas com padrões mais complexos de substrings.
+# Similar a .find() ou .replace(), mas com padrões mais complexos de substrings.
 from re import findall, search, sub 
 
- # Para baixar os PDFs.
+# Para baixar os PDFs.
 from requests import get, exceptions 
 
- # Para calcular média dos valores em uma lista.
+# Para calcular média dos valores em uma lista.
 from statistics import mean 
 
 # Para converter os PDFs.
@@ -156,12 +158,7 @@ botao_detalhes = ctk.CTkButton(master = frame_esquerdo)
 frame_direito = ctk.CTkFrame(master = window)
 
 grupo_var = ctk.IntVar(value = 1)
-nota_1 = ctk.CTkEntry(master = frame_direito)
-nota_2 = ctk.CTkEntry(master = frame_direito)
-nota_3 = ctk.CTkEntry(master = frame_direito)
-nota_4 = ctk.CTkEntry(master = frame_direito)
-nota_5 = ctk.CTkEntry(master = frame_direito)
-nota_6 = ctk.CTkLabel(master = frame_direito)
+nota_1 = nota_2 = nota_3 = nota_4 = nota_5 = nota_6 = ctk.CTkEntry(master = frame_direito)
 
 
 def UI() -> None:
@@ -174,13 +171,15 @@ def UI() -> None:
 
     # Para deixar a UI em um tamanho que achei bom.
     ctk.set_widget_scaling(0.8)
-
+    ctk.set_window_scaling(0.8)
+    
     # Declara a janela principal, insere o título e sua resolução que é travada.
     window = ctk.CTk(fg_color = ROXO_ESCURO)
     window.title('Notas - Acesso ENEM UNB')
-    window.geometry('1010x580')
+    window.geometry('1280x725')
     window.resizable(False, False)
-
+    #Ctk.deactivate_automatic_dpi_awareness()
+    
     # Constantes para fonte , altura dos widgets e raio da borda.
     FONTE = ctk.CTkFont(family = 'Cascadia Code', size = 20)
     FONTE_MENOR = ctk.CTkFont(family = 'Cascadia Code', size = 18)
@@ -256,8 +255,8 @@ def UI() -> None:
     barra_progresso.set(1)
 
     rotulo_resultado = ctk.CTkTextbox(master = frame_esquerdo, fg_color = CINZA_VERMELHADO, text_color = CINZA,
-                                      font = FONTE, corner_radius = RAIO, height = 400, state = 'disabled')
-    rotulo_resultado.grid(row = 3, column = 0, columnspan = 3, pady = (15, 25), padx = 32, sticky='nsew')
+                                      font = FONTE, corner_radius = RAIO, height = 400, width = 850, state = 'disabled')
+    rotulo_resultado.grid(row = 3, column = 0, columnspan = 3, pady = (15, 25), padx = 32)
 
     opcoes_anos = ctk.CTkSegmentedButton(master = frame_esquerdo,
                                          font = FONTE,
@@ -320,7 +319,7 @@ def UI() -> None:
                                    text_color = CINZA,
                                    command = lambda: [som_clique(), ver_dados_candidatos_aprovados_na_maior_caixa()],
                                    state = 'disabled')
-    botao_detalhes.grid(row = 4, column = 1, columnspan = 2, pady = (0, 30), padx = (138, 0), sticky = 'w')
+    botao_detalhes.grid(row = 4, column = 1, columnspan = 2, pady = (0, 30), padx = (150, 0), sticky = 'w')
 
     botao_sair = ctk.CTkButton(master = frame_esquerdo,
                                font = FONTE,
@@ -331,7 +330,7 @@ def UI() -> None:
                                text = 'Sair',
                                text_color = CINZA,
                                command = lambda: [som_clique(), remover_pdfs(), window.quit(), sleep(0.12), exit()])
-    botao_sair.grid(row = 4, column = 2, pady = (0, 30), padx = (0, 65), sticky = 'e')
+    botao_sair.grid(row = 4, column = 2, pady = (0, 30), padx = (12, 65), sticky = 'we')
 
     frame_direito = ctk.CTkFrame(master = window, fg_color = CINZA_ESCURO_VERMELHADO, corner_radius = 12)
     frame_direito.pack(side = 'right', pady = (0, 30), padx = (0, 30))
@@ -352,7 +351,7 @@ def UI() -> None:
                             'pertence')
 
     rotulo_grupo_do_curso = ctk.CTkLabel(master = frame_direito, text_color = CINZA, text = 'Grupo do Curso', font = FONTE)
-    rotulo_grupo_do_curso.grid(row = 1, column = 0, columnspan = 2, pady = 27, padx = 32)
+    rotulo_grupo_do_curso.grid(row = 1, column = 0, columnspan = 2, pady = 23, padx = 32)
 
     info_rotulo_grupo_do_curso = ctk.CTkButton(master = frame_direito, width = 27, height = 15,
                                                font = ('',15,'bold'), text_color = CINZA_ESCURO,
@@ -378,41 +377,46 @@ def UI() -> None:
     botao_grupo_2.grid(row = 3, column = 0, columnspan = 2, pady = 0, padx = 16)
 
     rotulo_insira_as_notas = ctk.CTkLabel(master = frame_direito, text_color = CINZA, text = 'Insira as Notas', font = FONTE)
-    rotulo_insira_as_notas.grid(row = 4, column = 0, columnspan = 2, pady = 27, padx = 32)
+    rotulo_insira_as_notas.grid(row = 4, column = 0, columnspan = 2, pady = 23, padx = 32)
 
     rotulo_nota_linguagens = ctk.CTkLabel(master = frame_direito, text_color = CINZA, text = 'Linguagens', font = FONTE)
     rotulo_nota_linguagens.grid(row = 5, column = 0, pady = (0, 15), padx = (32, 5), sticky = 'w')
 
-    nota_1 = ctk.CTkEntry(master = frame_direito, width = 85, fg_color = CINZA_VERMELHADO, corner_radius = RAIO,
-                          font = FONTE, text_color = CINZA_ESCURO, border_width = 0, placeholder_text = '000.00')
+    nota_1 = ctk.CTkEntry(master = frame_direito, height = ALTURA - 15, width = 90, fg_color = CINZA_VERMELHADO,
+                          corner_radius = RAIO, font = FONTE, text_color = CINZA_ESCURO, border_width = 0,
+                          placeholder_text = '000.00')
     nota_1.grid(row = 5, column = 1, pady = (0, 15), padx = (5, 32), sticky = 'w')
 
     rotulo_nota_humanas = ctk.CTkLabel(master = frame_direito, text_color = CINZA, text = 'Humanas', font = FONTE)
     rotulo_nota_humanas.grid(row = 6, column = 0, pady = (0, 15), padx = (32, 5), sticky = 'w')
 
-    nota_2 = ctk.CTkEntry(master = frame_direito, width = 85, fg_color = CINZA_VERMELHADO, corner_radius = RAIO,
-                          font = FONTE, text_color = CINZA_ESCURO, border_width = 0, placeholder_text = '000.00')
+    nota_2 = ctk.CTkEntry(master = frame_direito, height = ALTURA - 15, width = 90, fg_color = CINZA_VERMELHADO,
+                          corner_radius = RAIO, font = FONTE, text_color = CINZA_ESCURO, border_width = 0,
+                          placeholder_text = '000.00')
     nota_2.grid(row = 6, column = 1, pady = (0, 15), padx = (5, 32), sticky = 'w')
 
     rotulo_nota_natureza = ctk.CTkLabel(master = frame_direito, text_color = CINZA, text = 'Natureza', font = FONTE)
     rotulo_nota_natureza.grid(row = 7, column = 0, pady = (0, 15), padx = (32, 5), sticky = 'w')
 
-    nota_3 = ctk.CTkEntry(master = frame_direito, width = 85, fg_color = CINZA_VERMELHADO, corner_radius = RAIO,
-                          font = FONTE, text_color = CINZA_ESCURO, border_width = 0, placeholder_text = '000.00')
+    nota_3 = ctk.CTkEntry(master = frame_direito, height = ALTURA - 15, width = 90, fg_color = CINZA_VERMELHADO,
+                          corner_radius = RAIO, font = FONTE, text_color = CINZA_ESCURO, border_width = 0,
+                          placeholder_text = '000.00')
     nota_3.grid(row = 7, column = 1, pady = (0, 15), padx = (5, 32), sticky = 'w')
 
     rotulo_nota_matematica = ctk.CTkLabel(master = frame_direito, text_color = CINZA, text = 'Matemática', font = FONTE)
     rotulo_nota_matematica.grid(row = 8, column = 0, pady = (0, 15), padx = (32, 5), sticky = 'w')
 
-    nota_4 = ctk.CTkEntry(master = frame_direito, width = 85, fg_color = CINZA_VERMELHADO, corner_radius = RAIO,
-                          font = FONTE, text_color = CINZA_ESCURO, border_width = 0, placeholder_text = '000.00')
+    nota_4 = ctk.CTkEntry(master = frame_direito, height = ALTURA - 15, width = 90, fg_color = CINZA_VERMELHADO,
+                          corner_radius = RAIO, font = FONTE, text_color = CINZA_ESCURO, border_width = 0,
+                          placeholder_text = '000.00')
     nota_4.grid(row = 8, column = 1, pady = (0, 15), padx = (5, 32), sticky = 'w')
 
     rotulo_nota_redacao = ctk.CTkLabel(master = frame_direito, text_color = CINZA, text = 'Redação', font = FONTE)
     rotulo_nota_redacao.grid(row = 9, column = 0, pady = 0, padx = (32, 5), sticky = 'w')
 
-    nota_5 = ctk.CTkEntry(master = frame_direito, width = 85, fg_color = CINZA_VERMELHADO, corner_radius = RAIO,
-                          font = FONTE, text_color = CINZA_ESCURO, border_width = 0, placeholder_text = '000.00')
+    nota_5 = ctk.CTkEntry(master = frame_direito, height = ALTURA - 15, width = 90, fg_color = CINZA_VERMELHADO,
+                          corner_radius = RAIO, font = FONTE, text_color = CINZA_ESCURO, border_width = 0,
+                          placeholder_text = '000.00')
     nota_5.grid(row = 9, column = 1, pady = 0, padx = (5, 32), sticky = 'w')
 
     botao_converter = ctk.CTkButton(master = frame_direito,
@@ -424,14 +428,14 @@ def UI() -> None:
                                     text = 'Converter',
                                     text_color = CINZA,
                                     command = lambda: [som_clique(), converter()])
-    botao_converter.grid(row = 10, column = 0, columnspan = 2, pady = 27, padx = 16)
+    botao_converter.grid(row = 10, column = 0, columnspan = 2, pady = 23, padx = 16)
 
     rotulo_nota_final = ctk.CTkLabel(master = frame_direito, text_color = CINZA, text = 'Final', font = FONTE)
-    rotulo_nota_final.grid(row = 11, column = 0, pady = (11, 36), padx = (32, 5), sticky = 'w')
+    rotulo_nota_final.grid(row = 11, column = 0, pady = (10, 32), padx = (32, 5), sticky = 'w')
 
-    nota_6 = ctk.CTkLabel(master = frame_direito, width = 85, fg_color = CINZA_VERMELHADO, corner_radius = RAIO,
-                          font = FONTE, text = '000.00', text_color = CINZA_ESCURO)
-    nota_6.grid(row = 11, column = 1, pady = (11, 36), padx = (5, 32), sticky = 'w')
+    nota_6 = ctk.CTkLabel(master = frame_direito, height = ALTURA - 15, width = 90, fg_color = CINZA_VERMELHADO,
+                          corner_radius = RAIO, font = FONTE, text = '000.00', text_color = CINZA_ESCURO)
+    nota_6.grid(row = 11, column = 1, pady = (10, 32), padx = (5, 32), sticky = 'w')
 
     # Ao abrir a UI, reproduz um som de clique e mostra algumas informações no rotulo_resultado.
     window.after(0, lambda: [som_clique(), ver_informacoes_iniciais()])
