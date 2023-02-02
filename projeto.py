@@ -1,4 +1,4 @@
-''' 
+'''
 < BUG Quando a escala do Windows está diferente de 100%, o texto do rotulo_resultado pode não ficar >
 < perfeito, pois quebra linha onde não devia. Parece que a fonte não muda o tamanho na mesma escala >
 < dos widgets. >
@@ -25,39 +25,39 @@ arquivo desse código.
 ''' Bibliotecas e módulos necessários para o programa. '''
 
 # Para a UI
-import customtkinter as ctk  
+import customtkinter as ctk
 
 # Similar ao range(), mas mais rápido.
-from numpy import arange 
+from numpy import arange
 
 # Para ordenar uma lista de sublistas com base em um valor em uma dessas sublistas.
-from operator import itemgetter 
+from operator import itemgetter
 
 # Para remover os PDFs.
-from os import remove 
+from os import remove
 
 # Para mostrar os balões quando o cursor está emcima dos "?".
 from Pmw import Balloon
 
 # Para reproduzir sons de clique.
-from pygame import mixer 
+from pygame import mixer
 
 # Similar a .find() ou .replace(), mas com padrões mais complexos de substrings.
-from re import findall, search, sub 
+from re import findall, search, sub
 
 # Para baixar os PDFs.
-from requests import get, exceptions 
+from requests import get, exceptions
 
 # Para calcular média dos valores em uma lista.
-from statistics import mean 
+from statistics import mean
 
 # Para converter os PDFs.
-import subprocess  
+import subprocess
 
 # Executa algumas partes do programa em outro thread, evitando da UI travar.
-from threading import Thread  
+from threading import Thread
 
- # Para, ao fechar a UI dar tempo de reproduzir o som de clique.
+# Para, ao fechar a UI dar tempo de reproduzir o som de clique.
 from time import sleep, time
 
 
@@ -172,14 +172,14 @@ def UI() -> None:
     # Para deixar a UI em um tamanho que achei bom.
     ctk.set_widget_scaling(0.8)
     ctk.set_window_scaling(0.8)
-    
+
     # Declara a janela principal, insere o título e sua resolução que é travada.
     window = ctk.CTk(fg_color = ROXO_ESCURO)
     window.title('Notas - Acesso ENEM UNB')
     window.geometry('1280x725')
     window.resizable(False, False)
     #Ctk.deactivate_automatic_dpi_awareness()
-    
+
     # Constantes para fonte , altura dos widgets e raio da borda.
     FONTE = ctk.CTkFont(family = 'Cascadia Code', size = 20)
     FONTE_MENOR = ctk.CTkFont(family = 'Cascadia Code', size = 18)
@@ -190,7 +190,7 @@ def UI() -> None:
     frame_esquerdo.pack(side = 'left', pady = (0, 30), padx = (30, 15))
 
     botao_i = ctk.CTkButton(master = frame_esquerdo, width = 27, height = 15,
-                            font = ('',15,'bold'), text_color = CINZA_ESCURO,
+                            font = ('', 15, 'bold'), text_color = CINZA_ESCURO,
                             fg_color = 'transparent', border_color = CINZA_VERMELHADO,
                             border_width = 2, hover_color = ROXO, text = 'i',
                             command = lambda: [som_clique(), ver_info()])
@@ -210,7 +210,8 @@ def UI() -> None:
                                      corner_radius = RAIO,
                                      height = ALTURA,
                                      text_color = CINZA,
-                                     values = ['TODOS', 'BACHARELADOS', 'LICENCIATURAS', 'NOTURNOS', 'CEILÂNDIA', 'GAMA', 'PLANALTINA'],
+                                     values = ['TODOS', 'BACHARELADOS', 'LICENCIATURAS',
+                                               'NOTURNOS', 'CEILÂNDIA', 'GAMA', 'PLANALTINA'],
                                      command = mudar_opcoes_menu_cursos)
     menu_filtros.grid(row = 0, column = 0, pady = (30, 0), padx = (65, 0), sticky = 'w')
     menu_filtros.set('TODOS')
@@ -274,7 +275,7 @@ def UI() -> None:
     opcoes_anos.set(' 2022 ')
 
     info_opcoes_anos = ctk.CTkButton(master = frame_esquerdo, width = 27, height = 15,
-                                     font = ('',15,'bold'),
+                                     font = ('', 15, 'bold'),
                                      fg_color = 'transparent', border_color = CINZA_VERMELHADO,
                                      border_width = 2, hover_color = ROXO, text = '?',
                                      state = 'disabled')
@@ -340,7 +341,7 @@ def UI() -> None:
     rotulo_converter_notas.grid(row = 0, column = 0, columnspan = 2, pady = (30, 0), padx = 16)
 
     info_rotulo_converter_notas = ctk.CTkButton(master = frame_direito, width = 27, height = 15,
-                                                font = ('',15,'bold'),
+                                                font = ('', 15, 'bold'),
                                                 fg_color = 'transparent', border_color = CINZA_VERMELHADO,
                                                 border_width = 2, hover_color = ROXO, text = '?',
                                                 state = 'disabled')
@@ -354,7 +355,7 @@ def UI() -> None:
     rotulo_grupo_do_curso.grid(row = 1, column = 0, columnspan = 2, pady = 23, padx = 32)
 
     info_rotulo_grupo_do_curso = ctk.CTkButton(master = frame_direito, width = 27, height = 15,
-                                               font = ('',15,'bold'), text_color = CINZA_ESCURO,
+                                               font = ('', 15, 'bold'), text_color = CINZA_ESCURO,
                                                fg_color = 'transparent', border_color = CINZA_VERMELHADO,
                                                border_width = 2, hover_color = ROXO, text = 'i',
                                                command = lambda: [som_clique(), ver_url_grupo()])
@@ -502,7 +503,7 @@ def iniciar_pesquisa() -> None:
         open(NOME_PDF2, 'r')
     except:
         mudar_status('Status: Baixando os documentos...', VERDE)
-        
+
         a = Thread(target = lambda: baixar_pdf(URL_DAS_NOTAS, NOME_PDF))
         b = Thread(target = lambda: baixar_pdf(URL_DOS_APROVADOS, NOME_PDF2))
         a.start()
@@ -518,7 +519,7 @@ def iniciar_pesquisa() -> None:
         mudar_status('Status: Erro de conexão com os documentos', VERMELHO_CLARO)
         baixou_os_pdf = False
 
-    # Extrai os dados e as inscrições dos PDFs, e checa se dados e inscricoes_aprovados foram preenchidos, se não, houve algum erro. 
+    # Extrai os dados e as inscrições dos PDFs, e checa se dados e inscricoes_aprovados foram preenchidos, se não, houve algum erro.
     if baixou_os_pdf:
         mudar_status('Status: Lendo os documentos...', VERDE)
 
@@ -533,7 +534,7 @@ def iniciar_pesquisa() -> None:
         # Calcula as notas, se conseguiu extrair os dados.
         if len(dados) > 0 and len(inscricoes_aprovados) > 0:
             mudar_status('Status: Calculando as notas...', AZUL)
-            
+
             worker_1 = Thread(target = corrigir_dados)
             worker_2 = Thread(target = checar_aprovados)
             worker_1.start()
@@ -596,7 +597,7 @@ def extrair_dados_do_pdf(curso: str) -> None:  # Possui curso como parâmetro pa
 
     # Procura pelo nome do campus antes do nome do curso, para começar a procurar o nome do curso apenas após o nome do campus.
     if ceilandia:
-        pos_c = search(r'CEILÂN.IA', output).span()[1]  # No documento de 2022 estava escrito CEILÂNCIA, e nos outros CEILÂNDIA. 
+        pos_c = search(r'CEILÂN.IA', output).span()[1]  # No documento de 2022 estava escrito CEILÂNCIA, e nos outros CEILÂNDIA.
 
     if planaltina:
         pos_p = output.find('PLANALTINA')
@@ -628,7 +629,7 @@ def corrigir_dados() -> None:
     dados = dados.replace('\n', '').replace('\r', '').replace('\f', '')
 
     # Lista em que cada elemento era uma linha; Cada elemento tem os dados de um candidato: Inscrição,Nome,Nota,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10.
-    dados = dados.split('/')  
+    dados = dados.split('/')
 
     # Confere os dados de cada candidato e os corrige se necessário.
     for c in arange(len(dados), dtype = int):
@@ -642,7 +643,7 @@ def corrigir_dados() -> None:
             dados[c] += '-'  # Coloca um - após essa vírgula.
 
         # Nas edições dos anos anteriores as notas eram no formato 999,99 em vez de 999.99, assim tendo mais de 12 vírgulas.
-        if dados[c].count(',') > 12:  
+        if dados[c].count(',') > 12:
             pos_1 = dados[c].find(',')
             pos_2 = dados[c].find(',', pos_1 + 1)
             pos_3 = dados[c].find(',', pos_2 + 1)
@@ -731,7 +732,7 @@ def ver_resumo_das_notas_na_maior_caixa() -> None:
                     adicionar_na_maior_caixa('Nenhum candidato aprovado por escola pública nessa chamada.')
             adicionar_na_maior_caixa(f'Vagas: {vagas_cotas[s]:02d}; {NOMES_DAS_COTAS[s]}: Máx = {max(cotas_notas[SIMBOLO_COTAS[s]]):.2f}; '
                                      f'Min = {min(cotas_notas[SIMBOLO_COTAS[s]]):.2f}; Média = {mean(cotas_notas[SIMBOLO_COTAS[s]]):.2f}'
-                                    ) if len(cotas_notas[SIMBOLO_COTAS[s]]) > 0 else ''
+                                     ) if len(cotas_notas[SIMBOLO_COTAS[s]]) > 0 else ''
     # Se não vagas_totais for igual a 0, ninguém foi aprovado nessa chamada.
     else:
         adicionar_na_maior_caixa('Nenhum candidato chamado nessa chamada.')
