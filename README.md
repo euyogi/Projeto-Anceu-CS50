@@ -2,7 +2,7 @@
 
 Esse é o meu projeto final para o curso CS50 - é um aplicativo feito em python,
 que checa as notas dos candidatos que participaram do Enem e se inscreveram na
-Universidade Nacional de Brasília - UNB, mostrando por fim um resumo para cada
+Universidade de Brasília - UNB, mostrando por fim um resumo para cada
 curso da instituição, com as maiores notas, as menores notas (nota de corte), e
 a média em cada cota disponível.
 
