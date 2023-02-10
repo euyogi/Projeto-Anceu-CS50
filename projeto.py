@@ -5,7 +5,7 @@
 
 Esse é o meu projeto final para o curso CS50 - é um aplicativo feito em python,
 que checa as notas dos candidatos que participaram do Enem e se inscreveram na
-Universidade Nacional de Brasília - UNB, mostrando por fim um resumo para cada
+Universidade de Brasília - UnB, mostrando por fim um resumo para cada
 curso da instituição, com as maiores notas, as menores notas (nota de corte), e
 a média em cada cota disponível.
 
@@ -64,8 +64,8 @@ from time import sleep, time
 ''' Variáveis para armazenar dados necessários para as funções. '''
 
 # Links dos PDFs que contém dados dos candidatos; NOTAS possui as notas de todos os candidatos; APROVADOS as inscrições dos aprovados.
-URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ED_6_ACESSOENEM_22_RES_FINAL_BIOP_SCEP_E_NO_PROCESSO.PDF'
-URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ACESSOENEM_22_ED_9_RES_FINAL_RA_1_CHAMADA.PDF'
+URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_6_ACESSOEnem_22_RES_FINAL_BIOP_SCEP_E_NO_PROCESSO.PDF'
+URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_7_ACESSOEnem_22_RES_CONV_1_CHAMADA.PDF'
 
 # Nomes dos arquivos; Pode ser qualquer nome pois só existem enquanto o programa está rodando.
 NOME_PDF = 'dados.pdf'
@@ -109,7 +109,7 @@ NOMES_DOS_CURSOS = sorted([
     'LICENCIATURA EM CIÊNCIAS BIOLÓGICAS (NOTURNO)', 'LICENCIATURA EM FÍSICA (NOTURNO)', 'LICENCIATURA EM MATEMÁTICA (NOTURNO)', 'LICENCIATURA EM MÚSICA (NOTURNO)',
     'LICENCIATURA EM QUÍMICA (NOTURNO)', 'LÍNGUA E LITERATURA JAPONESA (LICENCIATURA) (NOTURNO)', 'LÍNGUA ESPANHOLA E LITERATURA ESPANHOLA E HISPANO–AMERICANA (LICENCIATURA) (NOTURNO)',
     'LÍNGUA PORTUGUESA E RESPECTIVA LITERATURA (LICENCIATURA) (NOTURNO)', 'PEDAGOGIA (LICENCIATURA) (NOTURNO)', 'SAÚDE COLETIVA (NOTURNO)', 'SERVIÇO SOCIAL (NOTURNO)',
-    'TEORIA, CRÍTICA E HISTÓRIA DA ARTE (NOTURNO)', 'ENFERMAGEM (CEILÂNDIA)', 'FARMÁCIA (CEILÂNDIA)', 'FISIOTERAPIA (CEILÂNDIA)', 'FONOAUDIOLOGIA (CEILÂNDIA)',
+    'TEORIA, CRÍTICA E HISTÓRIA DA ARTE (NOTURNO)', 'ENFERMAGEM (CEILÂNDIA)', 'ENFERMAGEM', 'FARMÁCIA (CEILÂNDIA)', 'FISIOTERAPIA (CEILÂNDIA)', 'FONOAUDIOLOGIA (CEILÂNDIA)',
     'SAÚDE COLETIVA (CEILÂNDIA)', 'TERAPIA OCUPACIONAL (CEILÂNDIA)', 'ENGENHARIAS – AEROESPACIAL/AUTOMOTIVA/ELETRÔNICA/ENERGIA/SOFTWARE (GAMA)',
     'CIÊNCIAS NATURAIS (LICENCIATURA) (PLANALTINA)', 'GESTÃO DO AGRONEGÓCIO (PLANALTINA)', 'CIÊNCIAS NATURAIS (LICENCIATURA) (PLANALTINA) (NOTURNO)',
     'GESTÃO AMBIENTAL (PLANALTINA) (NOTURNO)', 'MEDICINA (BACHARELADO) – SUB JUDICE'])
@@ -175,7 +175,7 @@ def UI() -> None:
 
     # Declara a janela principal, insere o título e sua resolução que é travada.
     window = ctk.CTk(fg_color = ROXO_ESCURO)
-    window.title('Notas - Acesso ENEM UNB')
+    window.title('Notas - Acesso Enem UnB')
     window.geometry('1280x725')
     window.resizable(False, False)
     #Ctk.deactivate_automatic_dpi_awareness()
@@ -282,7 +282,7 @@ def UI() -> None:
     info_opcoes_anos.grid(row = 4, column = 0, padx = 10, pady = (0, 29), sticky = 'w')
 
     balao(info_opcoes_anos, 'Você pode mudar a data das edições do\n'
-                            'Acesso ENEM e a chamada que quer checar,\n'
+                            'Acesso Enem e a chamada que quer checar,\n'
                             'porém:\n\n'
 
                             'A formatação dos documentos mudaram\n'
@@ -304,10 +304,10 @@ def UI() -> None:
                                       height = ALTURA,
                                       width = 100,
                                       text_color = CINZA,
-                                      values = ['1ª', '2ª', '3ª', '4ª', '5ª'],
+                                      values = ['TODAS', '1ª', '2ª', '3ª', '4ª', '5ª'],
                                       command = mudar_ano_e_chamada)
     menu_chamadas.grid(row = 4, column = 1, pady = (0, 30), padx = (15, 190), sticky = 'w')
-    menu_chamadas.set('1ª')
+    menu_chamadas.set('TODAS')
 
     botao_detalhes = ctk.CTkButton(master = frame_esquerdo,
                                    font = FONTE,
@@ -346,7 +346,7 @@ def UI() -> None:
                                                 border_width = 2, hover_color = ROXO, text = '?',
                                                 state = 'disabled')
     info_rotulo_converter_notas.grid(row = 0, column = 1, padx = 10, pady = (35, 0), sticky = 'e')
-    balao(info_rotulo_converter_notas, 'A UNB possui diferentes pesos\n'
+    balao(info_rotulo_converter_notas, 'A UnB possui diferentes pesos\n'
                             'para cada curso de acordo\n'
                             'com o grupo ao qual o mesmo\n'
                             'pertence')
@@ -451,8 +451,8 @@ def UI() -> None:
 
 # Mostra as informações iniciais no rotulo_resultado.
 def ver_informacoes_iniciais() -> None:
-    adicionar_na_maior_caixa('Olá, este programa mostra as notas dos candidatos aprovados na UNB pelo\n'
-                             'acesso ENEM.\n\n'
+    adicionar_na_maior_caixa('Olá, este programa mostra as notas dos candidatos aprovados na UnB pelo\n'
+                             'acesso Enem.\n\n'
 
                              'Para começar, você pode escolher na lista de cursos disponíveis acima\n'
                              'uma opção e clicar em pesquisar para checar as notas máximas, mínimas e\n'
@@ -790,7 +790,7 @@ def balao(widget, texto: str) -> None:
                                        bd = 10)
 
 
-# Converte sua nota com base nos pesos da UNB.
+# Converte sua nota com base nos pesos da UnB.
 def converter() -> None:
     global nota_6
 
@@ -843,9 +843,9 @@ def ver_info() -> None:
 
 # Mostra no rotulos_resultado, url para PDF com informações sobre os grupos.
 def ver_url_grupo() -> None:
-    texto = ('* PDF com mais informações sobre o Acesso Enem UNB 2022, incluindo\n'
+    texto = ('* PDF com mais informações sobre o Acesso Enem UnB 2022, incluindo\n'
              '* tabela que mostra cada curso e seu respectivo grupo (I ou II) PG: 14\n'
-             '* No seguinte URL: https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ED_1_ACESSOENEM_22_ABERTURA.PDF')
+             '* No seguinte URL: https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_1_ACESSOEnem_22_ABERTURA.PDF')
 
     # Mostra o texto se ele já não estiver sendo mostrado, se já estiver apaga-o.
     if texto not in rotulo_resultado.get('0.0', 'end'):
@@ -889,28 +889,30 @@ def mudar_ano_e_chamada(event: str = 'Esse parâmetro é apenas para a função 
     remover_pdfs()
 
     ano = opcoes_anos.get().strip()
-    chamada = menu_chamadas.get().removesuffix('ª')
+    chamada = menu_chamadas.get().removesuffix('ª') 
 
     if ano == '2022':
-        chamadas = ['1ª', '2ª', '3ª', '4ª', '5ª']
+        chamadas = ['TODAS', '1ª', '2ª', '3ª', '4ª', '5ª']
         menu_chamadas.configure(values = chamadas)
 
         # Se a chamada selecionada não existir no ano selecionado, seleciona a primeira chamada.
-        if chamada + 'ª' not in chamadas:
+        if chamada + 'ª' not in chamadas and chamada != 'TODAS':
             menu_chamadas.set('1ª')
             chamada = '1'
 
-        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ED_6_ACESSOENEM_22_RES_FINAL_BIOP_SCEP_E_NO_PROCESSO.PDF'
-        if chamada == '1':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ACESSOENEM_22_ED_9_RES_FINAL_RA_1_CHAMADA.PDF'
+        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_6_ACESSOEnem_22_RES_FINAL_BIOP_SCEP_E_NO_PROCESSO.PDF'
+        if chamada == 'TODAS':
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_7_ACESSOEnem_22_RES_CONV_1_CHAMADA.PDF'
+        elif chamada == '1':
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ACESSOEnem_22_ED_9_RES_FINAL_RA_1_CHAMADA.PDF'
         elif chamada == '2':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ED_13_ACESSOENEM_22_RES_FINAL_RA_2_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_13_ACESSOEnem_22_RES_FINAL_RA_2_CHAMADA.PDF'
         elif chamada == '3':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ED_16_ACESSOENEM_22_RES_FINAL_RA_3_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_16_ACESSOEnem_22_RES_FINAL_RA_3_CHAMADA.PDF'
         elif chamada == '4':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ED_19_ACESSOENEM_22_RES_FINAL_RA_4_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_19_ACESSOEnem_22_RES_FINAL_RA_4_CHAMADA.PDF'
         elif chamada == '5':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_22_acessoenem/arquivos/ED_22_ACESSOENEM_22_RES_FINAL_RA_5_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_22_ACESSOEnem_22_RES_FINAL_RA_5_CHAMADA.PDF'
 
     elif ano == '2021':
         chamadas = ['1ª', '2ª', '3ª', '4ª']
@@ -919,16 +921,16 @@ def mudar_ano_e_chamada(event: str = 'Esse parâmetro é apenas para a função 
         if chamada + 'ª' not in chamadas:
             menu_chamadas.set('1ª')
             chamada = '1'
-
-        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/unb_21_1_acessoenem/arquivos/ED_7_2020_ACESSOENEM_21_RELAO_FINAL_BIOPSICOSSOCIAL.PDF'
+        
+        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_21_1_acessoEnem/arquivos/ED_7_2020_ACESSOEnem_21_RELAO_FINAL_BIOPSICOSSOCIAL.PDF'
         if chamada == '1':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_21_1_acessoenem/arquivos/ED_10_2020_ACESSOENEM_21_FINAL_1A_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_21_1_acessoEnem/arquivos/ED_10_2020_ACESSOEnem_21_FINAL_1A_CHAMADA.PDF'
         elif chamada == '2':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_21_1_acessoenem/arquivos/ED_14_2020_ACESSOENEM_21_FINAL_2A_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_21_1_acessoEnem/arquivos/ED_14_2020_ACESSOEnem_21_FINAL_2A_CHAMADA.PDF'
         elif chamada == '3':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_21_1_acessoenem/arquivos/ED_16_2020_ACESSOENEM_21_FINAL_3A_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_21_1_acessoEnem/arquivos/ED_16_2020_ACESSOEnem_21_FINAL_3A_CHAMADA.PDF'
         elif chamada == '4':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_21_1_acessoenem/arquivos/ED_19_2020_ACESSOENEM_21_1_FINAL_REGISTRO_4_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_21_1_acessoEnem/arquivos/ED_19_2020_ACESSOEnem_21_1_FINAL_REGISTRO_4_CHAMADA.PDF'
 
     elif ano == '2020_2':
         chamadas = ['1ª', '2ª']
@@ -938,11 +940,11 @@ def mudar_ano_e_chamada(event: str = 'Esse parâmetro é apenas para a função 
             menu_chamadas.set('1ª')
             chamada = '1'
 
-        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_2_acessoenem/arquivos/ED_10_2020_ACESSOENEM_20_2_FIN_AV_BIOPSICO_SCEP_E_SELEO.PDF'
+        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_2_acessoEnem/arquivos/ED_10_2020_ACESSOEnem_20_2_FIN_AV_BIOPSICO_SCEP_E_SELEO.PDF'
         if chamada == '1':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_2_acessoenem/arquivos/ED_13_2020_ACESSOENEM_20_2_FIN_REGISTRO_1_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_2_acessoEnem/arquivos/ED_13_2020_ACESSOEnem_20_2_FIN_REGISTRO_1_CHAMADA.PDF'
         elif chamada == '2':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_2_acessoenem/arquivos/ED_17_2020_ACESSOENEM_20_2_FIN_REGISTRO_2_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_2_acessoEnem/arquivos/ED_17_2020_ACESSOEnem_20_2_FIN_REGISTRO_2_CHAMADA.PDF'
 
     elif ano == '2020_1':
         chamadas = ['1ª', '2ª', '3ª', '4ª', '5ª', '6ª', '7ª', '8ª', '9ª']
@@ -952,25 +954,25 @@ def mudar_ano_e_chamada(event: str = 'Esse parâmetro é apenas para a função 
             menu_chamadas.set('1ª')
             chamada = '1'
 
-        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_5_2019_ACESSOENEM_20_FINAL_AV_BIOPSICO_PROCESSO.PDF'
+        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_5_2019_ACESSOEnem_20_FINAL_AV_BIOPSICO_PROCESSO.PDF'
         if chamada == '1':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_9_ACESSOENEM_FINAL_REGISTRO_HOMOLOG.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_9_ACESSOEnem_FINAL_REGISTRO_HOMOLOG.PDF'
         elif chamada == '2':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_13_ACESSOENEM_FINAL_REGISTRO_HOMOLOG_2_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_13_ACESSOEnem_FINAL_REGISTRO_HOMOLOG_2_CHAMADA.PDF'
         elif chamada == '3':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_17_ACESSOENEM_FINAL_REGISTRO_HOMOLOG_3_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_17_ACESSOEnem_FINAL_REGISTRO_HOMOLOG_3_CHAMADA.PDF'
         elif chamada == '4':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_20_ACESSOENEM_FINAL_REGISTRO_HOMOLOG_4_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_20_ACESSOEnem_FINAL_REGISTRO_HOMOLOG_4_CHAMADA.PDF'
         elif chamada == '5':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_22_ACESSOENEM_FINAL_REGISTRO_HOMOLOG_5_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_22_ACESSOEnem_FINAL_REGISTRO_HOMOLOG_5_CHAMADA.PDF'
         elif chamada == '6':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_24_ACESSOENEM_FINAL_REGISTRO_HOMOLOG_6_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_24_ACESSOEnem_FINAL_REGISTRO_HOMOLOG_6_CHAMADA.PDF'
         elif chamada == '7':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_26_ACESSOENEM_FIN_REGISTRO_HOMOLOG_7_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_26_ACESSOEnem_FIN_REGISTRO_HOMOLOG_7_CHAMADA.PDF'
         elif chamada == '8':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_29_ACESSOENEM_FIN_REGISTRO_HOMOLOG_8_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_29_ACESSOEnem_FIN_REGISTRO_HOMOLOG_8_CHAMADA.PDF'
         elif chamada == '9':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/unb_20_acessoenem/arquivos/ED_32_ACESSOENEM_FIN_REGISTRO_HOMOLOG_9_CHAMADA.PDF'
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_32_ACESSOEnem_FIN_REGISTRO_HOMOLOG_9_CHAMADA.PDF'
 
 
 # Essa função muda o texto na menor caixa de texto.
