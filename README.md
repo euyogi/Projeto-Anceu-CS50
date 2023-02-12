@@ -18,19 +18,19 @@ Além do click_sound.wav e do pdftotext.exe junto com o arquivo desse código.
 Screenshots do programa:
 
 * Tela Inicial
-![photo1676213092](https://user-images.githubusercontent.com/46427886/218318041-9d811d31-d56b-4525-926c-71453e33f188.jpeg)
+![Imagem da tela inicial](https://user-images.githubusercontent.com/46427886/218318041-9d811d31-d56b-4525-926c-71453e33f188.jpeg)
 
 * Tela Informações
-![photo1676213195](https://user-images.githubusercontent.com/46427886/218318057-89dd17f8-dc78-4802-8c39-d91ab6fc4f78.jpeg)
+![Imagem da tela de informações](https://user-images.githubusercontent.com/46427886/218318057-89dd17f8-dc78-4802-8c39-d91ab6fc4f78.jpeg)
 
 Tela Link Grupos
-![photo1676213183](https://user-images.githubusercontent.com/46427886/218318072-a0a21a2d-f3d0-4acd-a992-9cde2a4a51c2.jpeg)
+![Imagem da tela do link dos grupos](https://user-images.githubusercontent.com/46427886/218318072-a0a21a2d-f3d0-4acd-a992-9cde2a4a51c2.jpeg)
 
 Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi engenharias)
-![image](https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png)
+![Imagem da tela após pesquisar algum curso](https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png)
 
 Tela Após Selecionar Ver Detalhes
-![image](https://user-images.githubusercontent.com/46427886/218318637-38648814-28d1-4cc9-8fab-330706a8a14d.png)
+![Imagem da tela após apertar o botão ver detalhes](https://user-images.githubusercontent.com/46427886/218318637-38648814-28d1-4cc9-8fab-330706a8a14d.png)
 
 
 Como vocês podem ver o programa possui:
@@ -61,9 +61,9 @@ Apesar do programa ainda não ser acessível ao público geral, como em um site 
 dezenas de pessoas com as mesmas dificuldades que eu tive no começo com o programa:
 
 <p float="left">
-  <img src= "https://user-images.githubusercontent.com/46427886/218320799-b91f68ee-b1e1-4c8b-9fb5-5468b04a81d9.png" width="32%" />
-  <img src="https://user-images.githubusercontent.com/46427886/218320829-f5b17ce9-dfe2-4071-b8d9-32db85629928.png" width="32%" /> 
-  <img src="https://user-images.githubusercontent.com/46427886/218320832-d2756cbf-6056-44c9-9d0a-dfa1cedafeab.png" width="32%" />
+  <img src= "https://user-images.githubusercontent.com/46427886/218320799-b91f68ee-b1e1-4c8b-9fb5-5468b04a81d9.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
+  <img src="https://user-images.githubusercontent.com/46427886/218320829-f5b17ce9-dfe2-4071-b8d9-32db85629928.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" /> 
+  <img src="https://user-images.githubusercontent.com/46427886/218320832-d2756cbf-6056-44c9-9d0a-dfa1cedafeab.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
 </p>
 <p float="left">
   <img src= "https://user-images.githubusercontent.com/46427886/218320833-cf387d32-211b-4fd8-bf66-90ebb8ee3c89.png" width="32%" />
