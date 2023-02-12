@@ -60,7 +60,6 @@ além de melhorias no desempenho que melhoraram o tempo de resposta em mais de 3
 Apesar do programa ainda não ser acessível ao público geral, como em um site ou um aplicativo mobile ainda pude ajudar
 dezenas de pessoas com as mesmas dificuldades que eu tive no começo com o programa:
 
-Solarized dark             |  Solarized Ocean          |  Solarized dark
 :-------------------------:|:-------------------------:|:-------------------------:
 ![IMG_20230212_121556](https://user-images.githubusercontent.com/46427886/218320654-9e24f341-b665-4fbc-bf4d-092dd43e8df1.png)|![IMG_20230212_121808](https://user-images.githubusercontent.com/46427886/218320686-2ccc6c78-dd03-49be-96fc-355722831061.png)
 
