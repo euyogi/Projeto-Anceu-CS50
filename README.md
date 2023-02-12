@@ -13,19 +13,24 @@ Além do click_sound.wav e do pdftotext.exe junto com o arquivo desse código.
 
 Screenshots do programa:
 
-* Tela Inicial
+* Tela Inicial:
+
 ![Imagem da tela inicial](https://user-images.githubusercontent.com/46427886/218318041-9d811d31-d56b-4525-926c-71453e33f188.jpeg)
 
-* Tela Informações
+* Tela Informações:
+ 
 ![Imagem da tela de informações](https://user-images.githubusercontent.com/46427886/218318057-89dd17f8-dc78-4802-8c39-d91ab6fc4f78.jpeg)
 
-Tela Link Grupos
+* Tela Link Grupos:
+
 ![Imagem da tela do link dos grupos](https://user-images.githubusercontent.com/46427886/218318072-a0a21a2d-f3d0-4acd-a992-9cde2a4a51c2.jpeg)
 
-Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi engenharias)
+* Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi engenharias):
+
 ![Imagem da tela após pesquisar algum curso](https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png)
 
-Tela Após Selecionar Ver Detalhes
+* Tela Após Selecionar Ver Detalhes:
+
 ![Imagem da tela após apertar o botão ver detalhes](https://user-images.githubusercontent.com/46427886/218318637-38648814-28d1-4cc9-8fab-330706a8a14d.png)
 
 
