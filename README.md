@@ -60,7 +60,27 @@ além de melhorias no desempenho que melhoraram o tempo de resposta em mais de 3
 Apesar do programa ainda não ser acessível ao público geral, como em um site ou um aplicativo mobile ainda pude ajudar
 dezenas de pessoas com as mesmas dificuldades que eu tive no começo com o programa:
 
-Teste 1 | Teste 2
-:-------------------------:|:-------------------------:|:-------------------------:
-![IMG_20230212_121556](https://user-images.githubusercontent.com/46427886/218320654-9e24f341-b665-4fbc-bf4d-092dd43e8df1.png)|![IMG_20230212_121808](https://user-images.githubusercontent.com/46427886/218320686-2ccc6c78-dd03-49be-96fc-355722831061.png)
+<p float="left">
+  <img src= "https://user-images.githubusercontent.com/46427886/218320799-b91f68ee-b1e1-4c8b-9fb5-5468b04a81d9.png" width="32%" />
+  <img src="https://user-images.githubusercontent.com/46427886/218320829-f5b17ce9-dfe2-4071-b8d9-32db85629928.png" width="32%" /> 
+  <img src="https://user-images.githubusercontent.com/46427886/218320832-d2756cbf-6056-44c9-9d0a-dfa1cedafeab.png" width="32%" />
+</p>
 
+<p float="left">
+  <img src= "" width="32%" />
+  <img src="" width="32%" /> 
+  <img src="" width="32%" />
+</p>
+
+![IMG_20230212_121927](https://user-images.githubusercontent.com/46427886/218320833-cf387d32-211b-4fd8-bf66-90ebb8ee3c89.png)
+![IMG_20230212_121940](https://user-images.githubusercontent.com/46427886/218320834-bd4dac48-3fc4-400f-a614-88d5b03bf956.png)
+![IMG_20230212_121951](https://user-images.githubusercontent.com/46427886/218320835-4a579395-d23f-400e-a59f-ceb6e97a2215.png)
+![IMG_20230212_122017](https://user-images.githubusercontent.com/46427886/218320836-2bb2411e-5a9e-43ce-8235-3a4cec75a404.png)
+![IMG_20230212_122051](https://user-images.githubusercontent.com/46427886/218320837-3f628db3-850b-4943-a036-d2552aeb2a12.png)
+![IMG_20230212_122104](https://user-images.githubusercontent.com/46427886/218320838-39f0920b-0952-4bf6-9710-713838778827.png)
+![IMG_20230212_122308](https://user-images.githubusercontent.com/46427886/218320840-0a90877e-48b9-4632-b884-9a2ffe8563cd.png)
+![IMG_20230212_122317](https://user-images.githubusercontent.com/46427886/218320841-71459d9b-e5fe-4f20-b418-f2621bd71dd9.png)
+![IMG_20230212_122332](https://user-images.githubusercontent.com/46427886/218320843-6cc8348d-7e8d-471e-a017-18b6b81f4c70.png)
+![IMG_20230212_122341](https://user-images.githubusercontent.com/46427886/218320844-0586deb6-31d5-457f-b5f3-79a5492f366a.png)
+![IMG_20230212_122325](https://user-images.githubusercontent.com/46427886/218320845-a15fc401-f331-4ba7-ac1b-3fc79d4c2efe.png)
+![IMG_20230212_121808](https://user-images.githubusercontent.com/46427886/218320846-2dcb3610-cfbb-41d9-9d93-74fd1834ec0c.png)
