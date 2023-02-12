@@ -1,16 +1,12 @@
 # Projeto-CS50
 
-Esse é o meu projeto final para o curso CS50 - é um aplicativo feito em python,
-que checa as notas dos candidatos que participaram do Enem e se inscreveram na
-Universidade de Brasília - UNB, mostrando por fim um resumo para cada
-curso da instituição, com as maiores notas, as menores notas (nota de corte), e
-a média em cada cota disponível.
+Esse é o meu projeto final para o curso CS50 - é um aplicativo feito em python, que checa as notas dos candidatos que
+participaram do Enem e se inscreveram na Universidade de Brasília - UNB, mostrando por fim um resumo para cada curso
+da instituição, com as maiores notas, as menores notas (nota de corte), e a média em cada cota disponível.
 
-É possível calcular também a sua própria nota, já que a universidade possui um
-sistema de pesos para as notas de cada área.
+É possível calcular também a sua própria nota, já que a universidade possui um sistema de pesos para as notas de cada área.
 
-Necessário instalar customtkinter, numpy, Pmw, pygame e requests com pip install
-caso ainda não tenha-os instalados.
+Necessário instalar customtkinter, numpy, Pmw, pygame e requests com pip install caso ainda não tenha-os instalados.
 
 Além do click_sound.wav e do pdftotext.exe junto com o arquivo desse código.
 
@@ -58,7 +54,7 @@ copiar os dados manualmente, para automático em que o programa baixava o PDF e 
 além de melhorias no desempenho que melhoraram o tempo de resposta em mais de 33x em alguns casos.
 
 Apesar do programa ainda não ser acessível ao público geral, como em um site ou um aplicativo mobile ainda pude ajudar
-dezenas de pessoas com as mesmas dificuldades que eu tive no começo com o programa:
+dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o programa:
 
 <p float="left">
   <img src= "https://user-images.githubusercontent.com/46427886/218320799-b91f68ee-b1e1-4c8b-9fb5-5468b04a81d9.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
