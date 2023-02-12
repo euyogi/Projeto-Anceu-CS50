@@ -87,4 +87,4 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
   <img src="" width="32%" />
 </p>
 
-Projeto feito por: Yogi Nam de Souza Barbosa \t\t\t 2023
+Projeto feito por: Yogi Nam de Souza Barbosa
