@@ -13,3 +13,14 @@ Necessário instalar customtkinter, numpy, Pmw, pygame e requests com pip instal
 caso ainda não tenha-os instalados.
 
 Além do click_sound.wav e do pdftotext.exe junto com o arquivo desse código.
+
+
+Screenshots do programa:
+
+![photo1676213092](https://user-images.githubusercontent.com/46427886/218318041-9d811d31-d56b-4525-926c-71453e33f188.jpeg)
+
+![photo1676213195](https://user-images.githubusercontent.com/46427886/218318057-89dd17f8-dc78-4802-8c39-d91ab6fc4f78.jpeg)
+
+![photo1676213183](https://user-images.githubusercontent.com/46427886/218318072-a0a21a2d-f3d0-4acd-a992-9cde2a4a51c2.jpeg)
+
+![image](https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png)
