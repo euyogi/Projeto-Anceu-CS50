@@ -86,3 +86,5 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
   <img src="https://user-images.githubusercontent.com/46427886/218320846-2dcb3610-cfbb-41d9-9d93-74fd1834ec0c.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" /> 
   <img src="" width="32%" />
 </p>
+
+Projeto feito por: Yogi Nam de Souza Barbosa \t\t\t 2023
