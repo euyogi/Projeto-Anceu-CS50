@@ -74,5 +74,4 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo com o progr
 ![IMG_20230212_122341](https://user-images.githubusercontent.com/46427886/218320119-468a96b9-e302-4257-9a7c-e05b85efeb36.png)
 ![IMG_20230212_122325](https://user-images.githubusercontent.com/46427886/218320120-b0aa64f9-3932-4130-8fa0-44f9131e0bba.png)
 ![IMG_20230212_121556](https://user-images.githubusercontent.com/46427886/218320121-3d943c12-0b58-4e1c-9d3b-343d8d0527a2.png)
-![IMG_20230212_121808](https://user-images.githubusercontent.com/46427886/218320122-629c2a8b-6bf1-409e-96f4-d6f3e4f73110.png)
-![IMG_20230212_121855](https://user-images.githubusercontent.com/46427886/218320123-cf02ca76-4aec-4653-8f1a-5f5b4e722a42.png)
+![IMG_20230212_121808](https://user-images.githubusercontent.com/46427886/218320122-629c2a8b-6bf1-409e-96f4-d6f3e4f73110.png)![IMG_20230212_121855](https://user-images.githubusercontent.com/46427886/218320123-cf02ca76-4aec-4653-8f1a-5f5b4e722a42.png)
