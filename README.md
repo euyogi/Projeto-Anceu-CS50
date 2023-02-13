@@ -82,10 +82,9 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
   <img src="https://user-images.githubusercontent.com/46427886/218320844-0586deb6-31d5-457f-b5f3-79a5492f366a.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
 </p>
 <p float="left">
-  <img src= "https://user-images.githubusercontent.com/46427886/218320845-a15fc401-f331-4ba7-ac1b-3fc79d4c2efe.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
+  <img src="https://user-images.githubusercontent.com/46427886/218320845-a15fc401-f331-4ba7-ac1b-3fc79d4c2efe.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
   <img src="https://user-images.githubusercontent.com/46427886/218320846-2dcb3610-cfbb-41d9-9d93-74fd1834ec0c.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" /> 
   <img src="https://user-images.githubusercontent.com/46427886/218329385-ad9ab4a2-49a4-4c29-a3c2-22456845330b.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
 </p>
 
-Projeto feito por: Yogi Nam de Souza Barbosa
-![Minha foto de perfil (Imagem de um cachorro)](https://user-images.githubusercontent.com/46427886/218377101-f832c1a3-6c48-4016-92d2-0d8b6a4fafd5.gif)
+Projeto feito por: Yogi Nam de Souza Barbosa <img src="https://user-images.githubusercontent.com/46427886/218377101-f832c1a3-6c48-4016-92d2-0d8b6a4fafd5.gif" width="10%" alt-text="Minha imagem de perfil (um cachorro)" />
