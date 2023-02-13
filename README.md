@@ -87,4 +87,8 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
   <img src="https://user-images.githubusercontent.com/46427886/218329385-ad9ab4a2-49a4-4c29-a3c2-22456845330b.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
 </p>
 
-Projeto feito por: Yogi Nam de Souza Barbosa <img src="https://user-images.githubusercontent.com/46427886/218377101-f832c1a3-6c48-4016-92d2-0d8b6a4fafd5.gif" width="10%" alt-text="Minha imagem de perfil (um cachorro)" />
+Projeto feito por: Yogi Nam de Souza Barbosa
+
+<p float="center">
+<img src="https://user-images.githubusercontent.com/46427886/218377101-f832c1a3-6c48-4016-92d2-0d8b6a4fafd5.gif" width="10%" alt-text="Minha imagem de perfil (um cachorro)" />
+ </p>
