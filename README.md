@@ -88,3 +88,4 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
 </p>
 
 Projeto feito por: Yogi Nam de Souza Barbosa
+![Minha foto de perfil (Imagem de um cachorro)](https://user-images.githubusercontent.com/46427886/218377101-f832c1a3-6c48-4016-92d2-0d8b6a4fafd5.gif)
