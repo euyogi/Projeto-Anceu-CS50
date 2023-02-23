@@ -67,30 +67,30 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
   <img src="https://user-images.githubusercontent.com/46427886/218320832-d2756cbf-6056-44c9-9d0a-dfa1cedafeab.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
 </div>
 <div>
-  <img src= "https://user-images.githubusercontent.com/46427886/218329386-b3c500fa-bd21-4558-bf72-4ca69539eff8.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
-  <img src="https://user-images.githubusercontent.com/46427886/218320834-bd4dac48-3fc4-400f-a614-88d5b03bf956.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" /> 
-  <img src="https://user-images.githubusercontent.com/46427886/218320835-4a579395-d23f-400e-a59f-ceb6e97a2215.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
+  <img src= "https://user-images.githubusercontent.com/46427886/218329386-b3c500fa-bd21-4558-bf72-4ca69539eff8.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
+  <img src="https://user-images.githubusercontent.com/46427886/218320834-bd4dac48-3fc4-400f-a614-88d5b03bf956.png" width="32%" alt-text="Imagem de pessoas ajudadas" /> 
+  <img src="https://user-images.githubusercontent.com/46427886/218320835-4a579395-d23f-400e-a59f-ceb6e97a2215.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
 </div>
-<p>
-  <img src= "https://user-images.githubusercontent.com/46427886/218320836-2bb2411e-5a9e-43ce-8235-3a4cec75a404.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
-  <img src="https://user-images.githubusercontent.com/46427886/218320837-3f628db3-850b-4943-a036-d2552aeb2a12.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" /> 
-  <img src="https://user-images.githubusercontent.com/46427886/218320838-39f0920b-0952-4bf6-9710-713838778827.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
-</p>
-<p>
-  <img src= "https://user-images.githubusercontent.com/46427886/218320841-71459d9b-e5fe-4f20-b418-f2621bd71dd9.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
-  <img src="https://user-images.githubusercontent.com/46427886/218320843-6cc8348d-7e8d-471e-a017-18b6b81f4c70.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" /> 
-  <img src="https://user-images.githubusercontent.com/46427886/218320844-0586deb6-31d5-457f-b5f3-79a5492f366a.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
-</p>
-<p>
-  <img src="https://user-images.githubusercontent.com/46427886/218320845-a15fc401-f331-4ba7-ac1b-3fc79d4c2efe.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
-  <img src="https://user-images.githubusercontent.com/46427886/218320846-2dcb3610-cfbb-41d9-9d93-74fd1834ec0c.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" /> 
-  <img src="https://user-images.githubusercontent.com/46427886/218329385-ad9ab4a2-49a4-4c29-a3c2-22456845330b.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
-</p>
+<div>
+  <img src= "https://user-images.githubusercontent.com/46427886/218320836-2bb2411e-5a9e-43ce-8235-3a4cec75a404.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
+  <img src="https://user-images.githubusercontent.com/46427886/218320837-3f628db3-850b-4943-a036-d2552aeb2a12.png" width="32%" alt-text="Imagem de pessoas ajudadas" /> 
+  <img src="https://user-images.githubusercontent.com/46427886/218320838-39f0920b-0952-4bf6-9710-713838778827.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
+</div>
+<div>
+  <img src= "https://user-images.githubusercontent.com/46427886/218320841-71459d9b-e5fe-4f20-b418-f2621bd71dd9.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
+  <img src="https://user-images.githubusercontent.com/46427886/218320843-6cc8348d-7e8d-471e-a017-18b6b81f4c70.png" width="32%" alt-text="Imagem de pessoas ajudadas" /> 
+  <img src="https://user-images.githubusercontent.com/46427886/218320844-0586deb6-31d5-457f-b5f3-79a5492f366a.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/46427886/218320845-a15fc401-f331-4ba7-ac1b-3fc79d4c2efe.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
+  <img src="https://user-images.githubusercontent.com/46427886/218320846-2dcb3610-cfbb-41d9-9d93-74fd1834ec0c.png" width="32%" alt-text="Imagem de pessoas ajudadas" /> 
+  <img src="https://user-images.githubusercontent.com/46427886/218329385-ad9ab4a2-49a4-4c29-a3c2-22456845330b.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
+</div>
 
 <p align="center">
 Projeto feito por: Yogi Nam de Souza Barbosa
 </p>
 
-<p align="center">
+<div align="center">
   <img src="https://user-images.githubusercontent.com/46427886/218377101-f832c1a3-6c48-4016-92d2-0d8b6a4fafd5.gif" width="10%" alt-text="Minha imagem de perfil (um cachorro)" />
- </p>
+</div>
