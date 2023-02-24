@@ -449,8 +449,11 @@ def UI() -> None:
 
 ''' Funções principais '''
 
-# Mostra as informações iniciais no rotulo_resultado.
 def ver_informacoes_iniciais() -> None:
+    """
+    Mostra as informações iniciais no rotulo_resultado.
+    """
+    
     adicionar_na_maior_caixa('Olá, este programa mostra as notas dos candidatos aprovados na UnB pelo\n'
                              'acesso Enem.\n\n'
 
@@ -467,10 +470,13 @@ def ver_informacoes_iniciais() -> None:
                              'Informações sobre o programa no "i" no canto superior esquerdo.')
 
 
-# Essa função é ativada ao por o nome do curso e apertar o botão de pesquisar;
-# Serve para chamar as funções que lidam com os arquivos e se alguma der erro, impede do programa continuar, mas não o fecha;
-# Se tudo correr bem, chama a função que checa as maiores e as menores notas, além da média de cada cota e mostra na tela.
 def iniciar_pesquisa() -> None:
+    """
+    Essa função é ativada ao por o nome do curso e apertar o botão de pesquisar;
+    Serve para chamar as funções que lidam com os arquivos e se alguma der erro, impede do programa continuar, mas não o fecha;
+    Se tudo correr bem, chama a função que checa as maiores e as menores notas, além da média de cada cota e mostra na tela.
+    """
+    
     global cotas_notas, dados, inscricoes_aprovados, curso, ano, chamada
 
     # Confere se o curso digitado existe na lista de cursos.
@@ -552,8 +558,10 @@ def iniciar_pesquisa() -> None:
     barra_progresso.set(1)
 
 
-# Baixa os PDFs.
 def baixar_pdf(url: str, nome_do_arquivo: str) -> None:
+    """
+    Baixa os PDFs.
+    """
     try:
         pdf = get(url)
     except exceptions.RequestException as e:
@@ -562,9 +570,13 @@ def baixar_pdf(url: str, nome_do_arquivo: str) -> None:
     open(nome_do_arquivo, "wb").write(pdf.content)
 
 
-# Converte o pdf em texto e salva os dados de todos os candidatos que se inscreveram no curso pesquisado.
-def extrair_dados_do_pdf(curso: str) -> None:  # Possui curso como parâmetro para copiar apenas os dados dos candidatos desse curso.
-                                               # Não é o mesmo curso declarado nas variáveis globais.
+def extrair_dados_do_pdf(curso: str) -> None:
+    """
+    Converte o pdf em texto e salva os dados de todos os candidatos que se inscreveram no curso pesquisado;
+    Possui curso como parâmetro para copiar apenas os dados dos candidatos desse curso;
+    Não é o mesmo curso declarado nas variáveis globais.
+    """
+    
     global dados
 
     pos_n = pos_c = pos_p = 0
@@ -622,8 +634,11 @@ def extrair_dados_do_pdf(curso: str) -> None:  # Possui curso como parâmetro pa
     dados = sub('\d{1,4}\r', '', output[pos_inicio:pos_inicio + pos_final - 3])  # O -3 é necessário para que o dado do último candidato fique igual aos outros.
 
 
-# Como ao extrair texto do PDF ele vem com uma formatação esquisita é necessário corrigí-lo.
 def corrigir_dados() -> None:
+    """
+    Como ao extrair texto do PDF ele vem com uma formatação esquisita é necessário corrigí-lo.
+    """
+    
     global dados
 
     dados = dados.replace('\n', '').replace('\r', '').replace('\f', '')
@@ -653,8 +668,12 @@ def corrigir_dados() -> None:
         dados[c] = dados[c].split(',')  # Separa os dados dos candidatos em uma sublista em que cada elemento é um dado.
 
 
-# Converte o pdf em texto e salva as inscrições de todos os candidatos que foram aprovados.
-def extrair_inscricoes_do_pdf() -> None:  # Os dados extraídos são apenas os números das inscrições dos aprovados.
+def extrair_inscricoes_do_pdf() -> None:
+    """
+    Converte o pdf em texto e salva as inscrições de todos os candidatos que foram aprovados;
+    Os dados extraídos são apenas os números das inscrições dos aprovados.
+    """
+    
     global inscricoes_aprovados
 
     # Converte o pdf com o programa pdftotext.exe; https://www.shedloadofcode.com/blog/searching-for-text-in-pdfs-at-increasing-scale.
@@ -667,8 +686,11 @@ def extrair_inscricoes_do_pdf() -> None:  # Os dados extraídos são apenas os n
     inscricoes_aprovados = findall(r'\d{8}', output)
 
 
-# Essa função checa a partir das inscrições dos aprovados, suas notas e posições em cada cota, comparando as duas listas.
 def checar_aprovados() -> None:
+    """
+    Essa função checa a partir das inscrições dos aprovados, suas notas e posições em cada cota, comparando as duas listas.
+    """
+    
     # Lista para guardar cada dicionário com os dados dos candidatos aprovados.
     candidatos_aprovados = list()
 
@@ -707,8 +729,11 @@ def checar_aprovados() -> None:
     ver_resumo_das_notas_na_maior_caixa()
 
 
-# Mostra na maior caixa as notas máxima, mínima e média de cada cota, se houverem aprovados por essa cota.
 def ver_resumo_das_notas_na_maior_caixa() -> None:
+    """
+    Mostra na maior caixa as notas máxima, mínima e média de cada cota, se houverem aprovados por essa cota.
+    """
+    
     mudar_status('Status: Resumo das notas dos aprovados abaixo', VERDE)
 
     adicionar_na_maior_caixa('delete')
@@ -743,8 +768,11 @@ def ver_resumo_das_notas_na_maior_caixa() -> None:
                              state = 'normal')
 
 
-# Mostra todas as notas dos aprovados e suas posições em cada cota na maior caixa de texto.
 def ver_dados_candidatos_aprovados_na_maior_caixa() -> None:
+    """
+    Mostra todas as notas dos aprovados e suas posições em cada cota na maior caixa de texto.
+    """
+    
     mudar_status('Status: Detalhes das notas dos aprovados abaixo', VERDE)
 
     adicionar_na_maior_caixa('delete')
@@ -763,8 +791,11 @@ def ver_dados_candidatos_aprovados_na_maior_caixa() -> None:
                              state = 'normal')
 
 
-# Remove os PDFs, caso existam.
 def remover_pdfs() -> None:
+    """
+    Remove os PDFs, caso existam.
+    """
+    
     try:
         remove(NOME_PDF)
     except:
@@ -778,8 +809,11 @@ def remover_pdfs() -> None:
 
 ''' Funções secundárias '''
 
-# Mostra uma janela com texto quando o cursor está acima do widget.
 def balao(widget, texto: str) -> None:
+    """
+    Mostra uma janela com texto quando o cursor está acima do widget.
+    """
+    
     balao = Balloon(widget.master)
     balao.bind(widget, texto)
 
@@ -790,8 +824,11 @@ def balao(widget, texto: str) -> None:
                                        bd = 10)
 
 
-# Converte sua nota com base nos pesos da UnB.
 def converter() -> None:
+    """
+    Converte sua nota com base nos pesos da UnB.
+    """
+    
     global nota_6
 
     # Converte as notas para floats, aceita "," e ".".
@@ -812,8 +849,11 @@ def converter() -> None:
     nota_6.configure(text = f'{nota:.2f}')
 
 
-# Mostra no rotulos_resultado, informações sobre o programa.
 def ver_info() -> None:
+    """
+    Mostra no rotulos_resultado, informações sobre o programa.
+    """
+    
     texto = ('* Este programa não tem nenhuma afiliação com a Universidade de\n'
              '* Brasília. Os dados utilizados estão disponíveis para o público no\n'
              '* seguinte url: https://www.cebraspe.org.br/\n\n'
@@ -841,8 +881,11 @@ def ver_info() -> None:
         adicionar_na_maior_caixa('delete')
 
 
-# Mostra no rotulos_resultado, url para PDF com informações sobre os grupos.
 def ver_url_grupo() -> None:
+    """
+    Mostra no rotulos_resultado, url para PDF com informações sobre os grupos.
+    """
+    
     texto = ('* PDF com mais informações sobre o Acesso Enem UnB 2022, incluindo\n'
              '* tabela que mostra cada curso e seu respectivo grupo (I ou II) PG: 14\n'
              '* No seguinte URL: https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_1_ACESSOEnem_22_ABERTURA.PDF')
@@ -857,8 +900,11 @@ def ver_url_grupo() -> None:
         adicionar_na_maior_caixa('delete')
 
 
-# Altera as opções do menu_cursos quando um filtro é selecionado no menu_filtros.
 def mudar_opcoes_menu_cursos(opcao: str) -> None:
+    """
+    Altera as opções do menu_cursos quando um filtro é selecionado no menu_filtros.
+    """
+    
     # Reproduz som de clique.
     som_clique()  # Não consegui iniciar essa função no lambda pois o lambda não aceita argumentos, então vai ser chamada aqui.
 
@@ -881,8 +927,11 @@ def mudar_opcoes_menu_cursos(opcao: str) -> None:
     menu_cursos.set(opcao.capitalize())
 
 
-# Altera os URLs de acordo com o ano e a chamada escolhida.
 def mudar_ano_e_chamada(event: str = 'Esse parâmetro é apenas para a função aceitar o argumento que o opcoes_anos e o menu_chamadas inserem') -> None:
+    """
+    Altera os URLs de acordo com o ano e a chamada escolhida.
+    """
+    
     global URL_DAS_NOTAS, URL_DOS_APROVADOS, opcoes_anos, menu_chamadas
 
     som_clique()  # Não consegui iniciar essa função no lambda pois o lambda não aceita argumentos, então vai ser chamada aqui.
@@ -975,13 +1024,19 @@ def mudar_ano_e_chamada(event: str = 'Esse parâmetro é apenas para a função 
             URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_20_acessoEnem/arquivos/ED_32_ACESSOEnem_FIN_REGISTRO_HOMOLOG_9_CHAMADA.PDF'
 
 
-# Essa função muda o texto na menor caixa de texto.
 def mudar_status(texto: str = '', cor: str = CINZA) -> None:
+    """
+    Essa função muda o texto na menor caixa de texto.
+    """
+    
     rotulo_status.configure(text = texto, text_color = cor)
 
 
-# Essa função adicionar texto na maior caixa de texto, se o argumento for 'delete', apaga o texto.
 def adicionar_na_maior_caixa(texto: str = '') -> None:
+    """
+    Essa função adicionar texto na maior caixa de texto, se o argumento for 'delete', apaga o texto.
+    """
+    
     rotulo_resultado.configure(state = 'normal')
     rotulo_resultado.delete('0.0', 'end') if texto == 'delete' else rotulo_resultado.insert('end', texto + '\n')
     rotulo_resultado.configure(state = 'disabled')
@@ -990,8 +1045,11 @@ def adicionar_na_maior_caixa(texto: str = '') -> None:
 # Inicializa o mixer de som.
 mixer.init()
 
-# Essa função é para ser chamado ao apertar qualquer botão e tocar o som do clique.
 def som_clique(event: str = 'Esse parâmetro é apenas para a função aceitar o argumento que a menu_cursos e o menu_filtros inserem') -> None:
+    """
+    Essa função é para ser chamado ao apertar qualquer botão e tocar o som do clique.
+    """ 
+   
     mixer.music.load('click_sound.wav')
     mixer.music.play(loops = 0)
 
