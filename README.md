@@ -6,7 +6,8 @@ da instituição, com as maiores notas, as menores notas (nota de corte), e a m�
 
 É possível calcular também a sua própria nota, já que a universidade possui um sistema de pesos para as notas de cada área.
 
-Necessário instalar customtkinter, numpy, Pmw, pygame e requests com pip install caso ainda não tenha-os instalados.
+Necessário instalar customtkinter, numpy, Pmw, pygame e requests com utilizando pip install e o nome de cada um caso ainda não tenha-os instalados.
+Ou apenas pip install -r requirements.txt
 
 Além do click_sound.wav e do pdftotext.exe junto com o arquivo desse código.
 
