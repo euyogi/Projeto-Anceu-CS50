@@ -18,7 +18,7 @@ da instituição, com as maiores notas, as menores notas (nota de corte), e a m�
 
 ![Imagem da tela do link dos grupos](https://user-images.githubusercontent.com/46427886/218318072-a0a21a2d-f3d0-4acd-a992-9cde2a4a51c2.jpeg)
 
-<h2>Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi engenharias):
+<h2>Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi engenharias):</h2>
 
 ![Imagem da tela após pesquisar algum curso](https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png)
 
@@ -43,6 +43,7 @@ da instituição, com as maiores notas, as menores notas (nota de corte), e a m�
 
 * Entre outros...
 
+<h2>Escolhas:</h2>
 
 Bom, escolhi criar esse programa pois eu tive bastante dificuldade para checar as notas para o curso que eu quero
 e quase não havia informações na internet sobre as notas do ano de 2022, assim, por ser um processo que se manual
