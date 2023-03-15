@@ -6,36 +6,28 @@ da instituição, com as maiores notas, as menores notas (nota de corte), e a m�
 
 É possível calcular também a sua própria nota, já que a universidade possui um sistema de pesos para as notas de cada área.
 
-Necessário instalar customtkinter, numpy, Pmw, pygame e requests com utilizando pip install e o nome de cada um caso ainda não tenha-os instalados.
-Ou apenas pip install -r requirements.txt
-
-Além do click_sound.wav e do pdftotext.exe junto com o arquivo desse código.
-
-
-Screenshots do programa:
-
-* Tela Inicial:
+<h2>Tela Inicial:</h2>
 
 ![Imagem da tela inicial](https://user-images.githubusercontent.com/46427886/218318041-9d811d31-d56b-4525-926c-71453e33f188.jpeg)
 
-* Tela Informações:
+<h2>Tela Informações:</h2>
  
 ![Imagem da tela de informações](https://user-images.githubusercontent.com/46427886/218318057-89dd17f8-dc78-4802-8c39-d91ab6fc4f78.jpeg)
 
-* Tela Link Grupos:
+<h2>Tela Link Grupos:</h2>
 
 ![Imagem da tela do link dos grupos](https://user-images.githubusercontent.com/46427886/218318072-a0a21a2d-f3d0-4acd-a992-9cde2a4a51c2.jpeg)
 
-* Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi engenharias):
+<h2>Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi engenharias):
 
 ![Imagem da tela após pesquisar algum curso](https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png)
 
-* Tela Após Selecionar Ver Detalhes:
+<h2>Tela Após Selecionar Ver Detalhes:</h2>
 
 ![Imagem da tela após apertar o botão ver detalhes](https://user-images.githubusercontent.com/46427886/218318637-38648814-28d1-4cc9-8fab-330706a8a14d.png)
 
 
-Como vocês podem ver o programa possui:
+<h2>Funcionalidades:</h2>
 
 * Uma caixa de opções para pesquisar/escolher o curso desejado
 
@@ -87,6 +79,18 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
   <img src="https://user-images.githubusercontent.com/46427886/218320846-2dcb3610-cfbb-41d9-9d93-74fd1834ec0c.png" width="32%" alt-text="Imagem de pessoas ajudadas" /> 
   <img src="https://user-images.githubusercontent.com/46427886/218329385-ad9ab4a2-49a4-4c29-a3c2-22456845330b.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
 </div>
+
+<h2>Para testar:</h2>
+
+Necessário Python instalado, de preferência versão 3.11 ou mais recente.
+
+Baixe o .zip com os arquivos, (Download ZIP)
+
+![Baixar Arquivos](https://user-images.githubusercontent.com/46427886/225175061-379f3709-d038-497f-9f15-d463e1f2b1f0.jpeg)
+
+Extraia o .zip e abra a pasta com os arquivos
+
+Abra o arquivo install_requirements.cmd, após instalar as bibliotecas abra o run_project.cmd e se estiver tudo certo o programa vai abrir.
 
 <p align="center">
 Projeto feito por: Yogi Nam de Souza Barbosa
