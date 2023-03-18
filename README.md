@@ -83,15 +83,13 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
 
 <h2>Para testar:</h2>
 
-Necessário Python instalado, de preferência versão 3.11 ou mais recente.
-
 Baixe o .zip com os arquivos, (Download ZIP)
 
 ![Baixar Arquivos](https://user-images.githubusercontent.com/46427886/225175061-379f3709-d038-497f-9f15-d463e1f2b1f0.jpeg)
 
 Extraia o .zip e abra a pasta com os arquivos
 
-Abra o arquivo install_requirements.cmd, após instalar as bibliotecas abra o run_project.cmd e se estiver tudo certo o programa vai abrir.
+Caso você tenha o Python instalado abra o arquivo RUN_PYTHON, caso não tenha abra o RUN_NO_PYTHON, basicamente o primeiro abre um terminal que instala as bibliotecas necessárias e roda o programa localizado na pasta APP_PYTHON, já o segundo abre um .exe que está localizado na pasta APP_NO_PYTHON a qual também tem todos os arquivos necessários.
 
 <p align="center">
 Projeto feito por: Yogi Nam de Souza Barbosa
