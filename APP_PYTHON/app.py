@@ -49,7 +49,7 @@ from statistics import mean
 from threading import Thread
 
 # Para, ao fechar a UI dar tempo de reproduzir o som de clique.
-from time import sleep, time
+from time import sleep
 
 
 ''' Variáveis para armazenar dados necessários para as funções. '''
