@@ -1,6 +1,0 @@
-customtkinter
-numpy
-Pmw
-pygame
-requests
-PyMuPDF
