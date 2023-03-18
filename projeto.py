@@ -27,6 +27,9 @@ arquivo desse código.
 # Para a UI
 import customtkinter as ctk
 
+# Para converter PDFs em texto.
+import fitz
+
 # Similar ao range(), mas mais rápido.
 from numpy import arange
 
@@ -51,14 +54,11 @@ from requests import get, exceptions
 # Para calcular média dos valores em uma lista.
 from statistics import mean
 
-# Para converter os PDFs.
-import subprocess
-
 # Executa algumas partes do programa em outro thread, evitando da UI travar.
 from threading import Thread
 
 # Para, ao fechar a UI dar tempo de reproduzir o som de clique.
-from time import sleep, time
+from time import sleep
 
 
 ''' Variáveis para armazenar dados necessários para as funções. '''
@@ -601,11 +601,11 @@ def extrair_dados_do_pdf(curso: str) -> None:
         curso = curso.replace('(PLANALTINA)', '').strip()
         planaltina = True
 
-    # Converte o pdf com o programa pdftotext.exe; https://www.shedloadofcode.com/blog/searching-for-text-in-pdfs-at-increasing-scale.
-    args = ["pdftotext", '-enc', 'UTF-8', NOME_PDF, '-']
-
-    res = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    output = res.stdout.decode('utf-8').replace(' ', '')
+    # Itera cada página do pdf, converte para texto, remove os 6 primeiros caracteres (número da página), remove espaços brancos e \n.
+    output = ""
+    with fitz.open(NOME_PDF) as pdf:
+        for page in pdf:
+            output += page.get_text("text")[5:].replace(" ", "").replace("\n", "")
 
     # Procura pelo nome do campus antes do nome do curso, para começar a procurar o nome do curso apenas após o nome do campus.
     if ceilandia:
@@ -627,11 +627,10 @@ def extrair_dados_do_pdf(curso: str) -> None:
     # Procura pelo início da primeira inscrição após o nome do curso.
     pos_inicio = output.find(INICIO_INSCRICAO, pos_curso)
 
-    # Procura pelos dados do último candidato nesse curso, demarcado pela posição dele na última cota + ponto final, por ex: ,-. ou ,123.
-    pos_final = search(r',[\d|-]{1,4}\..\D', output[pos_inicio:]).span()[1]
+    # Procura pelos dados do último candidato nesse curso, demarcado pela posição dele na última cota + ponto final, por ex: 3,-. ou -,123.
+    pos_final = search(r'[\d|-],[\d|-]{1,4}\.', output[pos_inicio:]).span()[1]
 
-    # Remove os números das páginas e associa dados ao nosso texto, desda posição de início até a posição final.
-    dados = sub('\d{1,4}\r', '', output[pos_inicio:pos_inicio + pos_final - 3])  # O -3 é necessário para que o dado do último candidato fique igual aos outros.
+    dados = output[pos_inicio:pos_inicio + pos_final - 1]  # O -1 é necessário para que o dado do último candidato fique igual aos outros.
 
 
 def corrigir_dados() -> None:
@@ -641,22 +640,11 @@ def corrigir_dados() -> None:
     
     global dados
 
-    dados = dados.replace('\n', '').replace('\r', '').replace('\f', '')
-
     # Lista em que cada elemento era uma linha; Cada elemento tem os dados de um candidato: Inscrição,Nome,Nota,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10.
     dados = dados.split('/')
 
     # Confere os dados de cada candidato e os corrige se necessário.
     for c in arange(len(dados), dtype = int):
-        # Por algum motivo ao converter o pdf em texto pelo pdftotext.exe, quando os dados de algum candidato chegam
-        # No fim da linha com "-", esse "-" não é lido e então ficam duas vírgulas juntas ou os dados terminam com
-        # Uma vírgula, então é necessário repor esse "-" que não foi lido.
-        if ',,' in dados[c]:  # Em alguns testes alguns candidatos ficaram com duas vírgulas juntas, sem nada entre elas.
-            dados[c] = dados[c].replace(',,', ',-,')  # Coloca um - entre elas.
-
-        if dados[c].endswith(','):  # Em alguns testes alguns candidatos ficaram com uma vírgula no final dos dados.
-            dados[c] += '-'  # Coloca um - após essa vírgula.
-
         # Nas edições dos anos anteriores as notas eram no formato 999,99 em vez de 999.99, assim tendo mais de 12 vírgulas.
         if dados[c].count(',') > 12:
             pos_1 = dados[c].find(',')
@@ -676,11 +664,11 @@ def extrair_inscricoes_do_pdf() -> None:
     
     global inscricoes_aprovados
 
-    # Converte o pdf com o programa pdftotext.exe; https://www.shedloadofcode.com/blog/searching-for-text-in-pdfs-at-increasing-scale.
-    args = ["pdftotext", '-enc', 'UTF-8', NOME_PDF2, '-']
-
-    res = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    output = res.stdout.decode('utf-8').replace(' ', '')
+    # Itera cada página do pdf, converte para texto, remove os 6 primeiros caracteres (número da página), remove espaços brancos e \n.
+    output = ""
+    with fitz.open(NOME_PDF2) as pdf:
+        for page in pdf:
+            output += page.get_text("text")[5:].replace(" ", "").replace("\n", "")
 
     # Separa cada inscrição em uma lista.
     inscricoes_aprovados = findall(r'\d{8}', output)
