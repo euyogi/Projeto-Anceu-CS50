@@ -1,5 +1,4 @@
 customtkinter
-numpy
 Pmw
 pygame
 requests
