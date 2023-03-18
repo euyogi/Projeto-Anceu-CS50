@@ -89,7 +89,9 @@ Baixe o .zip com os arquivos, (Download ZIP)
 
 Extraia o .zip e abra a pasta com os arquivos
 
-Caso você tenha o Python instalado abra o arquivo RUN_PYTHON, caso não tenha abra o RUN_NO_PYTHON, basicamente o primeiro abre um terminal que instala as bibliotecas necessárias e roda o programa localizado na pasta APP_PYTHON, já o segundo abre um .exe que está localizado na pasta APP_NO_PYTHON a qual também tem todos os arquivos necessários.
+Caso você tenha o Python instalado abra a pasta APP_PYTHON e abra o run_app.cmd, caso não tenha abra a APP_NO_PYTHON e abra o app.exe, basicamente o primeiro abre um terminal que instala as bibliotecas necessárias e roda o programa localizado na pasta APP_PYTHON, já o segundo abre um .exe e a pasta tem todos os arquivos necessários.
+
+<strong>Se for mover o app para outro local faça um atalho do .exe ou do .cmd e então mova o atalho, caso contrário o programa não vai abrir</strong>
 
 <p align="center">
 Projeto feito por: Yogi Nam de Souza Barbosa
