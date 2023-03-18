@@ -24,9 +24,6 @@ import customtkinter as ctk
 # Para converter PDFs em texto.
 import fitz
 
-# Similar ao range(), mas mais rápido.
-from numpy import arange
-
 # Para ordenar uma lista de sublistas com base em um valor em uma dessas sublistas.
 from operator import itemgetter
 
@@ -52,7 +49,7 @@ from statistics import mean
 from threading import Thread
 
 # Para, ao fechar a UI dar tempo de reproduzir o som de clique.
-from time import sleep
+from time import sleep, time
 
 
 ''' Variáveis para armazenar dados necessários para as funções. '''
@@ -638,7 +635,7 @@ def corrigir_dados() -> None:
     dados = dados.split('/')
 
     # Confere os dados de cada candidato e os corrige se necessário.
-    for c in arange(len(dados), dtype = int):
+    for c in range(len(dados)):
         # Nas edições dos anos anteriores as notas eram no formato 999,99 em vez de 999.99, assim tendo mais de 12 vírgulas.
         if dados[c].count(',') > 12:
             pos_1 = dados[c].find(',')
@@ -684,7 +681,7 @@ def checar_aprovados() -> None:
             menor_cota = {'pos': int(candidato[3]), 'nome': 's1'}  # Já declara a maior posição, que no caso vai ser sempre a da cota "s1".
 
             # Encontra a cota a qual o candidato foi aprovado (a cota com a menor posição).
-            for s in arange(len(SIMBOLO_COTAS), dtype = int):
+            for s in range(len(SIMBOLO_COTAS)):
                 # Se o candidato se inscreveu por essa cota e sua posição é menor que a menor posição nas cotas antes registradas.
                 if candidato[s + 3] != '-' and int(candidato[s + 3]) < menor_cota['pos']:
                     menor_cota['pos'] = int(candidato[s + 3])
@@ -697,7 +694,7 @@ def checar_aprovados() -> None:
     candidatos_aprovados = sorted(candidatos_aprovados, key = itemgetter(2))
 
     # Optei por não adicionar nem as inscrições nem os nomes no arquivo das notas dos candidatos aprovados.
-    for c in arange(len(candidatos_aprovados), dtype = int):
+    for c in range(len(candidatos_aprovados)):
         del candidatos_aprovados[c][0]
         del candidatos_aprovados[c][0]
         candidatos_aprovados[c] = ','.join(candidatos_aprovados[c]) + '\n'
@@ -730,7 +727,7 @@ def ver_resumo_das_notas_na_maior_caixa() -> None:
     # Caso pelo menos um candidato tenha sido aprovado nessa chamada.
     if vagas_totais > 0:
         # Mostra a nota máxima, mínima e a média de cada cota, se houverem aprovados por essa cota.
-        for s in arange(len(SIMBOLO_COTAS), dtype = int):
+        for s in range(len(SIMBOLO_COTAS)):
             if s == 2:
                 adicionar_na_maior_caixa('\nEscola Pública: \n')
 
@@ -894,13 +891,13 @@ def mudar_opcoes_menu_cursos(opcao: str) -> None:
     opcoes = list()
 
     if opcao != 'TODOS':
-        for c in arange(len(NOMES_DOS_CURSOS), dtype = int):
+        for curso in NOMES_DOS_CURSOS:
             if filtro != 'BACHARELADO':
-                if filtro in NOMES_DOS_CURSOS[c]:
-                    opcoes.append(NOMES_DOS_CURSOS[c])
+                if filtro in curso:
+                    opcoes.append(curso)
             else:
-                if 'LICENCIATURA' not in NOMES_DOS_CURSOS[c]:
-                    opcoes.append(NOMES_DOS_CURSOS[c])
+                if 'LICENCIATURA' not in curso:
+                    opcoes.append(curso)
 
         menu_cursos.configure(values = opcoes)
     else:
