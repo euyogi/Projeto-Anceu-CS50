@@ -83,15 +83,17 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
 
 <h2>Para testar:</h2>
 
-Baixe o .zip com os arquivos, (Download ZIP)
+Baixe o .zip com os arquivos.
 
-![Baixar Arquivos](https://user-images.githubusercontent.com/46427886/225175061-379f3709-d038-497f-9f15-d463e1f2b1f0.jpeg)
+Caso você tenha o Python instalado: <a href="https://github.com/euyogi/Projeto-CS50/releases/download/python_version/APP_PYTHON.zip">Baixar .zip [Python]</a>
+Caso você não tenha o Python instalado: <a href="https://github.com/euyogi/Projeto-CS50/releases/download/exe_version/APP_NO_PYTHON.zip">Baixar o .zip [No Python]</a>
 
 Extraia o .zip e abra a pasta com os arquivos
 
-Caso você tenha o Python instalado abra a pasta APP_PYTHON e abra o run_app.cmd, caso não tenha abra a APP_NO_PYTHON e abra o app.exe, basicamente o primeiro abre um terminal que instala as bibliotecas necessárias e roda o programa localizado na pasta APP_PYTHON, já o segundo abre um .exe e a pasta tem todos os arquivos necessários.
+Caso sua versão seja a [Python] abra o arquivo <strong>run_app.cmd</strong> vai abrir um terminal, instalar arquivos necessários e abrir o app.
+Caso sua versão seja a [No Python] abra o arquivo <strong>app.exe</strong>.
 
-<strong>Se for mover o app para outro local faça um atalho do .exe ou do .cmd e então mova o atalho, caso contrário o programa não vai abrir</strong>
+<strong>Se for mover o app para outro local faça um atalho do .cmd ou do .exe e então mova o atalho, caso contrário o programa não vai abrir</strong>
 
 <p align="center">
 Projeto feito por: Yogi Nam de Souza Barbosa
