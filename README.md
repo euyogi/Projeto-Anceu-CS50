@@ -91,7 +91,7 @@ Caso você não tenha o Python instalado: <a href="https://github.com/euyogi/Pro
 Extraia o .zip e abra a pasta com os arquivos
 
 Caso sua versão seja a [Python] abra o arquivo <strong>run_app.cmd</strong> vai abrir um terminal, instalar arquivos necessários e abrir o app.
-Caso sua versão seja a [No Python] abra o arquivo <strong>app.exe</strong>.
+Caso sua versão seja a [No Python] abra o arquivo <strong>app.exe</strong>. (Talvez seja detectado/bloqueado como vírus pois ele baixa dois arquivos pdf temporariamente além de criar um arquivo de texto com as notas dos aprovados no final, verei como resolver)
 
 <strong>Se for mover o app para outro local faça um atalho do .cmd ou do .exe e então mova o atalho, caso contrário o programa não vai abrir</strong>
 
