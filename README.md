@@ -85,7 +85,7 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
 
 Baixe o .zip com os arquivos.
 
-Caso você tenha o Python instalado: <a href="https://github.com/euyogi/Projeto-CS50/releases/download/python_version/APP_PYTHON.zip">Baixar .zip [Python]</a>
+Caso você tenha o Python instalado: <a href="https://github.com/euyogi/Projeto-CS50/releases/download/python_version/APP_PYTHON.zip">Baixar .zip [Python]</a><br>
 Caso você não tenha o Python instalado: <a href="https://github.com/euyogi/Projeto-CS50/releases/download/exe_version/APP_NO_PYTHON.zip">Baixar o .zip [No Python]</a>
 
 Extraia o .zip e abra a pasta com os arquivos
