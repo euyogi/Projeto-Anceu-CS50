@@ -1,5 +1,4 @@
 # Grade Analyzer
-#### Video Demo:  <URL HERE>
 #### Description: A Python app made to solve a real problem
 
 My project was made in Python it is a GUI app, that has 2 main functionalities:
