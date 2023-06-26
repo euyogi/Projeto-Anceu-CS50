@@ -85,14 +85,11 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
 
 Baixe o .zip com os arquivos.
 
-Caso você tenha o Python instalado: <a href="https://github.com/euyogi/Projeto-CS50/releases/download/python_version/APP_PYTHON.zip">Baixar .zip [Python]</a><br>
-Caso você não tenha o Python instalado: <a href="https://github.com/euyogi/Projeto-CS50/releases/download/exe_version/APP_NO_PYTHON.zip">Baixar o .zip [No Python]</a>
+NECESSÁRIO PYTHON INSTALADO: <a href="https://github.com/euyogi/Projeto-CS50/releases/download/python_version/APP_PYTHON.zip">Baixar .zip</a><br>
 
 Extraia o .zip e abra a pasta com os arquivos
 
-Caso sua versão seja a [Python] abra o arquivo <strong>run_app.cmd</strong> vai abrir um terminal, instalar arquivos necessários e abrir o app.
-
-Caso sua versão seja a [No Python] abra o arquivo <strong>app.exe</strong>. (Talvez seja detectado/bloqueado como vírus pois ele baixa dois arquivos pdf temporariamente além de criar um arquivo de texto com as notas dos aprovados no final, verei como resolver)
+Caso sua versão seja a [Python] abra o arquivo <strong>run_app.cmd</strong> vai abrir um terminal, instalar as bibliotecas necessárias e abrir o app.
 
 <strong>Se for mover o app para outro local faça um atalho do .cmd ou do .exe e então mova o atalho, caso contrário o programa não vai abrir</strong>
 
