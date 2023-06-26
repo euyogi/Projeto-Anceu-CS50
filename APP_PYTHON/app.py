@@ -15,8 +15,7 @@ sistema de pesos para as notas de cada área.
 
 # O código tá na ordem: (Bibliotecas / Variáveis / UI / Funções)
 
-
-''' Bibliotecas e módulos necessários para o programa. '''
+# Bibliotecas e módulos necessários para o programa.
 
 # Para a UI
 import customtkinter as ctk
@@ -52,11 +51,11 @@ from threading import Thread
 from time import sleep
 
 
-''' Variáveis para armazenar dados necessários para as funções. '''
+# Variáveis para armazenar dados necessários para as funções.
 
 # Links dos PDFs que contém dados dos candidatos; NOTAS possui as notas de todos os candidatos; APROVADOS as inscrições dos aprovados.
-URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_6_ACESSOEnem_22_RES_FINAL_BIOP_SCEP_E_NO_PROCESSO.PDF'
-URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_7_ACESSOEnem_22_RES_CONV_1_CHAMADA.PDF'
+URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UNB_23_ACESSOENEM/arquivos/ED_8_2023_ACESSO_ENEM_RES_FINAL_BIOP_HETERO.PDF'
+URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UNB_23_ACESSOENEM/arquivos/ED_9_2023_ACESSO_ENEM_CONV_RA_1_CHAMADA.PDF'
 
 # Nomes dos arquivos; Pode ser qualquer nome pois só existem enquanto o programa está rodando.
 NOME_PDF = 'dados.pdf'
@@ -167,7 +166,7 @@ def UI() -> None:
     # Declara a janela principal, insere o título e sua resolução que é travada.
     window = ctk.CTk(fg_color = ROXO_ESCURO)
     window.title('Notas - Acesso Enem UnB')
-    window.geometry('1280x725')
+    window.geometry('1450x725')
     window.resizable(False, False)
     #Ctk.deactivate_automatic_dpi_awareness()
 
@@ -247,23 +246,23 @@ def UI() -> None:
     barra_progresso.set(1)
 
     rotulo_resultado = ctk.CTkTextbox(master = frame_esquerdo, fg_color = CINZA_VERMELHADO, text_color = CINZA,
-                                      font = FONTE, corner_radius = RAIO, height = 400, width = 850, state = 'disabled')
+                                      font = FONTE, corner_radius = RAIO, height = 400, width = 1050, state = 'disabled')
     rotulo_resultado.grid(row = 3, column = 0, columnspan = 3, pady = (15, 25), padx = 32)
 
     opcoes_anos = ctk.CTkSegmentedButton(master = frame_esquerdo,
                                          font = FONTE,
                                          height = ALTURA,
-                                         width = 350,
+                                         width = 450,
                                          fg_color = CINZA_VERMELHADO,
                                          selected_color = ROXO,
                                          selected_hover_color =ROXO_ESCURO,
                                          corner_radius = RAIO,
-                                         values = [' 2022 ', ' 2021 ', '2020_2', '2020_1'],
+                                         values = [' 2023 ', ' 2022 ', ' 2021 ', '2020_2', '2020_1'],
                                          dynamic_resizing = False,
                                          text_color = CINZA,
                                          command = mudar_ano_e_chamada)
     opcoes_anos.grid(row = 4, column = 0, pady = (0, 30), padx = (50, 0))
-    opcoes_anos.set(' 2022 ')
+    opcoes_anos.set(' 2023 ')
 
     info_opcoes_anos = ctk.CTkButton(master = frame_esquerdo, width = 27, height = 15,
                                      font = ('', 15, 'bold'),
@@ -293,17 +292,17 @@ def UI() -> None:
                                       dropdown_hover_color = ROXO_MAIS_ESCURO,
                                       corner_radius = RAIO,
                                       height = ALTURA,
-                                      width = 100,
+                                      width = 135,
                                       text_color = CINZA,
-                                      values = ['TODAS', '1ª', '2ª', '3ª', '4ª', '5ª'],
+                                      values = ['1ª'],
                                       command = mudar_ano_e_chamada)
     menu_chamadas.grid(row = 4, column = 1, pady = (0, 30), padx = (15, 190), sticky = 'w')
-    menu_chamadas.set('TODAS')
+    menu_chamadas.set('1ª')
 
     botao_detalhes = ctk.CTkButton(master = frame_esquerdo,
                                    font = FONTE,
                                    height = ALTURA,
-                                   width = 150,
+                                   width = 170,
                                    fg_color = CINZA_VERMELHADO,
                                    hover_color = ROXO_ESCURO,
                                    corner_radius = RAIO,
@@ -311,7 +310,7 @@ def UI() -> None:
                                    text_color = CINZA,
                                    command = lambda: [som_clique(), ver_dados_candidatos_aprovados_na_maior_caixa()],
                                    state = 'disabled')
-    botao_detalhes.grid(row = 4, column = 1, columnspan = 2, pady = (0, 30), padx = (150, 0), sticky = 'w')
+    botao_detalhes.grid(row = 4, column = 1, columnspan = 2, pady = (0, 30), padx = (190, 0), sticky = 'w')
 
     botao_sair = ctk.CTkButton(master = frame_esquerdo,
                                font = FONTE,
@@ -445,18 +444,16 @@ def ver_informacoes_iniciais() -> None:
     Mostra as informações iniciais no rotulo_resultado.
     """
     
-    adicionar_na_maior_caixa('Olá, este programa mostra as notas dos candidatos aprovados na UnB pelo\n'
-                             'acesso Enem.\n\n'
+    adicionar_na_maior_caixa('Olá, este programa mostra as notas dos candidatos aprovados na UnB pelo acesso Enem.\n\n'
 
-                             'Para começar, você pode escolher na lista de cursos disponíveis acima\n'
-                             'uma opção e clicar em pesquisar para checar as notas máximas, mínimas e\n'
-                             'também a média das notas, de acordo com cada cota que a universidade\n'
+                             'Para começar, você pode escolher na lista de cursos disponíveis acima uma opção e clicar em pesquisar para\n'
+                             'checar as notas máximas, mínimas e também a média das notas, de acordo com cada cota que a universidade\n'
                              'disponibiliza.\n\n'
 
                              'É possível filtrar algumas opções de curso no botão escrito "TODOS"\n\n'
 
-                             'Você pode escolher o ano que deseja checar e também a chamada além de\n'
-                             'ser possível ver todas as notas no botão "Ver Detalhes"\n\n'
+                             'Você pode escolher o ano que deseja checar e também a chamada além de ser possível ver todas as notas\n'
+                             'no botão "Ver Detalhes"\n\n'
 
                              'Informações sobre o programa no "i" no canto superior esquerdo.')
 
@@ -919,19 +916,30 @@ def mudar_ano_e_chamada(event: str = 'Esse parâmetro é apenas para a função 
     ano = opcoes_anos.get().strip()
     chamada = menu_chamadas.get().removesuffix('ª') 
 
-    if ano == '2022':
-        chamadas = ['TODAS', '1ª', '2ª', '3ª', '4ª', '5ª']
+    if ano == '2023':
+        chamadas = ['1ª']
         menu_chamadas.configure(values = chamadas)
 
         # Se a chamada selecionada não existir no ano selecionado, seleciona a primeira chamada.
-        if chamada + 'ª' not in chamadas and chamada != 'TODAS':
+        if chamada + 'ª' not in chamadas:
+            menu_chamadas.set('1ª')
+            chamada = '1'
+
+        URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UNB_23_ACESSOENEM/arquivos/ED_8_2023_ACESSO_ENEM_RES_FINAL_BIOP_HETERO.PDF'
+        if chamada == '1':
+            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UNB_23_ACESSOENEM/arquivos/ED_9_2023_ACESSO_ENEM_CONV_RA_1_CHAMADA.PDF'
+
+    elif ano == '2022':
+        chamadas = ['1ª', '2ª', '3ª', '4ª', '5ª']
+        menu_chamadas.configure(values = chamadas)
+
+        # Se a chamada selecionada não existir no ano selecionado, seleciona a primeira chamada.
+        if chamada + 'ª' not in chamadas:
             menu_chamadas.set('1ª')
             chamada = '1'
 
         URL_DAS_NOTAS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_6_ACESSOEnem_22_RES_FINAL_BIOP_SCEP_E_NO_PROCESSO.PDF'
-        if chamada == 'TODAS':
-            URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_7_ACESSOEnem_22_RES_CONV_1_CHAMADA.PDF'
-        elif chamada == '1':
+        if chamada == '1':
             URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ACESSOEnem_22_ED_9_RES_FINAL_RA_1_CHAMADA.PDF'
         elif chamada == '2':
             URL_DOS_APROVADOS = 'https://cdn.cebraspe.org.br/vestibulares/UnB_22_acessoEnem/arquivos/ED_13_ACESSOEnem_22_RES_FINAL_RA_2_CHAMADA.PDF'
