@@ -1,8 +1,8 @@
 # Projeto-CS50
 
-Esse é o meu projeto final para o curso CS50 - é um aplicativo feito em python, que checa as notas dos candidatos que
+Esse é o meu projeto final para o curso CS50 - é um aplicativo feito <s>em python</s> agora em C++, que checa as notas dos candidatos que
 participaram do Enem e se inscreveram na Universidade de Brasília - UnB, mostrando por fim um resumo para cada curso
-da instituição, com as maiores notas, as menores notas (nota de corte), e a média em cada cota disponível.
+da instituição, com as maiores notas, a média e as menores notas (nota de corte) em cada cota disponível.
 
 É possível calcular também a sua própria nota, já que a universidade possui um sistema de pesos para as notas de cada área.
 
@@ -18,7 +18,7 @@ da instituição, com as maiores notas, as menores notas (nota de corte), e a m�
 
 ![Imagem da tela do link dos grupos](https://user-images.githubusercontent.com/46427886/218318072-a0a21a2d-f3d0-4acd-a992-9cde2a4a51c2.jpeg)
 
-<h2>Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi engenharias):</h2>
+<h2>Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi medicina):</h2>
 
 ![Imagem da tela após pesquisar algum curso](https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png)
 
@@ -29,31 +29,31 @@ da instituição, com as maiores notas, as menores notas (nota de corte), e a m�
 
 <h2>Funcionalidades:</h2>
 
-* Uma caixa de opções para pesquisar/escolher o curso desejado
+* Uma barra de pesquisa com opções para pesquisar/escolher o curso desejado
 
-* Uma outra caixa de opções ao lado, com filtros para o tipo de curso (Bacharelado, licenciatura, ...)
+* Opções para escolher o ano em que quer pesquisar as notas (2023, 2022 ou 2021)
 
-* Opções para escolher o ano em que quer pesquisar as notas (2022, 2021...)
+* Opções para escolher a chamada, para ver as notas de quem foi aprovado nas outras chamadas (1ª, 2ª, 3ª...)
 
-* Opções para escolher a chamada, para ver as notas de quem foi aprovado nessa chamada (1ª, 2ª...)
-
-* Opção para ver uma lista com todas as notas e as respectivas posições dos candidatos aprovados separados por vírgulas (999.99,1,-,3...)
+* Opção para ver uma lista com todas as inscrições, notas e as respectivas posições dos candidatos aprovados separados por vírgulas assim como nos pdfs (10000000, 999.99,5,-,1...)
 
 * Painel para aplicar os pesos da UnB à sua nota
 
-* Entre outros...
+* Possibilidade de copiar os resultados facilmente
 
 <h2>Escolhas:</h2>
 
 Bom, escolhi criar esse programa pois eu tive bastante dificuldade para checar as notas para o curso que eu quero
 e quase não havia informações na internet sobre as notas do ano de 2022, assim, por ser um processo que se manual
-é bem trabalhoso tendo que comparar e pesquisar termos em dois PDFs e impossibilitado de ver as informações em uma
-ordem, decidi criar esse programa, ele passou por diversos estágios desde um processo semi-automático em que era necessário
+é bem trabalhoso tendo que comparar e pesquisar termos em dois PDFs e impossibilitado de ver as informações organizadinhas,
+decidi criar esse programa, ele passou por diversos estágios desde um processo semi-automático em que era necessário
 copiar os dados manualmente, para automático em que o programa baixava o PDF e extraia os dados com o aperto de um botão,
-além de melhorias no desempenho que melhoraram o tempo de resposta em mais de 33x em alguns casos.
+além de melhorias no desempenho, até por fim uma nova versão em C++ mais polida e muito mais rápida, leve e agora com
+uma versão .exe (executável para windows) facilmente baixável.
 
-Apesar do programa ainda não ser acessível ao público geral, como em um site ou um aplicativo mobile ainda pude ajudar
-dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o programa:
+Apesar do programa não ser nada muito grande, nem ser super portável como um site ou
+um aplicativo mobile ainda pude ajudar dezenas de pessoas com as mesmas dificuldades que
+eu tive no começo com o programa:
 
 <div>
   <img src= "https://user-images.githubusercontent.com/46427886/218320799-b91f68ee-b1e1-4c8b-9fb5-5468b04a81d9.png" width="32%" alt-text="Imagem de pessoas foram ajudadas" />
@@ -83,15 +83,7 @@ dezenas de pessoas com as mesmas dificuldades que eu tive no começo, com o prog
 
 <h2>Para testar:</h2>
 
-Baixe o .zip com os arquivos.
-
-NECESSÁRIO PYTHON INSTALADO: <a href="https://github.com/euyogi/Projeto-CS50/archive/refs/heads/main.zip">Baixar .zip</a><br>
-
-Extraia o .zip e abra a pasta com os arquivos
-
-Caso sua versão seja a [Python] abra o arquivo <strong>run_app.cmd</strong> vai abrir um terminal, instalar as bibliotecas necessárias e abrir o app.
-
-<strong>Se for mover o app para outro local faça um atalho do .py e então mova o atalho, caso contrário o programa não vai abrir</strong>
+Baixe o programa aqui, se quiser ver o código e compilar você mesmo, uma solução do Visual Studio 2022 está disponível aqui.
 
 <p align="center">
 Projeto feito por: Yogi Nam de Souza Barbosa
