@@ -17,9 +17,6 @@
 #include "texts.h"
 #include "utils.h"
 
-// Compatibilidade com unicode.
-#define U8(_S)    (const char*)u8##_S
-
 // Urls dos pdfs que vão ser baixados (temporariamente).
 
 const wchar_t* grades_url[] = {
@@ -259,7 +256,7 @@ bool Anceu::extractGrades(const char* course) { DTIMER(__func__)
 
 	results.reserve(1000);
 	results = std::format("Curso: {}; Grupo: {};\nAno: {}; Chamada: {}", course + start_idx, group, searched_year, searched_call);
-	results += U8("ª; Convocados/Vagas Totais: "); results += std::format("{}\n", approved_candidates.size());
+	results += "ª; Convocados/Vagas Totais: "; results += std::format("{}\n", approved_candidates.size());
 
 	if (results_arr[0].getSlots() == 0 and results_arr[1].getSlots() == 0)
 		results += "\nNenhum convocado da ampla nesta chamada";
@@ -269,22 +266,22 @@ bool Anceu::extractGrades(const char* course) { DTIMER(__func__)
 	for (int i = 0; i < results_arr.size(); ++i) {
 		if (i == 2) {
 			if (approved_candidates.size() == results_arr[0].getSlots() + results_arr[1].getSlots())
-				results += U8("\n\nNenhum convocado de escola pública nesta chamada");
+				results += "\n\nNenhum convocado de escola pública nesta chamada";
 			else
-				results += U8("\n\nCotas de Escola Pública:\n");
+				results += "\n\nCotas de Escola Pública:\n";
 		}
 
 		if (results_arr[i].getSlots() > 0) {
 			results += std::format("\nQnt: {:02d}; ", results_arr[i].getSlots()); results += results_arr[i].getName();
-			results += U8(" Máx: "); results += std::format("{:.2f}", results_arr[i].getMax());
-			results += U8("; Méd: "); results += std::format("{:.2f}", results_arr[i].getAvg());
+			results += " Máx: "; results += std::format("{:.2f}", results_arr[i].getMax());
+			results += "; Méd: "; results += std::format("{:.2f}", results_arr[i].getAvg());
 			results += "; Min: "; results += std::format("{:.2f}", results_arr[i].getMin());
 		}
 	}
-	results += U8("\n\n[Clique com o botão direito do mouse/touchpad ou Ctrl + C para copiar]");
+	results += "\n\n[Clique com o botão direito do mouse/touchpad ou Ctrl + C para copiar]";
 
 	details.reserve(approved_candidates.size() * 90);
-	details = U8("Inscrição Nota      Posição\n");
+	details = "Inscrição Nota      Posição\n";
 
 	// Ordena os dados em ordem decrescente de nota.
 	std::sort(approved_candidates.begin(), approved_candidates.end(), [](Candidate& a, Candidate& b) {
@@ -301,7 +298,7 @@ bool Anceu::extractGrades(const char* course) { DTIMER(__func__)
 		}
 		details += ".\n";
 	}
-	details += U8("\n[Clique com o botão direito do mouse/touchpad ou Ctrl + C para copiar]");
+	details += "\n[Clique com o botão direito do mouse/touchpad ou Ctrl + C para copiar]";
 
 	return true;
 }
