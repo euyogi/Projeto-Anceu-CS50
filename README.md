@@ -49,6 +49,7 @@ da instituição, com as maiores notas, a média e as menores notas (nota de cor
 * Mudança da fonte (Cascadia Code para Ubuntu Mono Regular)
 * Mudança do ícone (antes era o padrão do customtkinter)
 * Adicionado opções de 2023, removido opções de 2020
+* Otimizações se for pesquisar cursos do mesmo ano e chamada em seguida
 
 <h2>Escolhas:</h2>
 
