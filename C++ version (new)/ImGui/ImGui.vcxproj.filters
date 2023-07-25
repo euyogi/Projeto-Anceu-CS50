@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Source\Headers\imconfig.h" />
+    <ClInclude Include="Source\Headers\imgui.h" />
+    <ClInclude Include="Source\Headers\imgui_impl_win32.h" />
+    <ClInclude Include="Source\Headers\imgui_internal.h" />
+    <ClInclude Include="Source\Headers\imstb_rectpack.h" />
+    <ClInclude Include="Source\Headers\imstb_textedit.h" />
+    <ClInclude Include="Source\Headers\imstb_truetype.h" />
+    <ClInclude Include="Source\Headers\imgui_impl_dx11.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Implementations\imgui.cpp" />
+    <ClCompile Include="Source\Implementations\imgui_demo.cpp" />
+    <ClCompile Include="Source\Implementations\imgui_draw.cpp" />
+    <ClCompile Include="Source\Implementations\imgui_impl_win32.cpp" />
+    <ClCompile Include="Source\Implementations\imgui_tables.cpp" />
+    <ClCompile Include="Source\Implementations\imgui_widgets.cpp" />
+    <ClCompile Include="Source\Implementations\imgui_impl_dx11.cpp" />
+  </ItemGroup>
+</Project>
