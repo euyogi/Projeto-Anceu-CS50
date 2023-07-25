@@ -46,5 +46,6 @@ namespace Texts {
 
 	extern const char* BUTTON_CONVERT;
 
+	extern const char* QUOTAS_NAMES[10];
 	extern const char* COURSES[101];
 }
