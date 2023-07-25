@@ -93,7 +93,9 @@ eu tive no começo com o programa:
 
 <h2>Para testar:</h2>
 
-Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a>, se quiser ver o código e compilar você mesmo, uma solução do Visual Studio 2022 está disponível <a href="C++ version (new)">aqui</a>.
+Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a>.
+
+Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquivos, nele uma solução do Visual Studio 2022 está disponível em C++ Version (new) e a antiga versão em Python Version (old), baixe <a href="https://github.com/euyogi/Projeto-CS50/archive/refs/heads/main.zip">aqui</a>.
 
 <h2>Como era o programa em Python? (muito parecido, pelo menos em visual)</h2>
 
