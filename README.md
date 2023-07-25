@@ -92,7 +92,7 @@ eu tive no começo com o programa:
 
 <h2>Para testar:</h2>
 
-Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a>, se quiser ver o código e compilar você mesmo, uma solução do Visual Studio 2022 está disponível aqui.
+Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a>, se quiser ver o código e compilar você mesmo, uma solução do Visual Studio 2022 está disponível <a href="C++ version (new)">aqui</a>.
 
 <h2>Como era o programa em Python? (muito parecido, pelo menos em visual)</h2>
 
