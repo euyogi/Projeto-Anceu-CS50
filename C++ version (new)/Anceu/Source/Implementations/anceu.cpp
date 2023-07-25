@@ -1,4 +1,4 @@
-﻿#include "anceu.h"
+#include "anceu.h"
 
 #include <urlmon.h>
 #pragma comment(lib, "urlmon.lib")
@@ -14,10 +14,11 @@
 
 //#define DFUNCS
 #include "neyo.h" // Lembre de incluir respectivo diretiório de biblioteca
+#include "texts.h"
 #include "utils.h"
 
-// Ativar compatibilidade com unicode.
-#define U8(_S) (const char*)u8##_S
+// Compatibilidade com unicode.
+#define U8(_S)    (const char*)u8##_S
 
 // Urls dos pdfs que vão ser baixados (temporariamente).
 
@@ -234,15 +235,9 @@ bool Anceu::extractGrades(const char* course) { DTIMER(__func__)
 		approved_candidates.back().setGrade(std::stof(grade_buffer));
 	}
 
-	const char* QUOTAS_NAMES[] = {
-		"Sistema Universal:", "Cotas para Negros:",
-		U8("Rnd ≤ 1,5 PPI:\t"), U8("Rnd ≤ 1,5 PPI PCD:"), U8("Rnd ≤ 1,5:\t\t"), U8("Rnd ≤ 1,5 PCD:\t"),
-		"Rnd > 1,5 PPI:\t", "Rnd > 1,5 PPI PCD:", "Rnd > 1,5:\t\t", "Rnd > 1,5 PCD:\t"
-	};
-
 	std::array<Quota, QUOTAS_QNT> results_arr;
 	for (int i = 0; i < QUOTAS_QNT; ++i)
-		results_arr[i].setName(QUOTAS_NAMES[i]);
+		results_arr[i].setName(Texts::QUOTAS_NAMES[i]);
 
 	for (Candidate& c : approved_candidates) {
 		// Checa em qual sistema o candidato foi aprovado.
@@ -283,7 +278,7 @@ bool Anceu::extractGrades(const char* course) { DTIMER(__func__)
 			results += std::format("\nQnt: {:02d}; ", results_arr[i].getSlots()); results += results_arr[i].getName();
 			results += U8(" Máx: "); results += std::format("{:.2f}", results_arr[i].getMax());
 			results += U8("; Méd: "); results += std::format("{:.2f}", results_arr[i].getAvg());
-			results += U8("; Min: "); results += std::format("{:.2f}", results_arr[i].getMin());
+			results += "; Min: "; results += std::format("{:.2f}", results_arr[i].getMin());
 		}
 	}
 	results += U8("\n\n[Clique com o botão direito do mouse/touchpad ou Ctrl + C para copiar]");
