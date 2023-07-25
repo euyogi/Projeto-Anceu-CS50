@@ -1,7 +1,6 @@
-# Projeto-CS50
+# Projeto-Anceu-CS50
 
-Esse é o meu projeto final para o curso CS50 - é um aplicativo feito <s>em python</s> agora em C++, que checa as notas dos candidatos que
-participaram do Enem e se inscreveram na Universidade de Brasília - UnB, mostrando por fim um resumo para cada curso
+Esse é o meu projeto final para o curso CS50 - é um aplicativo que <b>a</b>nalisa as <b>n</b>otas de <b>c</b>orte do <b>e</b>nem para a <b>U</b>nB, feito <s>em python</s> agora em C++, que checa as notas dos candidatos que participaram do Enem e se inscreveram na Universidade de Brasília - UnB, mostrando por fim um resumo para cada curso
 da instituição, com as maiores notas, a média e as menores notas (nota de corte) em cada cota disponível.
 
 É possível calcular também a sua própria nota, já que a universidade possui um sistema de pesos para as notas de cada área.
