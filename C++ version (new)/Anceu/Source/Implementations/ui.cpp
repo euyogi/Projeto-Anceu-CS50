@@ -15,9 +15,6 @@
 #include "imgui.h"
 #include "khlorz_combo_filter.h"
 
-// Ativar compatibilidade com unicode.
-#define U8(_S) (const char*)u8##_S
-
 float PADDING = 0.0f; bool dpi_changed = true;
 const char* smaller_text_box_text = Texts::SMALLER_TEXT_BOX_INITIAL;
 ImVec4 Col_smallerTextBoxText = Colors::LIGHTEST_GRAY.imVec4();
@@ -245,7 +242,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
 
             ImGui::PopStyleVar();
 
-            static const char* calls[] = { U8("1ª"), U8("2ª"), U8("3ª"), U8("4ª"), U8("5ª") };
+            static const char* calls[] = { "1ª", "2ª", "3ª", "4ª", "5ª" };
             const char* combo_calls_preview = calls[call - 1];
 
             ImGui::SameLine();
@@ -514,7 +511,7 @@ void UI::setWndStyle(HWND hWnd) {
     ImVector<ImWchar> ranges;
     ImFontGlyphRangesBuilder builder;
     builder.AddRanges(io.Fonts->GetGlyphRangesDefault());
-    builder.AddText(U8("–≤"));
+    builder.AddText("–≤");
     builder.BuildRanges(&ranges);
     io.Fonts->AddFontFromMemoryCompressedTTF(Resources::Fonts::ubuntu_mono_r_data, Resources::Fonts::ubuntu_mono_r_size, 20.0f, nullptr, ranges.Data);
     io.Fonts->Build();
