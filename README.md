@@ -8,38 +8,47 @@ da instituição, com as maiores notas, a média e as menores notas (nota de cor
 
 <h2>Tela Inicial:</h2>
 
-![Imagem da tela inicial](https://user-images.githubusercontent.com/46427886/218318041-9d811d31-d56b-4525-926c-71453e33f188.jpeg)
+![Imagem da tela inicial](https://github.com/euyogi/Projeto-CS50/assets/46427886/77f2839e-17ce-4911-9641-ea129c6795a6)
 
-<h2>Tela Informações:</h2>
- 
-![Imagem da tela de informações](https://user-images.githubusercontent.com/46427886/218318057-89dd17f8-dc78-4802-8c39-d91ab6fc4f78.jpeg)
+<h2>Pesquisando Curso:</h2>
 
-<h2>Tela Link Grupos:</h2>
-
-![Imagem da tela do link dos grupos](https://user-images.githubusercontent.com/46427886/218318072-a0a21a2d-f3d0-4acd-a992-9cde2a4a51c2.jpeg)
+![Imagem pesquisando curso](https://github.com/euyogi/Projeto-CS50/assets/46427886/ff4cf862-8de2-47ca-a646-9be41837e767)
 
 <h2>Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi medicina):</h2>
 
-![Imagem da tela após pesquisar algum curso](https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png)
+![Imagem da tela após pesquisar algum curso](https://github.com/euyogi/Projeto-CS50/assets/46427886/824d7b16-72da-47f9-9a9c-c9af40545d86)
 
 <h2>Tela Após Selecionar Ver Detalhes:</h2>
 
-![Imagem da tela após apertar o botão ver detalhes](https://user-images.githubusercontent.com/46427886/218318637-38648814-28d1-4cc9-8fab-330706a8a14d.png)
-
+![Imagem da tela após apertar o botão ver detalhes e convertendo nota](https://github.com/euyogi/Projeto-CS50/assets/46427886/530bf551-02af-4116-9d9b-0c7a1cca502f)
 
 <h2>Funcionalidades:</h2>
 
 * Uma barra de pesquisa com opções para pesquisar/escolher o curso desejado
-
 * Opções para escolher o ano em que quer pesquisar as notas (2023, 2022 ou 2021)
-
 * Opções para escolher a chamada, para ver as notas de quem foi aprovado nas outras chamadas (1ª, 2ª, 3ª...)
-
 * Opção para ver uma lista com todas as inscrições, notas e as respectivas posições dos candidatos aprovados separados por vírgulas assim como nos pdfs (10000000, 999.99,5,-,1...)
-
 * Painel para aplicar os pesos da UnB à sua nota
-
 * Possibilidade de copiar os resultados facilmente
+* Possibilidade de dar zoom na maior caixa de texto (a que aparece os resultados) para melhor visualização
+
+<h2>Diferença da nova versão em C++:</h2>
+
+* De (em alguns casos como medicina) 10s para menos de 1s para pesquisar notas do curso
+* A versão .exe anterior tinha mais de 30mb e só funcionava com diversos arquivos .dll, agora é 1mb e funciona sozinha
+* Agora a barra de pesquisa vai mostrando o nome dos cursos similares ao que você está digitando (muito bom)
+* O menu com a lista de cursos agora tem uma barra de rolagem (graças a deus)
+* Agora o programa é dimensionável e suporta diferentes escalas do windows (100%, 125%, etc...)
+* O tamanho padrão da janela é menor que antes
+* Agora da para dar zoom na maior caixa de texto
+* Não criamos mais um arquivo .txt com os resultados (você ainda pode copiar os resultados)
+* A parte onde insere suas notas agora só aceita números e formata automaticamente eles (para o formato 000.00)
+* É possível abrir os links da tela de informações 
+* As dicas agora tem bordas arredondadas
+* Mudança do som do clique
+* Mudança da fonte (Cascadia Code para Ubuntu Mono Regular)
+* Mudança do ícone (antes era o padrão do customtkinter)
+* Adicionado opções de 2023, removido opções de 2020
 
 <h2>Escolhas:</h2>
 
@@ -85,6 +94,16 @@ eu tive no começo com o programa:
 
 Baixe o programa aqui, se quiser ver o código e compilar você mesmo, uma solução do Visual Studio 2022 está disponível aqui.
 
+<h2>Como era o programa em Python? (muito parecido, pelo menos em visual)</h2>
+
+<div>
+  <img src= "https://user-images.githubusercontent.com/46427886/218318041-9d811d31-d56b-4525-926c-71453e33f188.jpeg" width="49%" alt-text="Tela inicial Python" />
+  <img src="https://user-images.githubusercontent.com/46427886/218318100-182c48bb-e681-4d95-82f6-b968720b1be9.png" width="49%" alt-text="Tela após pesquisar curso (engenharias) Python" /> 
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/46427886/218318637-38648814-28d1-4cc9-8fab-330706a8a14d.png" width="49%" alt-text="Tela após clicar botão ver detalhes Python" />
+ <img src="https://user-images.githubusercontent.com/46427886/218318057-89dd17f8-dc78-4802-8c39-d91ab6fc4f78.jpeg" width="49%" alt-text="Tela após clicar botão ver detalhes Python" />
+</div>
 <p align="center">
 Projeto feito por: Yogi Nam de Souza Barbosa
 </p>
