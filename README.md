@@ -1,6 +1,6 @@
 # Projeto-Anceu-CS50
 
-Esse é o meu projeto final para o curso CS50 - é um aplicativo que <b>a</b>nalisa as <b>n</b>otas de <b>c</b>orte do <b>e</b>nem para a <b>U</b>nB, feito <s>em python</s> agora em C++, que checa as notas dos candidatos que participaram do Enem e se inscreveram na Universidade de Brasília - UnB, mostrando por fim um resumo para cada curso
+Esse é o meu projeto final para o curso CS50 - é um aplicativo que <ins>a</ins>nalisa as <ins>n</ins>otas de <ins>c</ins>orte do <ins>e</ins>nem para a <ins>U</ins>nB, feito <s>em python</s> agora em C++, que checa as notas dos candidatos que participaram do Enem e se inscreveram na Universidade de Brasília - UnB, mostrando por fim um resumo para cada curso
 da instituição, com as maiores notas, a média e as menores notas (nota de corte) em cada cota disponível.
 
 É possível calcular também a sua própria nota, já que a universidade possui um sistema de pesos para as notas de cada área.
@@ -14,19 +14,27 @@ Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquiv
 
 <h2>Tela Inicial:</h2>
 
-![Imagem da tela inicial](https://github.com/euyogi/Projeto-CS50/assets/46427886/77f2839e-17ce-4911-9641-ea129c6795a6)
+<p align="center">
+  <img alt="Tela inicial" width="75%" src="https://github.com/euyogi/Projeto-CS50/assets/46427886/77f2839e-17ce-4911-9641-ea129c6795a6">
+</p>
 
 <h2>Pesquisando Curso:</h2>
 
-![Imagem pesquisando curso](https://github.com/euyogi/Projeto-CS50/assets/46427886/ff4cf862-8de2-47ca-a646-9be41837e767)
+<p align="center">
+  <img alt="Pesquisando curso" width="75%" src="https://github.com/euyogi/Projeto-CS50/assets/46427886/ff4cf862-8de2-47ca-a646-9be41837e767">
+</p>
 
 <h2>Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi medicina):</h2>
 
-![Imagem da tela após pesquisar algum curso](https://github.com/euyogi/Projeto-CS50/assets/46427886/824d7b16-72da-47f9-9a9c-c9af40545d86)
+<p align="center">
+  <img alt="Após pesquisar curso" width="75%" src="https://github.com/euyogi/Projeto-CS50/assets/46427886/824d7b16-72da-47f9-9a9c-c9af40545d86">
+</p>
 
 <h2>Tela Após Selecionar Ver Detalhes:</h2>
 
-![Imagem da tela após apertar o botão ver detalhes e convertendo nota](https://github.com/euyogi/Projeto-CS50/assets/46427886/530bf551-02af-4116-9d9b-0c7a1cca502f)
+<p align="center">
+  <img alt="Após selecionar ver detalhes" width="75%" src="https://github.com/euyogi/Projeto-CS50/assets/46427886/530bf551-02af-4116-9d9b-0c7a1cca502f">
+</p>
 
 <h2>Funcionalidades:</h2>
 
@@ -44,9 +52,10 @@ Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquiv
 * A versão .exe anterior tinha mais de 30mb e só funcionava com diversos arquivos .dll, agora é 1mb e funciona sozinha
 * Agora a barra de pesquisa vai mostrando o nome dos cursos similares ao que você está digitando (muito bom)
 * O menu com a lista de cursos agora tem uma barra de rolagem (graças a deus)
-* Agora o programa é dimensionável e suporta diferentes escalas do windows (100%, 125%, etc...)
+* Agora o programa é dimensionável e suporta diferentes escalas do windows (100%, 125%, etc...) (antes se mudasse a escala textos ficariam estranhos)
 * O tamanho padrão da janela é menor que antes
 * Agora da para dar zoom na maior caixa de texto
+* Ao pesquisar a barra de progresso funciona durante todo o processo (antes era só enquanto estava baixando os pdfs)
 * Não criamos mais um arquivo .txt com os resultados (você ainda pode copiar os resultados)
 * A parte onde insere suas notas agora só aceita números e formata automaticamente eles (para o formato 000.00)
 * É possível abrir os links da tela de informações 
