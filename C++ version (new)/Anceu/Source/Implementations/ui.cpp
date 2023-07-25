@@ -1,4 +1,4 @@
-﻿#include "ui.h"
+#include "ui.h"
 
 #include <Windows.h>
 #include <dwmapi.h> // Mudar cor da barra da janela
@@ -157,21 +157,28 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
                 io.FontAllowUserScaling = false;
             
             ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 5, 5 });
-            ImGui::PushStyleColor(ImGuiCol_Button, Colors::BLACK.imVec4(0));
+            ImGui::PushStyleColor(ImGuiCol_Button, Colors::DARK_WINE.imVec4());
 
             // Ao clicar com o botão direito do mouse/touchpad.
             if (bigger_text_box_text == Anceu::results.c_str() or bigger_text_box_text == Anceu::details.c_str()) {
+                ImGui::PushStyleColor(ImGuiCol_PopupBg, Colors::BLACK.imVec4(0));
+
                 if (ImGui::BeginPopupContextItem("Copying Menu")) {
                     if (ImGui::Button(Texts::BUTTON_COPY)) {
                         Resources::Sounds::playClickSound();
                         ImGui::SetClipboardText(bigger_text_box_text);
+                        setSmallerTextBoxText("Copiado com sucesso", Colors::LIGHT_GREEN.imVec4());
                         ImGui::CloseCurrentPopup();
                     }
                     ImGui::EndPopup();
                 }
-                else if (ImGui::IsKeyDown(ImGuiKey_ModCtrl) and ImGui::IsKeyDown(ImGuiKey_C)) {
+
+                ImGui::PopStyleColor();
+
+                if (ImGui::IsKeyDown(ImGuiKey_ModCtrl) and ImGui::IsKeyDown(ImGuiKey_C)) {
                     Resources::Sounds::playClickSound();
                     ImGui::SetClipboardText(bigger_text_box_text);
+                    setSmallerTextBoxText("Copiado com sucesso", Colors::LIGHT_GREEN.imVec4());
                 }
             }
             else if (bigger_text_box_text == Texts::BIGGER_TEXT_BOX_INFO) {
