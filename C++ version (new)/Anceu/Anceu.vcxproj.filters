@@ -21,6 +21,9 @@
     <ClInclude Include="Source\Headers\texts.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Source\Resources\icon.rc" />
+    <ResourceCompile Include="Source\Resources\resources.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Source\Resources\icon.ico" />
   </ItemGroup>
 </Project>
