@@ -166,7 +166,7 @@ def UI() -> None:
     # Declara a janela principal, insere o título e sua resolução que é travada.
     window = ctk.CTk(fg_color = ROXO_ESCURO)
     window.title('Notas - Acesso Enem UnB')
-    window.geometry('1450x725')
+    window.geometry('1480x725')
     window.resizable(False, False)
     #Ctk.deactivate_automatic_dpi_awareness()
 
