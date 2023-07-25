@@ -6,6 +6,13 @@ da instituição, com as maiores notas, a média e as menores notas (nota de cor
 
 É possível calcular também a sua própria nota, já que a universidade possui um sistema de pesos para as notas de cada área.
 
+
+<h2>Para testar:</h2>
+
+Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a>.
+
+Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquivos, nele uma solução do Visual Studio 2022 está disponível em C++ Version (new) e a antiga versão em Python Version (old), baixe <a href="https://github.com/euyogi/Projeto-CS50/archive/refs/heads/main.zip">aqui</a>.
+
 <h2>Tela Inicial:</h2>
 
 ![Imagem da tela inicial](https://github.com/euyogi/Projeto-CS50/assets/46427886/77f2839e-17ce-4911-9641-ea129c6795a6)
@@ -90,12 +97,6 @@ eu tive no começo com o programa:
   <img src="https://user-images.githubusercontent.com/46427886/218320846-2dcb3610-cfbb-41d9-9d93-74fd1834ec0c.png" width="32%" alt-text="Imagem de pessoas ajudadas" /> 
   <img src="https://user-images.githubusercontent.com/46427886/218329385-ad9ab4a2-49a4-4c29-a3c2-22456845330b.png" width="32%" alt-text="Imagem de pessoas ajudadas" />
 </div>
-
-<h2>Para testar:</h2>
-
-Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a>.
-
-Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquivos, nele uma solução do Visual Studio 2022 está disponível em C++ Version (new) e a antiga versão em Python Version (old), baixe <a href="https://github.com/euyogi/Projeto-CS50/archive/refs/heads/main.zip">aqui</a>.
 
 <h2>Como era o programa em Python? (muito parecido, pelo menos em visual)</h2>
 
