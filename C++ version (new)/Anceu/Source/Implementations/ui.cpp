@@ -15,10 +15,14 @@
 #include "imgui.h"
 #include "khlorz_combo_filter.h"
 
-float       PADDING = 0.0f;                bool dpi_changed = true;
-const char* smaller_text_box_text          = Texts::SMALLER_TEXT_BOX_INITIAL;
-ImVec4      Col_smallerTextBoxText         = Colors::LIGHTEST_GRAY.imVec4();
-ImVec4      Col_selectableButtonUnselected = Colors::GRAY.imVec4();
+#define buttons_height padding * 0.85f
+
+constexpr float FONT_SIZE = 18.0f;
+float padding = 0.0f; bool dpi_changed = true;
+
+const char*     smaller_text_box_text          = Texts::SMALLER_TEXT_BOX_INITIAL;
+ImVec4          Col_smallerTextBoxText         = Colors::LIGHTEST_GRAY.imVec4();
+ImVec4          Col_selectableButtonUnselected = Colors::GRAY.imVec4();
 enum ChildFrameIDs {
     SmallerTextBoxID = 1, BiggerTextBoxID, ButtonsYearsID, LabelConverterID, ConvertionTextBoxID
 };
@@ -32,20 +36,21 @@ const char* itemGetter(std::span<const char* const>, int);
 void        setSmallerTextBoxText(const char*, ImVec4 = Colors::LIGHTEST_GRAY.imVec4());
 
 void UI::showAnceuWnd(bool* p_loop_boolean) {
-    static const ImGuiStyle& style = ImGui::GetStyle();
+    static const ImGuiStyle&    style = ImGui::GetStyle();
     static const ImGuiViewport* viewport = ImGui::GetMainViewport();
-    static ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoNavFocus;
+    static ImGuiWindowFlags     window_flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoNavFocus;
+
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { padding, padding });
 
     ImGui::SetNextWindowPos(viewport->Pos);
     ImGui::SetNextWindowSize(viewport->Size);
     if (ImGui::Begin("Window", NULL, window_flags)) {
+        ImGui::PopStyleVar();
+
         static ImGuiWindowFlags child_flags =  ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_AlwaysUseWindowPadding | ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NavFlattened;
 
-        // Sem arredondar sempre estava aparecendo a barra de rolagem na combo box das chamadas.
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { ceilf(style.WindowPadding.x * 0.75f), ceilf(style.WindowPadding.y * 0.75f) });
-
         ImGui::SetCursorPosY(0); // Ignora o padding superior.
-        if (ImGui::BeginChild("Inner Left Frame", { -9 * PADDING, 0 }, false, child_flags)) {
+        if (ImGui::BeginChild("Inner Left Frame", { -9 * buttons_height, 0 }, false, child_flags)) {
             static const char* bigger_text_box_text = Texts::BIGGER_TEXT_BOX_INITIAL;
             static const char* nw_tip_marker_text = Texts::NW_TIP_MARKER_INFO;
 
@@ -73,18 +78,18 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
             
             if (dpi_changed) search_width = calcItemsWidth(Texts::BUTTON_SEARCH);
 
-            ImGui::SetCursorPosX(ImGui::GetCursorPosX() + PADDING);
-            ImGui::SetNextItemWidth(-(search_width + style.ItemSpacing.x + PADDING));
+            ImGui::SetCursorPosX(ImGui::GetCursorPosX() + buttons_height);
+            ImGui::SetNextItemWidth(-(search_width + style.ItemSpacing.x + buttons_height));
             if (ImGui::ComboFilter("##Courses", combo_courses_selected_idx, Texts::COURSES, itemGetter)) {
                 Resources::Sounds::playClickSound();
                 ImGui::SetKeyboardFocusHere(); // Foca o botão pesquisar.
             }
 
             // Pesquisar depende/altera as variáveis dos outros widgets, por isso as declarações aqui.
-            static const char* se_button_text = Texts::SE_BUTTON_DETAILS;
-            static bool se_button_disabled = true, are_pdfs_downloaded = false, start_progress = false;
-            static float progress = 1.0f; // Cheio.
-            static int year = 2023, call = 1;
+            static const char*  se_button_text = Texts::SE_BUTTON_DETAILS;
+            static bool         se_button_disabled = true, are_pdfs_downloaded = false, start_progress = false;
+            static float        progress = 1.0f; // Cheio.
+            static int          year = 2023, call = 1;
 
             ImGui::SameLine();
             if (ImGui::Button(Texts::BUTTON_SEARCH)) {
@@ -124,11 +129,11 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
                     stop_progress();
                 });
             }
-
+            
             ImGui::PushStyleColor(ImGuiCol_FrameBg, Colors::DARK_GRAY.imVec4());
 
             centerAlignNextItems(ImGui::GetWindowWidth() * 0.75f);
-            if (ImGui::BeginChildFrame(SmallerTextBoxID, { ImGui::GetWindowWidth() * 0.75f, PADDING }))
+            if (ImGui::BeginChildFrame(SmallerTextBoxID, { ImGui::GetWindowWidth() * 0.75f, buttons_height}))
                 ImGui::TextColored(Col_smallerTextBoxText, smaller_text_box_text);
             ImGui::EndChildFrame();
 
@@ -213,8 +218,8 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
             
             ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 3, 3 });
             
-            ImGui::SetCursorPosX(ImGui::GetCursorPosX() + PADDING);
-            if (ImGui::BeginChildFrame(ButtonsYearsID, { buttons_years_width + 6, PADDING + 6 })) {
+            ImGui::SetCursorPosX(ImGui::GetCursorPosX() + buttons_height);
+            if (ImGui::BeginChildFrame(ButtonsYearsID, { buttons_years_width + 6, buttons_height + 6 })) {
                 ImGui::PopStyleVar();
                 ImGui::PopStyleColor();
 
@@ -243,7 +248,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
             ImGui::PopStyleVar();
 
             static const char* calls[] = { "1ª", "2ª", "3ª", "4ª", "5ª" };
-            const char* combo_calls_preview = calls[call - 1];
+            const char*        combo_calls_preview = calls[call - 1];
 
             ImGui::SameLine();
             ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 3);
@@ -279,7 +284,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
             ImGui::BeginDisabled(se_button_disabled);
             ImGui::SameLine();
             ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 3);
-            rightAlignNextItems(se_and_exit_buttons_width, 2, PADDING);
+            rightAlignNextItems(se_and_exit_buttons_width, 2, buttons_height);
             if (ImGui::Button(se_button_text)) {
                 Resources::Sounds::playClickSound();
                 if (se_button_text == Texts::SE_BUTTON_DETAILS) {
@@ -320,7 +325,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
             ImGui::PushStyleColor(ImGuiCol_FrameBgActive, Colors::DARK_GRAY.imVec4());
 
             centerAlignNextItems(label_converter_width);
-            if (ImGui::BeginChildFrame(LabelConverterID, { label_converter_width, PADDING }))
+            if (ImGui::BeginChildFrame(LabelConverterID, { label_converter_width, buttons_height }))
                 ImGui::Text(Texts::LABEL_CONVERTER);
             ImGui::EndChildFrame();
 
@@ -339,12 +344,12 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
 
             ImGui::SetCursorPosY(before + equal_items_spacing);
             centerAlignNextItems(label_group_width);
-            ImGui::Text("Grupo do Curso");
+            ImGui::Text(Texts::LABEL_GROUP);
 
             before = ImGui::GetCursorPosY();
             
             ImGui::SameLine();
-            tipMarker(Texts::NE2_TIP_MARKER, { 0, -(PADDING * 0.8f - ImGui::GetFontSize()) / 2.0f }, "?##2");
+            tipMarker(Texts::NE2_TIP_MARKER, { 0, -style.FramePadding.y / 2.0f }, "?##2");
 
             static float radio1_width = 0.0f;
             if (dpi_changed)
@@ -416,7 +421,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
             ImGui::PushStyleColor(ImGuiCol_FrameBgActive, Colors::DARK_GRAY.imVec4());
 
             ImGuiInputTextFlags input_flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackCharFilter | ImGuiInputTextFlags_CallbackEdit;
-            static char buf1[7] = "", buf2[7] = "", buf3[7] = "", buf4[7] = "", buf5[7] = "";
+            static char  buf1[7] = "", buf2[7] = "", buf3[7] = "", buf4[7] = "", buf5[7] = "";
             static float input_width = 0.0f;
             static float label_literature_width = ImGui::CalcTextSize(Texts::LABEL_LITERATURE).x;
             
@@ -481,15 +486,13 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
 
             centerAlignNextItems(label_literature_width + style.ItemSpacing.x + input_width);
             ImGui::AlignTextToFramePadding(); ImGui::Text(Texts::LABEL_FINAL); ImGui::SameLine(); ImGui::SetCursorPosX(align_pos_x);
-            if (ImGui::BeginChildFrame(ConvertionTextBoxID, { input_width, PADDING }))
+            if (ImGui::BeginChildFrame(ConvertionTextBoxID, { input_width, buttons_height }))
                 ImGui::TextColored(grade == 0.0f ? style.Colors[ImGuiCol_TextDisabled] : style.Colors[ImGuiCol_Text], std::format("{:06.2f}", grade).c_str());
             ImGui::EndChildFrame();
 
             ImGui::PopStyleColor(3);
         }
         ImGui::EndChild();
-
-        ImGui::PopStyleVar();
     }
     ImGui::End();
 
@@ -513,7 +516,7 @@ void UI::setWndStyle(HWND hWnd) {
     builder.AddRanges(io.Fonts->GetGlyphRangesDefault());
     builder.AddText("–≤");
     builder.BuildRanges(&ranges);
-    io.Fonts->AddFontFromMemoryCompressedTTF(Resources::Fonts::ubuntu_mono_r_data, Resources::Fonts::ubuntu_mono_r_size, 20.0f, nullptr, ranges.Data);
+    io.Fonts->AddFontFromMemoryCompressedTTF(Resources::Fonts::ubuntu_mono_r_data, Resources::Fonts::ubuntu_mono_r_size, FONT_SIZE, nullptr, ranges.Data);
     io.Fonts->Build();
 
     ImGuiStyle& style = ImGui::GetStyle();
@@ -569,15 +572,16 @@ void UI::updateWndPaddings(HWND hWnd) {
     ClientToScreen(hWnd, &top_left_coord);
     RECT wnd_coords;
     GetWindowRect(hWnd, &wnd_coords);
-    PADDING = static_cast<float>(top_left_coord.y - wnd_coords.top);
-    float dpi_scale = getDpiScale();
+    padding = (top_left_coord.y - wnd_coords.top) * 1.0f;
 
     ImGuiIO& io = ImGui::GetIO();
+    float dpi_scale = getDpiScale();
     io.FontGlobalScale = dpi_scale;
 
     ImGuiStyle& style = ImGui::GetStyle();
-    style.WindowPadding = { PADDING, PADDING };
-    style.FramePadding = { 20.0f * dpi_scale, (PADDING - 20.0f * dpi_scale) / 2.0f};
+    float window_padding = ceilf(padding * 0.75f);
+    style.WindowPadding = { window_padding, window_padding };
+    style.FramePadding = { 15 * dpi_scale, (buttons_height - FONT_SIZE * dpi_scale) / 2.0f};
     style.ScrollbarSize = 15 * dpi_scale;
     
     dpi_changed = true;
@@ -607,7 +611,7 @@ bool tipMarker(const char* text, ImVec2 offset, const char* symbol, bool is_butt
     ImVec2 before = ImGui::GetCursorPos();
     ImGui::SetCursorPos({ before.x + offset.x, before.y + offset.y });
 
-    float tip_height = PADDING * 0.8f;
+    float tip_height = buttons_height * 0.80f;
 
     ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 2);
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 0, (tip_height - ImGui::GetFontSize()) / 2.0f});
@@ -670,5 +674,5 @@ void setSmallerTextBoxText(const char* text, ImVec4 color) {
 }
 
 float UI::getDpiScale() {
-    return PADDING / 38.0f;
+    return padding / 38.0f;
 }

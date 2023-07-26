@@ -15,8 +15,8 @@
 #include "resources.h"
 #include "colors.h"
 
-constexpr int WIDTH = 1200;
-constexpr int HEIGHT = 730;
+constexpr int WIDTH = 1130;
+constexpr int HEIGHT = 670;
 
 // Data
 static ID3D11Device*           g_pd3dDevice = nullptr;
@@ -34,8 +34,9 @@ void CleanupRenderTarget();
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 // Main code
+
 //int main(int, char**)
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(_In_ HINSTANCE, _In_ HINSTANCE, _In_ LPSTR, _In_ int)
 {
     // Create application window
     ImGui_ImplWin32_EnableDpiAwareness();
@@ -210,9 +211,9 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         g_ResizeWidth = (UINT)LOWORD(lParam); // Queue resize
         g_ResizeHeight = (UINT)HIWORD(lParam);
         if (ImGui::GetCurrentContext()) { // If ImGui started
-            UI::updateWndPaddings(hWnd);
             // The user is resizing the window, which mains our main function will be blocked on DispatchMessage until the resizing is done
             // Because we want to re-draw everything while the user is dragging, we respond to move events
+            UI::updateWndPaddings(hWnd);
             HandleImGuiFrame();
         }
         return 0;
