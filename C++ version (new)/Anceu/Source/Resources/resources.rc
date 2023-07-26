@@ -5,49 +5,10 @@
 /////////////////////////////////////////////////////////////////////////////
 // Português (Brasil) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
 #pragma code_page(1252)
 
-/////////////////////////////////////////////////////////////////////////////
-//
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
 IDI_ICON                ICON                    "icon.ico"
-
-
-#ifdef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// TEXTINCLUDE
-//
-
-1 TEXTINCLUDE 
-BEGIN
-    "resource.h\0"
-END
-
-2 TEXTINCLUDE 
-BEGIN
-    "\0"
-END
-
-3 TEXTINCLUDE 
-BEGIN
-    "\r\n"
-    "\0"
-END
-
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Version
-//
 
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION 1,0,0,0
@@ -66,8 +27,8 @@ BEGIN
     BEGIN
         BLOCK "041604b0"
         BEGIN
-            VALUE "CompanyName", "YogiPrograms"
-            VALUE "FileDescription", "Um analisador de pdfs que processa as notas dos aprovados pelo Acesso Enem e organiza tudo. Agora em C++ "
+            VALUE "CompanyName", "YogiApps"
+            VALUE "FileDescription", "Anceu"
             VALUE "FileVersion", "1.0.0.0"
             VALUE "InternalName", "Anceu.exe"
             VALUE "LegalCopyright", "Copyright (C) 2023"
@@ -81,19 +42,3 @@ BEGIN
         VALUE "Translation", 0x416, 1200
     END
 END
-
-#endif    // Português (Brasil) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-
-#ifndef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// Generated from the TEXTINCLUDE 3 resource.
-//
-
-
-/////////////////////////////////////////////////////////////////////////////
-#endif    // not APSTUDIO_INVOKED
-

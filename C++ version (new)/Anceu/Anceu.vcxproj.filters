@@ -4,12 +4,12 @@
     <ClCompile Include="Source\Implementations\utils.cpp" />
     <ClCompile Include="Source\Implementations\anceu.cpp" />
     <ClCompile Include="Source\Implementations\ui.cpp" />
-    <ClCompile Include="Source\Implementations\main.cpp" />
     <ClCompile Include="Source\Implementations\colors.cpp" />
     <ClCompile Include="Source\Resources\fonts.cpp" />
     <ClCompile Include="Source\Resources\sounds.cpp" />
     <ClCompile Include="Source\Implementations\khlorz_combo_filter.cpp" />
     <ClCompile Include="Source\Implementations\texts.cpp" />
+    <ClCompile Include="Source\Implementations\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Headers\anceu.h" />

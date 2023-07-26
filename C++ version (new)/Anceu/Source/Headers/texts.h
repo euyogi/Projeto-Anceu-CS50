@@ -19,6 +19,7 @@ namespace Texts {
 	extern const char* BIGGER_TEXT_BOX_INFO;
 
 	extern const char* BUTTON_COPY;
+	extern const char* SMALLER_TEXT_BOX_COPIED;
 	extern const char* BUTTON_OPEN1;
 	extern const char* BUTTON_OPEN2;
 	extern const char* BUTTON_OPEN3;
@@ -45,6 +46,7 @@ namespace Texts {
 	extern const char* LABEL_ESSAY;
 
 	extern const char* BUTTON_CONVERT;
+	extern const char* LABEL_FINAL;
 
 	extern const char* QUOTAS_NAMES[10];
 	extern const char* COURSES[101];

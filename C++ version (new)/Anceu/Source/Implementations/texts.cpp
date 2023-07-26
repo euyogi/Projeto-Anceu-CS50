@@ -34,6 +34,7 @@ const char* Texts::BIGGER_TEXT_BOX_INFO = "Este programa não tem nenhuma afilia
 	"[Clique com o botão direito do mouse/touchpad para abrir qualquer um dos links]";
 
 const char* Texts::BUTTON_COPY = "Copiar";
+const char* Texts::SMALLER_TEXT_BOX_COPIED = "Copiado com sucesso";
 const char* Texts::BUTTON_OPEN1 = "Abrir [1]";
 const char* Texts::BUTTON_OPEN2 = "Abrir [2]";
 const char* Texts::BUTTON_OPEN3 = "Abrir [3]";
@@ -60,6 +61,7 @@ const char* Texts::LABEL_MATH = "Matemática";
 const char* Texts::LABEL_ESSAY = "Redação";
 
 const char* Texts::BUTTON_CONVERT = "Converter";
+const char* Texts::LABEL_FINAL = "Final";
 
 const char* Texts::QUOTAS_NAMES[10] = {
 		"Sistema Universal:", "Cotas para Negros:",

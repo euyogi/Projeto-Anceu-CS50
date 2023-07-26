@@ -15,10 +15,10 @@
 #include "imgui.h"
 #include "khlorz_combo_filter.h"
 
-float PADDING = 0.0f; bool dpi_changed = true;
-const char* smaller_text_box_text = Texts::SMALLER_TEXT_BOX_INITIAL;
-ImVec4 Col_smallerTextBoxText = Colors::LIGHTEST_GRAY.imVec4();
-ImVec4 Col_selectableButtonUnselected = Colors::GRAY.imVec4();
+float       PADDING = 0.0f;                bool dpi_changed = true;
+const char* smaller_text_box_text          = Texts::SMALLER_TEXT_BOX_INITIAL;
+ImVec4      Col_smallerTextBoxText         = Colors::LIGHTEST_GRAY.imVec4();
+ImVec4      Col_selectableButtonUnselected = Colors::GRAY.imVec4();
 enum ChildFrameIDs {
     SmallerTextBoxID = 1, BiggerTextBoxID, ButtonsYearsID, LabelConverterID, ConvertionTextBoxID
 };
@@ -164,7 +164,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
                     if (ImGui::Button(Texts::BUTTON_COPY)) {
                         Resources::Sounds::playClickSound();
                         ImGui::SetClipboardText(bigger_text_box_text);
-                        setSmallerTextBoxText("Copiado com sucesso", Colors::LIGHT_GREEN.imVec4());
+                        setSmallerTextBoxText(Texts::SMALLER_TEXT_BOX_COPIED, Colors::LIGHT_GREEN.imVec4());
                         ImGui::CloseCurrentPopup();
                     }
                     ImGui::EndPopup();
@@ -175,7 +175,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
                 if (ImGui::IsKeyDown(ImGuiKey_ModCtrl) and ImGui::IsKeyDown(ImGuiKey_C)) {
                     Resources::Sounds::playClickSound();
                     ImGui::SetClipboardText(bigger_text_box_text);
-                    setSmallerTextBoxText("Copiado com sucesso", Colors::LIGHT_GREEN.imVec4());
+                    setSmallerTextBoxText(Texts::SMALLER_TEXT_BOX_COPIED, Colors::LIGHT_GREEN.imVec4());
                 }
             }
             else if (bigger_text_box_text == Texts::BIGGER_TEXT_BOX_INFO) {
@@ -335,7 +335,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
             if (dpi_changed)
                 label_group_width = ImGui::CalcTextSize(Texts::LABEL_GROUP).x;
 
-            float equal_items_spacing = (ImGui::GetWindowHeight() - (12 * ImGui::GetFontSize() + 20 * style.FramePadding.y + 11 * style.ItemSpacing.y + 2 * style.WindowPadding.y)) / 3.0f;
+            float equal_items_spacing = (ImGui::GetWindowHeight() - (2 * ImGui::GetFontSize() + style.ItemSpacing.y + 10 * ImGui::GetFrameHeightWithSpacing() + 2 * style.WindowPadding.y)) / 3.0f;
 
             ImGui::SetCursorPosY(before + equal_items_spacing);
             centerAlignNextItems(label_group_width);
@@ -480,7 +480,7 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
             ImGui::EndDisabled();
 
             centerAlignNextItems(label_literature_width + style.ItemSpacing.x + input_width);
-            ImGui::AlignTextToFramePadding(); ImGui::Text("Final"); ImGui::SameLine(); ImGui::SetCursorPosX(align_pos_x);
+            ImGui::AlignTextToFramePadding(); ImGui::Text(Texts::LABEL_FINAL); ImGui::SameLine(); ImGui::SetCursorPosX(align_pos_x);
             if (ImGui::BeginChildFrame(ConvertionTextBoxID, { input_width, PADDING }))
                 ImGui::TextColored(grade == 0.0f ? style.Colors[ImGuiCol_TextDisabled] : style.Colors[ImGuiCol_Text], std::format("{:06.2f}", grade).c_str());
             ImGui::EndChildFrame();

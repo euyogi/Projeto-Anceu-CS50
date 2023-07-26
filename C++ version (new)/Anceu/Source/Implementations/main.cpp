@@ -1,4 +1,4 @@
-// Dear ImGui: standalone application for DirectX 11
+// Dear ImGui: standalone example application for DirectX 11
 // If you are new to Dear ImGui, read documentation from the docs/ folder + read the top of imgui.cpp.
 // Read online: https://github.com/ocornut/imgui/tree/master/docs
 
@@ -19,13 +19,14 @@ constexpr int WIDTH = 1200;
 constexpr int HEIGHT = 730;
 
 // Data
-static ID3D11Device*            g_pd3dDevice = nullptr;
-static ID3D11DeviceContext*     g_pd3dDeviceContext = nullptr;
-static IDXGISwapChain*          g_pSwapChain = nullptr;
-static UINT                     g_ResizeWidth = 0, g_ResizeHeight = 0;
-static ID3D11RenderTargetView*  g_mainRenderTargetView = nullptr;
+static ID3D11Device*           g_pd3dDevice = nullptr;
+static ID3D11DeviceContext*    g_pd3dDeviceContext = nullptr;
+static IDXGISwapChain*         g_pSwapChain = nullptr;
+static UINT                    g_ResizeWidth = 0, g_ResizeHeight = 0;
+static ID3D11RenderTargetView* g_mainRenderTargetView = nullptr;
 
 // Forward declarations of helper functions
+void HandleImGuiFrame(bool* = false);
 bool CreateDeviceD3D(HWND hWnd);
 void CleanupDeviceD3D();
 void CreateRenderTarget();
@@ -41,7 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     WNDCLASSEXW wc = { sizeof(wc), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), LoadIcon(wc.hInstance, MAKEINTRESOURCE(IDI_ICON)), nullptr, nullptr, nullptr, L"Window Class", LoadIcon(wc.hInstance, MAKEINTRESOURCE(IDI_ICON)) };
     ::RegisterClassExW(&wc);
     HWND hwnd = ::CreateWindowW(wc.lpszClassName, L"Anceu", WS_OVERLAPPEDWINDOW, 100, 100, WIDTH, HEIGHT, nullptr, nullptr, wc.hInstance, nullptr);
-    
+
     // Initialize Direct3D
     if (!CreateDeviceD3D(hwnd))
     {
@@ -58,17 +59,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
-    //io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;   // Enable Multi-Viewport / Platform Windows
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 
     // Setup Platform/Renderer backends
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX11_Init(g_pd3dDevice, g_pd3dDeviceContext);
-    
+
     // Setup Dear ImGui style
     UI::setWndStyle(hwnd);
-    
-    ImVec4 win_color = Colors::DARK_WINE.imVec4();
 
     // Main loop
     bool done = false;
@@ -87,37 +85,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         if (done)
             break;
 
-        // Handle window resize (we don't resize directly in the WM_SIZE handler)
-        if (g_ResizeWidth != 0 && g_ResizeHeight != 0)
-        {
-            CleanupRenderTarget();
-            g_pSwapChain->ResizeBuffers(0, g_ResizeWidth, g_ResizeHeight, DXGI_FORMAT_UNKNOWN, 0);
-            g_ResizeWidth = g_ResizeHeight = 0;
-            CreateRenderTarget();
-        }
-
-        // Start the Dear ImGui frame
-        ImGui_ImplDX11_NewFrame();
-        ImGui_ImplWin32_NewFrame();
-        ImGui::NewFrame();
-
-        UI::showAnceuWnd(&done);
-
-        // Rendering
-        ImGui::Render();
-        const float win_color_with_alpha[4] = { win_color.x * win_color.w, win_color.y * win_color.w, win_color.z * win_color.w, win_color.w };
-        g_pd3dDeviceContext->OMSetRenderTargets(1, &g_mainRenderTargetView, nullptr);
-        g_pd3dDeviceContext->ClearRenderTargetView(g_mainRenderTargetView, win_color_with_alpha);
-        ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-
-        // Update and Render additional Platform Windows
-        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-        {
-            ImGui::UpdatePlatformWindows();
-            ImGui::RenderPlatformWindowsDefault();
-        }
-
-        g_pSwapChain->Present(1, 0); // Present with vsync
+        HandleImGuiFrame(&done);
     }
 
     // Cleanup
@@ -133,6 +101,36 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 }
 
 // Helper functions
+
+void HandleImGuiFrame(bool* done)
+{
+    // Handle window resize (we don't resize directly in the WM_SIZE handler)
+    if (g_ResizeWidth != 0 && g_ResizeHeight != 0)
+    {
+        CleanupRenderTarget();
+        g_pSwapChain->ResizeBuffers(0, g_ResizeWidth, g_ResizeHeight, DXGI_FORMAT_UNKNOWN, 0);
+        g_ResizeWidth = g_ResizeHeight = 0;
+        CreateRenderTarget();
+    }
+
+    // Start the Dear ImGui frame
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
+
+    UI::showAnceuWnd(done);
+
+    // Rendering
+    ImGui::Render();
+    static const ImVec4 win_color = Colors::DARK_WINE.imVec4();
+    static const float win_color_with_alpha[4] = { win_color.x * win_color.w, win_color.y * win_color.w, win_color.z * win_color.w, win_color.w };
+    g_pd3dDeviceContext->OMSetRenderTargets(1, &g_mainRenderTargetView, nullptr);
+    g_pd3dDeviceContext->ClearRenderTargetView(g_mainRenderTargetView, win_color_with_alpha);
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+    g_pSwapChain->Present(1, 0); // (0, 0) to disable vsync
+}
+
 bool CreateDeviceD3D(HWND hWnd)
 {
     // Setup swap chain
@@ -187,10 +185,6 @@ void CleanupRenderTarget()
     if (g_mainRenderTargetView) { g_mainRenderTargetView->Release(); g_mainRenderTargetView = nullptr; }
 }
 
-#ifndef WM_DPICHANGED
-#define WM_DPICHANGED 0x02E0 // From Windows SDK 8.1+ headers
-#endif
-
 // Forward declare message handler from imgui_impl_win32.cpp
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -211,25 +205,25 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             Resources::Sounds::playClickSound();
             return 0;
         }
-
         if (wParam == SIZE_MAXIMIZED)
             Resources::Sounds::playClickSound();
-
         g_ResizeWidth = (UINT)LOWORD(lParam); // Queue resize
         g_ResizeHeight = (UINT)HIWORD(lParam);
-
-        if (ImGui::GetCurrentContext()) // If ImGui started
+        if (ImGui::GetCurrentContext()) { // If ImGui started
             UI::updateWndPaddings(hWnd);
-
-        return 0;
-    case WM_GETMINMAXINFO: // Limit window min size
-        {
-            float dpi_scale = UI::getDpiScale();
-            MINMAXINFO* mmi = (MINMAXINFO*)(lParam);
-            mmi->ptMinTrackSize.x = static_cast<LONG>(WIDTH * dpi_scale);
-            mmi->ptMinTrackSize.y = static_cast < LONG>(HEIGHT * dpi_scale);
+            // The user is resizing the window, which mains our main function will be blocked on DispatchMessage until the resizing is done
+            // Because we want to re-draw everything while the user is dragging, we respond to move events
+            HandleImGuiFrame();
         }
         return 0;
+    case WM_GETMINMAXINFO: // Limit window min size
+    {
+        MINMAXINFO* mmi = (MINMAXINFO*)(lParam);
+        float dpi_scale = UI::getDpiScale();
+        mmi->ptMinTrackSize.x = static_cast<LONG>(WIDTH * dpi_scale);
+        mmi->ptMinTrackSize.y = static_cast <LONG>(HEIGHT * dpi_scale);
+    }
+    return 0;
     case WM_SYSCOMMAND:
         if ((wParam & 0xfff0) == SC_KEYMENU) // Disable ALT application menu
             return 0;
@@ -238,12 +232,6 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         Anceu::deletePdfs(); Resources::Sounds::playClickSound(false);
         ::PostQuitMessage(0);
         return 0;
-    case WM_DPICHANGED:
-        {
-            const RECT* suggested_rect = (RECT*)lParam;
-            ::SetWindowPos(hWnd, nullptr, suggested_rect->left, suggested_rect->top, suggested_rect->right - suggested_rect->left, suggested_rect->bottom - suggested_rect->top, SWP_NOZORDER | SWP_NOACTIVATE);
-        }
-        break;
     }
     return ::DefWindowProcW(hWnd, msg, wParam, lParam);
 }
