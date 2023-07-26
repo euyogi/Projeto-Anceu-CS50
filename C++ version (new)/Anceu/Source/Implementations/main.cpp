@@ -15,7 +15,7 @@
 #include "resources.h"
 #include "colors.h"
 
-constexpr int WIDTH = 1130;
+constexpr int WIDTH = 1080;
 constexpr int HEIGHT = 670;
 
 // Data
