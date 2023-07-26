@@ -15,25 +15,25 @@ Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquiv
 <h2>Tela Inicial:</h2>
 
 <p align="center">
-  <img alt="Tela inicial" width="75%" src="https://github.com/euyogi/Projeto-CS50/assets/46427886/77f2839e-17ce-4911-9641-ea129c6795a6">
+  <img alt="Tela inicial" width="75%" src="https://github.com/euyogi/Projeto-Anceu-CS50/assets/46427886/3c0c855b-b918-4258-83b1-3dd41b5871f0">
 </p>
 
 <h2>Pesquisando Curso:</h2>
 
 <p align="center">
-  <img alt="Pesquisando curso" width="75%" src="https://github.com/euyogi/Projeto-CS50/assets/46427886/ff4cf862-8de2-47ca-a646-9be41837e767">
+  <img alt="Pesquisando curso" width="75%" src="https://github.com/euyogi/Projeto-Anceu-CS50/assets/46427886/a47fb9d9-548e-4c2d-ad7d-1e8184faa573">
 </p>
 
 <h2>Tela Após Pesquisar Notas de Algum Curso (Nesse caso o curso pesquisado foi medicina):</h2>
 
 <p align="center">
-  <img alt="Após pesquisar curso" width="75%" src="https://github.com/euyogi/Projeto-CS50/assets/46427886/824d7b16-72da-47f9-9a9c-c9af40545d86">
+  <img alt="Após pesquisar curso" width="75%" src="https://github.com/euyogi/Projeto-Anceu-CS50/assets/46427886/5fb00d78-8edc-4603-b2be-926bb5ebc7a1">
 </p>
 
 <h2>Tela Após Selecionar Ver Detalhes:</h2>
 
 <p align="center">
-  <img alt="Após selecionar ver detalhes" width="75%" src="https://github.com/euyogi/Projeto-CS50/assets/46427886/530bf551-02af-4116-9d9b-0c7a1cca502f">
+  <img alt="Após selecionar ver detalhes" width="75%" src="https://github.com/euyogi/Projeto-Anceu-CS50/assets/46427886/71550219-9078-4a7a-b0ea-9b196eefbf8b">
 </p>
 
 <h2>Funcionalidades:</h2>
