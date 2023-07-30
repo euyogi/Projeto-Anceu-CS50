@@ -5,7 +5,7 @@
 namespace UI {
 	// Chamar fora do window loop.
 	void setWndStyle(HWND);
-	// Chamar após mudança de DPI.
+	// Chamar após resize.
 	void updateWndPaddings(HWND);
 	// Chamar dentro do window loop.
 	void showAnceuWnd(bool* loop_boolean);

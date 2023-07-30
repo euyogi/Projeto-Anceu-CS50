@@ -505,7 +505,6 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
 void UI::setWndStyle(HWND hWnd) {
     COLORREF DARK_WINE = Colors::DARK_WINE.colorRef(); // Cor de fundo da barra superior da janela.
     DwmSetWindowAttribute(hWnd, DWMWINDOWATTRIBUTE::DWMWA_CAPTION_COLOR, &DARK_WINE, sizeof(DARK_WINE));
-    updateWndPaddings(hWnd);
 
     ImGuiIO& io = ImGui::GetIO();
     io.IniFilename = NULL; // Desativa o arquivo .ini.

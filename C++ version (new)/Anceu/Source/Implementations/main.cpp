@@ -67,7 +67,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_ HINSTANCE, _In_ LPSTR, _In_ int)
     ImGui_ImplDX11_Init(g_pd3dDevice, g_pd3dDeviceContext);
 
     // Setup Dear ImGui style
+    UI::updateWndPaddings(hwnd);
     UI::setWndStyle(hwnd);
+
+    // Adjust initial window size to dpi
+    int dpi_scale = static_cast<int>(UI::getDpiScale());
+    SetWindowPos(hwnd, nullptr, 0, 0, WIDTH * dpi_scale, HEIGHT * dpi_scale, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 
     // Main loop
     bool done = false;
@@ -208,23 +213,23 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         }
         if (wParam == SIZE_MAXIMIZED)
             Resources::Sounds::playClickSound();
-        g_ResizeWidth = (UINT)LOWORD(lParam); // Queue resize
-        g_ResizeHeight = (UINT)HIWORD(lParam);
+        g_ResizeWidth = (UINT)(LOWORD(lParam)); // Queue resize
+        g_ResizeHeight = (UINT)(HIWORD(lParam));
         if (ImGui::GetCurrentContext()) { // If ImGui started
-            // The user is resizing the window, which mains our main function will be blocked on DispatchMessage until the resizing is done
+            // The user is resizing the window, which means our main function will be blocked on DispatchMessage until the resizing is done
             // Because we want to re-draw everything while the user is dragging, we respond to move events
             UI::updateWndPaddings(hWnd);
             HandleImGuiFrame();
         }
         return 0;
     case WM_GETMINMAXINFO: // Limit window min size
-    {
-        MINMAXINFO* mmi = (MINMAXINFO*)(lParam);
-        float dpi_scale = UI::getDpiScale();
-        mmi->ptMinTrackSize.x = static_cast<LONG>(WIDTH * dpi_scale);
-        mmi->ptMinTrackSize.y = static_cast <LONG>(HEIGHT * dpi_scale);
-    }
-    return 0;
+        {
+            MINMAXINFO* mmi = (MINMAXINFO*)(lParam);
+            float dpi_scale = UI::getDpiScale();
+            mmi->ptMinTrackSize.x = static_cast<LONG>(WIDTH * dpi_scale);
+            mmi->ptMinTrackSize.y = static_cast <LONG>(HEIGHT * dpi_scale);
+        }
+        return 0;
     case WM_SYSCOMMAND:
         if ((wParam & 0xfff0) == SC_KEYMENU) // Disable ALT application menu
             return 0;
