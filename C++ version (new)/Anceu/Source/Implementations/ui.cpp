@@ -520,9 +520,6 @@ void UI::setWndStyle(HWND hWnd) {
 
     ImGuiStyle& style = ImGui::GetStyle();
     
-    style.AntiAliasedLines = false;
-    style.AntiAliasedLinesUseTex = false;
-    style.CurveTessellationTol = 10.0f;
     style.HoverFlagsForTooltipMouse = ImGuiHoveredFlags_DelayNone;
     style.HoverFlagsForTooltipNav = ImGuiHoveredFlags_DelayNone;
     style.PopupBorderSize = 0;
