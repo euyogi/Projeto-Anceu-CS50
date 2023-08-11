@@ -1,10 +1,10 @@
-# CMake toolchain should be Visual Studio, otherwise you'll need to change some incompatible flags
+# Esse arquivo é utilizado para compilar com cmake, infelizmente o tamanho final do aplicativo
+# parece ficar em 4Mb quando compilado com cmake enquanto que com Visual Studio fica 1Mb
 
 cmake_minimum_required(VERSION 3.26)
 project(Anceu)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Static linking
 
 include_directories(Anceu/Source/Headers)
 include_directories(ImGui/Source/Headers)
@@ -52,11 +52,9 @@ add_executable(Anceu
         Neyo/Source/Headers/neyo.h
         Neyo/Source/Implementations/neyo.cpp)
 
-set_target_properties(Anceu PROPERTIES LINK_FLAGS /SUBSYSTEM:WINDOWS) # Windows build (main = WinMain, no console)
-
+target_link_options(Anceu PRIVATE -static -mwindows) # Windows build (main = WinMain, no console)
 target_link_directories(Anceu PRIVATE Neyo/Externals/zlib)
 
 # Libraries:
 target_link_libraries (Anceu PRIVATE urlmon d3d11 d3dcompiler dwmapi winmm)
-target_link_libraries (Anceu PRIVATE zlibstatic)
-
+target_link_libraries (Anceu PRIVATE -lz)
