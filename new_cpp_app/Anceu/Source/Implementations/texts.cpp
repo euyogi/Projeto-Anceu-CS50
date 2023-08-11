@@ -22,7 +22,7 @@ const char* Texts::BIGGER_TEXT_BOX_INITIAL = "Olá, este programa mostra as nota
 	"Caso queira dar zoom no texto você pode utilizar Ctrl + Scroll (rodinha do mouse/gesto de pinça no touchpad), com a setinha emcima desse "
 	"texto aqui, além disso você pode abrir links e copiar os resultados pesquisados com clique direito do mouse/touchpad ou Ctrl + C para copiar\n\n"
 	"Informações sobre o programa no 'i' no canto superior esquerdo.";
-const char* Texts::BIGGER_TEXT_BOX_INFO = "Este programa não tem nenhuma afiliação com a Universidade de Brasília. Os dados utilizados estão"
+const char* Texts::BIGGER_TEXT_BOX_INFO = "Este programa não tem nenhuma afiliação com a Universidade de Brasília. Os dados utilizados estão "
 	"disponíveis para o público no seguinte url: https://www.cebraspe.org.br/ [1]\n\n"
 	"Criador : Yogi Nam de Souza Barbosa\n"
 	"Github: https://github.com/euyogi/ [2]\n\n"
