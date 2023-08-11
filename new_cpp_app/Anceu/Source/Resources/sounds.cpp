@@ -4,7 +4,7 @@
 #include <MMSystem.h> // Lembre de incluir respectivo diretório de biblioteca.
 
 void Resources::Sounds::playClickSound(bool async) {
-    PlaySound(reinterpret_cast<LPCSTR>(Resources::Sounds::click_sound_data), nullptr, SND_MEMORY | (async ? SND_ASYNC : SND_SYNC));
+    PlaySoundA(reinterpret_cast<LPCSTR>(Resources::Sounds::click_sound_data), nullptr, SND_MEMORY | (async ? SND_ASYNC : SND_SYNC));
 }
 
 // File: 'mixkit-interface-click-1126.wav' (26100 bytes)
