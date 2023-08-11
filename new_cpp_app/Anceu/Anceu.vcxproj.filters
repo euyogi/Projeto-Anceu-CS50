@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Source\Headers\anceu.h" />
+    <ClInclude Include="Source\Headers\colors.h" />
+    <ClInclude Include="Source\Headers\khlorz_combo_filter.h" />
+    <ClInclude Include="Source\Headers\resources.h" />
+    <ClInclude Include="Source\Headers\texts.h" />
+    <ClInclude Include="Source\Headers\ui.h" />
+    <ClInclude Include="Source\Headers\utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Implementations\anceu.cpp" />
+    <ClCompile Include="Source\Implementations\colors.cpp" />
+    <ClCompile Include="Source\Implementations\khlorz_combo_filter.cpp" />
+    <ClCompile Include="Source\Implementations\main.cpp" />
+    <ClCompile Include="Source\Implementations\texts.cpp" />
+    <ClCompile Include="Source\Implementations\ui.cpp" />
+    <ClCompile Include="Source\Implementations\utils.cpp" />
+    <ClCompile Include="Source\Resources\fonts.cpp" />
+    <ClCompile Include="Source\Resources\sounds.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Source\Resources\resources.rc" />
+  </ItemGroup>
+</Project>
