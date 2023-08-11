@@ -8,9 +8,9 @@ da instituição, com as maiores notas, a média e as menores notas (nota de cor
 
 <h2>Para testar:</h2>
 
-Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a>.
+Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a> (ainda tenho que testar em outros computadores, então não tenho certeza se está funcionando 100%).
 
-Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquivos, nele uma solução do Visual Studio 2022 está disponível em C++ Version (new) e a antiga versão em Python Version (old), baixe <a href="https://github.com/euyogi/Projeto-CS50/archive/refs/heads/main.zip">aqui</a>.
+Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquivos, nele se você quiser compilar com Visual Studio tem uma solução do Visual Studio 2022, além de ser possível compilar com CMake, ambos disponíveis em <a href="new_cpp_app">new_cpp_app</a> e a antiga versão Python em <a href="old_python_app">old_python_app</a>, baixe <a href="https://github.com/euyogi/Projeto-CS50/archive/refs/heads/main.zip">aqui</a>.
 
 <h2>Tela Inicial:</h2>
 
@@ -49,7 +49,7 @@ Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquiv
 <h2>Diferença da nova versão em C++:</h2>
 
 * De (em alguns casos como medicina) 10s para menos de 1s para pesquisar notas do curso
-* A versão .exe anterior tinha mais de 30mb e só funcionava com diversos arquivos .dll, agora é 1mb e funciona sozinha
+* A versão .exe anterior tinha mais de 30mb e só funcionava com diversos arquivos .dll, agora é 1mb e funciona sozinha (teoricamente, ainda tenho que testar)
 * Agora a barra de pesquisa vai mostrando o nome dos cursos similares ao que você está digitando (muito bom)
 * O menu com a lista de cursos agora tem uma barra de rolagem (graças a deus)
 * Agora o programa é dimensionável e suporta diferentes escalas do windows (100%, 125%, etc...) (antes se mudasse a escala textos ficariam estranhos)
