@@ -71,6 +71,13 @@ Ambos disponíveis na pasta new_cpp_app e a antiga versão Python em old_python_
 * Adicionado opções de 2023, removido opções de 2020
 * Otimizações se for pesquisar cursos do mesmo ano e chamada em seguida
 
+<h2>Bibliotecas e códigos:</h2>
+
+Toda a interface do programa é feita com <a href="https://github.com/ocornut/imgui">Dear ImGui</a> e a barra de pesquisa foi feita
+pelo khlorz e está disponível <a href="https://github.com/khlorz/imgui-combo-filter">aqui</a>,
+apesar de ter feito algumas alterações mínimas em ambos.
+Também utilizei <a href="https://www.codeproject.com/articles/7056/code-to-extract-plain-text-from-a-pdf-file">esse código</a> do NeWi para começar o conversor de pdf.
+(Por isso o nome Neyo -> NeWi + Yogi)
 <h2>Escolhas:</h2>
 
 Bom, escolhi criar esse programa pois eu tive bastante dificuldade para checar as notas para o curso que eu quero
