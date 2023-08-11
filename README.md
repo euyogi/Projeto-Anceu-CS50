@@ -54,7 +54,7 @@ Ambos disponíveis na pasta new_cpp_app e a antiga versão Python em old_python_
 <h2>Diferença da nova versão em C++:</h2>
 
 * De (em alguns casos como medicina) 10s para menos de 1s para pesquisar notas do curso
-* A versão .exe anterior tinha mais de 30mb e só funcionava com diversos arquivos .dll, agora é 1mb e funciona sozinha (teoricamente, ainda tenho que testar)
+* A versão .exe anterior tinha mais de 30mb e só funcionava com diversos arquivos .dll, agora é menos de 5mb e funciona sozinha (teoricamente, ainda tenho que testar)
 * Agora a barra de pesquisa vai mostrando o nome dos cursos similares ao que você está digitando (muito bom)
 * O menu com a lista de cursos agora tem uma barra de rolagem (graças a deus)
 * Agora o programa é dimensionável e suporta diferentes escalas do windows (100%, 125%, etc...) (antes se mudasse a escala textos ficariam estranhos)
