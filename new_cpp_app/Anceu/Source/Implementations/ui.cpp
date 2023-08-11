@@ -1,8 +1,7 @@
 #include "ui.h"
 
 #include <Windows.h>
-// #include <dwmapi.h> // Cheque se dwmapi.h contém DWMWINDOWATTRIBUTE::DWMWA_CAPTION_COLOR.
-#include <C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dwmapi.h> // Lembre de incluir respectivo diretório de biblioteca.
+#include <dwmapi.h> // Lembre de incluir respectivo diretório de biblioteca.
 
 #include <span>
 #include <future>
