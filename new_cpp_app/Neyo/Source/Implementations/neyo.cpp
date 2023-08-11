@@ -20,19 +20,19 @@ void Neyo::pdfToTxt(std::string& txt_container, const wchar_t* pdf_pn) {
 	std::ifstream file(pdf_pn, std::ios::binary);
 	size_t file_size = std::filesystem::file_size(std::filesystem::path(pdf_pn));
 
-	// L� o pdf no buffer.
+	// Lê o pdf no buffer.
 	char* pdf_buffer = new char[file_size];
 	memset(pdf_buffer, '\0', file_size);
 	file.read(pdf_buffer, file_size);
 	file.close();
 
-	// Reserva mem�ria para armazenar o texto do pdf.
+	// Reserva memória para armazenar o texto do pdf.
 	txt_container.clear();
 	txt_container.resize(file_size / 2);
 
-	// Itera o buffer procurando por streams para process�-las.
+	// Itera o buffer procurando por streams para processá-las.
 	size_t txt_container_ridx = 0;
-	size_t offset = 0; // Desvio para marcar o quanto j� iteramos no buffer.
+	size_t offset = 0; // Desvio para marcar o quanto já iteramos no buffer.
 	while (true) {
 		size_t stream_start = findSubstr("stream", 6, pdf_buffer, file_size, offset);
 
@@ -41,7 +41,7 @@ void Neyo::pdfToTxt(std::string& txt_container, const wchar_t* pdf_pn) {
 
 		size_t stream_end = findSubstr("endstream", 9, pdf_buffer, file_size, stream_start);
 
-		// Pula alguns caracteres no come�o e no fim da stream para conseguirmos descomprimi-la.
+		// Pula alguns caracteres no começo e no fim da stream para conseguirmos descomprimi-la.
 		stream_start += 6;
 
 		if (pdf_buffer[stream_start] == '\r' and pdf_buffer[stream_start + 1] == '\n')
@@ -54,7 +54,7 @@ void Neyo::pdfToTxt(std::string& txt_container, const wchar_t* pdf_pn) {
 		else if (pdf_buffer[stream_end - 1] == '\n')
 			--stream_end;
 
-		// Assume que a stream descomprimida ser� at� 20x maior que a comprimida.
+		// Assume que a stream descomprimida será até 20x maior que a comprimida.
 		size_t stream_buffer_capacity = (stream_end - stream_start) * 20;
 		char* stream_buffer = new char[stream_buffer_capacity];
 
@@ -111,7 +111,7 @@ void processStream(std::string& txt_container, size_t& txt_container_ridx, const
 			}
 		}
 		else if (not in_footer) {
-			if (seen2("BT", last_4_chars)) // Objeto de texto come�a em "BT".
+			if (seen2("BT", last_4_chars)) // Objeto de texto começa em "BT".
 				in_txt_object = true;
 			else if (seen3("/Fo", last_4_chars)) // Rodapé começa em "/Footer", "/Fo" funciona.
 				in_footer = true;
@@ -134,7 +134,7 @@ inline bool seen2(const char* token, const char* str) {
 	return false;
 }
 
-// Checa se um token de tr�s caracteres apareceu (e.g. /Fo ou EMC).
+// Checa se um token de três caracteres apareceu (e.g. /Fo ou EMC).
 inline bool seen3(const char* token, const char* str) {
 	if (str[0] == token[0] and str[1] == token[1] and str[2] == token[2])
 		return true;
