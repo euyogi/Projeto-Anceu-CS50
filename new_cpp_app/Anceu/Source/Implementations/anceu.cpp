@@ -139,32 +139,69 @@ bool Anceu::extractGrades(const char* course) { DTIMER(__func__)
 	}
 
 	int start_idx = (course[2] == ']' ? 4 : 5); // Para ignorar o grupo do curso "[I]" ou "[II]".
-	std::string course_name = formatCourseName(course + start_idx);
+    std::string course_name = formatCourseName(course + start_idx);
+
 	size_t campus_shift_idx = 0;
 
 	if (size_t idx = course_name.find("(PLA"); idx != std::string::npos) {
 		campus_shift_idx = grades_txt.find("PLA"); // (menor string que funciona).
-		course_name.replace(idx, course_name.size() - 1, "");
+		course_name.replace(idx, course_name.size() - idx, "");
 	}
 	else if (idx = course_name.find("(GAM"); idx != std::string::npos) {
 		campus_shift_idx = grades_txt.find("GAM"); // (menor string que funciona).
-		course_name.replace(idx, course_name.size() - 1, "");
+		course_name.replace(idx, course_name.size() - idx, "");
 	}
 	else if (idx = course_name.find("(CEI"); idx != std::string::npos) {
 		campus_shift_idx = grades_txt.find("CEI"); // (menor string que funciona).
-		course_name.replace(idx, course_name.size() - 1, "");
+		course_name.replace(idx, course_name.size() - idx, "");
 	}
 
 	if (size_t idx = course_name.find("(NOTU"); idx != std::string::npos) {
 		campus_shift_idx = grades_txt.find("NOTU", campus_shift_idx); // (menor string que funciona).
-		course_name.replace(idx, course_name.size() - 1, "");
+		course_name.replace(idx, course_name.size() - idx, "");
 	}
 	
 	// Localiza a posição do curso escolhido.
 	size_t course_idx = grades_txt.find(course_name, campus_shift_idx); DLOG("course_name = " << course_name)
 
-	if (course_idx == std::string::npos)
-		return false;
+    // Caso não encontre o curso, tenta reformatar o nome do curso (principalmente para cursos em 2021).
+	if (course_idx == std::string::npos) {
+        size_t hyphen_idx = course_name.find('-'), dash_idx = std::string(course).find("–");
+        size_t course_name_size = course_name.size();
+        if (dash_idx != std::string::npos) {
+            course_name = formatCourseName(std::string(course).replace(dash_idx, 1, "-").c_str() + start_idx);
+            course_name.replace(course_name_size, course_name.size() - 1 - course_name_size, "");
+        }
+        else if (hyphen_idx != std::string::npos) {
+            course_name.replace(hyphen_idx, 1, "");
+        }
+
+        course_idx = grades_txt.find(course_name, campus_shift_idx); DLOG("course_name2 = " << course_name2)
+
+        // Se ainda assim não encontrar.
+        if (course_idx == std::string::npos) {
+            hyphen_idx = course_name.find('-');
+            if (hyphen_idx != std::string::npos) {
+                course_name.replace(course_name.find('-'), 1, "");
+                course_name.insert(course_name.size() - 1, 1, 'S');
+                course_idx = grades_txt.find(course_name, campus_shift_idx); DLOG("course_name3 = " << course_name2)
+            }
+        }
+
+        // Se ainda assim não encontrar.
+        if (course_idx == std::string::npos) {
+            course_name.replace(course_name.size() - 2, 1, "");
+            size_t bracket1_idx = course_name.find('(');
+            course_name.replace(bracket1_idx, 1, "");
+            size_t bracket2_idx = course_name.find(')');
+            course_name.replace(bracket2_idx, 1, "");
+            course_idx = grades_txt.find(course_name, campus_shift_idx); DLOG("course_name4 = " << course_name2)
+        }
+
+        // Se ainda assim não encontrar.
+        if (course_idx == std::string::npos)
+            return false;
+    }
 
 	course_idx += course_name.size() - 1;
 

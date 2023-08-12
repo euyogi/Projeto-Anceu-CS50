@@ -10,7 +10,7 @@ const char* Texts::SMALLER_TEXT_BOX_DOWNLOADING = "Baixando pdfs, aguarde...";
 const char* Texts::SMALLER_TEXT_BOX_DOWNLOAD_FAILED = "Erro: falha ao baixar os pdfs, tente novamente";
 const char* Texts::SMALLER_TEXT_BOX_RESULTS = "Resumo das notas abaixo";
 const char* Texts::SMALLER_TEXT_BOX_DETAILS = "Inscrições, notas e posições detalhadas abaixo";
-const char* Texts::SMALLER_TEXT_BOX_EXTRACT_FAILED = "Erro: falha ao extrair os dados dos pdfs, tente novamente";
+const char* Texts::SMALLER_TEXT_BOX_EXTRACT_FAILED = "Erro: talvez esse curso não exista";
 
 const char* Texts::BUTTON_SEARCH = "Pesquisar";
 

@@ -127,7 +127,21 @@ void UI::showAnceuWnd(bool* p_loop_boolean) {
                         return;
                     }
 
-                    if (Anceu::extractGrades(Texts::COURSES[combo_courses_selected_idx])) {
+                    if (ImGui::IsKeyDown(ImGuiKey_Comma)) { // Para testar os cursos.
+                        for (auto & i : Texts::COURSES) {
+                            if (Anceu::extractGrades(i)) {
+                                smaller_text_box_data.setText(Texts::SMALLER_TEXT_BOX_RESULTS);
+                                bigger_text_box_text = Anceu::results.c_str();
+                                se_button_text = Texts::SE_BUTTON_DETAILS;
+                                se_button_disabled = false;
+                            }
+                            else {
+                                smaller_text_box_data.setText(Texts::SMALLER_TEXT_BOX_EXTRACT_FAILED, Colors::LIGHT_RED.imVec4());
+                                break;
+                            }
+                        }
+                    }
+                    else if (Anceu::extractGrades(Texts::COURSES[combo_courses_selected_idx])) {
                         smaller_text_box_data.setText(Texts::SMALLER_TEXT_BOX_RESULTS);
                         bigger_text_box_text = Anceu::results.c_str();
                         se_button_text = Texts::SE_BUTTON_DETAILS;
