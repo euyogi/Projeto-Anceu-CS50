@@ -8,7 +8,7 @@ da instituição, com as maiores notas, a média e as menores notas (nota de cor
 
 <h2>Para testar:</h2>
 
-Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a> [WINDOWS] (ainda tenho que testar em outros computadores, então não tenho certeza se está funcionando 100%).
+Baixe o programa <a href="https://github.com/euyogi/Projeto-CS50/releases/download/release/Anceu.exe">aqui</a> [WINDOWS] (desenvolvido para windows 11 mas funcionou em outras versões nos meus testes).
 
 Se quiser ver o código e compilar você mesmo, baixe o .zip com todos os arquivos, nele se você quiser compilar com Visual Studio tem uma solução do Visual Studio 2022, além de ser possível compilar também com CMake. Ambos disponíveis na pasta new_cpp_app e a antiga versão Python em old_python_app, baixe o .zip <a href="https://github.com/euyogi/Projeto-CS50/archive/refs/heads/main.zip">aqui</a>.
 
