@@ -1,5 +1,7 @@
 # Projeto-Anceu-CS50
 
+<img alt="Header" width=100% src="https://capsule-render.vercel.app/api?type=waving&color=40E0D0&height=100&section=header">
+
 Esse é o meu projeto final para o curso CS50 - é um aplicativo que <ins>a</ins>nalisa as <ins>n</ins>otas de <ins>c</ins>orte do <ins>e</ins>nem para a <ins>U</ins>nB, feito <s>em python</s> agora em C++, que checa as notas dos candidatos que participaram do Enem e se inscreveram na Universidade de Brasília - UnB, mostrando por fim um resumo para cada curso
 da instituição, com as maiores notas, a média e as menores notas (nota de corte) em cada cota disponível.
 
@@ -127,6 +129,4 @@ eu tive no começo com o programa:
 Projeto feito por: Yogi Nam de Souza Barbosa
 </p>
 
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/46427886/218377101-f832c1a3-6c48-4016-92d2-0d8b6a4fafd5.gif" width="10%" alt-text="Minha imagem de perfil (um cachorro)" />
-</div>
+<img alt="Footer" width=100% src="https://capsule-render.vercel.app/api?type=waving&color=b03955&height=100&section=footer">
